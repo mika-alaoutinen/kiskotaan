@@ -19,9 +19,9 @@ const addPlayer = async (player: Player): Promise<Player|void> =>
     .then(response => response.data)
     .catch(error => console.log(error))
 
-const deletePlayer = (id: string): void => {
-  axios.delete(url + '/' + id)
+const deletePlayer = async (id: string): Promise<void> =>
+  axios.delete<void>(url + '/' + id)
+    .then(response => response.data)
     .catch(error => console.log(error))
-}
 
 export default { getPlayers, getPlayer, addPlayer, deletePlayer }
