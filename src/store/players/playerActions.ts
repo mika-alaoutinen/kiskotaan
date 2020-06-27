@@ -4,8 +4,8 @@ import playerService from '../../services/playerService'
 
 // Action creators for players
 export const getPlayers = (): AppThunk => async dispatch => {
-  const players = await playerService.getAll()
-  
+  const players = await playerService.getPlayers()
+
   dispatch({
     type: GET_PLAYERS,
     players

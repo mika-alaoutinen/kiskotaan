@@ -7,7 +7,7 @@ const Players: React.FC = () => {
   const [ players, setPlayers ] = useState<Player[]|void>()
 
   useEffect(() => {
-    void playerService.getAll()
+    void playerService.getPlayers()
       .then(players => setPlayers(players))
   }, [setPlayers])
 
