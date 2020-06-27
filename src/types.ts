@@ -6,12 +6,14 @@ export interface Course {
 }
 
 export interface Hole {
+  number: number,
   par: number,
   length?: number
 }
 
 // Player's information
 export interface Player {
+  id: string,
   name: string,
   scoreCard: ScoreCard
 }
