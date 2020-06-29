@@ -1,23 +1,13 @@
-import { ADD_PLAYER, DELETE_PLAYER, GET_PLAYERS, PlayerActionTypes, PlayerState } from './playerTypes'
+import { ADD_PLAYER, DELETE_PLAYER, GET_PLAYERS, PlayerAction, PlayerState } from './playerTypes'
 
-const initialState: PlayerState = {
-  players: []
-}
-
-const playerReducer = (state = initialState, action: PlayerActionTypes): PlayerState => {
+const playerReducer = (state: PlayerState = [], action: PlayerAction): PlayerState => {
   switch (action.type) {
     case ADD_PLAYER:
-      return {
-        players: [ ...state.players, action.player ]
-      }
+      return [ ...state, action.player ]
     case DELETE_PLAYER:
-      return {
-        players: state.players.filter(player => player.id !== action.id)
-      }
+      return state.filter(player => player.id !== action.id)
     case GET_PLAYERS:
-      return {
-        players: action.players
-      }
+      return action.players
     default:
       return state
   }

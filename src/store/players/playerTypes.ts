@@ -5,13 +5,9 @@ export const ADD_PLAYER = 'ADD_PLAYER'
 export const DELETE_PLAYER = 'DELETE_PLAYER'
 export const GET_PLAYERS = 'GET_PLAYERS'
 
-// Interfaces:
-export interface PlayerState {
-  players: Player[]
-}
-
-// Types:
-export type PlayerActionTypes = AddPlayerAction | DeletePlayerAction | GetPlayersAction
+// Types for state and actions:
+export type PlayerState = Player[]
+export type PlayerAction = AddPlayerAction | DeletePlayerAction | GetPlayersAction
 
 // Private type definitions:
 interface AddPlayerAction {
