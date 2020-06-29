@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+// import { useSelector } from 'react-redux'
+
 import PlayerDetails from './PlayerDetails'
-import playerService from '../../services/playerService'
 import { Player } from '../../types'
+import { useSelector } from '../../store/reduxTypes'
 
 const Players: React.FC = () => {
-  const [ players, setPlayers ] = useState<Player[]|void>()
-
-  useEffect(() => {
-    void playerService.getPlayers()
-      .then(players => setPlayers(players))
-  }, [setPlayers])
+  const players: Player[] = useSelector(state => state.players)
 
   const renderPlayers = () => players
     ? players.map(player =>
