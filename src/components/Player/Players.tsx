@@ -1,5 +1,4 @@
 import React from 'react'
-// import { useSelector } from 'react-redux'
 
 import PlayerDetails from './PlayerDetails'
 import { Player } from '../../types'
