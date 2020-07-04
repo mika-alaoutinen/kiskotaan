@@ -21,6 +21,8 @@ const App: React.FC = () => {
       <br />
 
       <Players />
+
+      <br />
       <AddPlayer />
     </div>
   )

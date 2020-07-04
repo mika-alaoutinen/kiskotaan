@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
+
 import { addPlayer } from '../../store/players/playerActions'
 import { Player } from '../../types'
 
@@ -10,7 +13,7 @@ const AddPlayer: React.FC = () => {
 
   const resetName = (): void => setName('')
 
-  const submitHandler = () => (event: React.FormEvent<HTMLFormElement>) => {
+  const submitHandler = () => (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
 
     const player: Player = {
@@ -28,11 +31,26 @@ const AddPlayer: React.FC = () => {
   }
   
   return (
-    <div>
-      <p>Add player</p>
+    <div className='add-player-form'>
+      <h2>Add player</h2>
+
       <form onSubmit={submitHandler()}>
-        <input value={name} onChange={event => setName(event.target.value)} />
-        <button type='submit'>Add player</button>
+        
+        <TextField
+          label='Add player'
+          value={name}
+          onChange={event => setName(event.target.value)}
+        />
+
+        <p>
+          <Button
+            type='submit'
+            variant='contained'
+          >
+            Submit players
+          </Button>
+        </p>
+
       </form>
     </div>
   )
