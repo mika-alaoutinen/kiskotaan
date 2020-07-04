@@ -11,9 +11,12 @@ const App: React.FC = () => {
   useEffect(() => {
     dispatch(getPlayers())
   }, [dispatch])
-  
+
   return (
-    <div className="App">
+    <div
+      className="App"
+      style={{ fontFamily: 'Roboto' }}
+    >
       <h1>Kiskotaan</h1>
       <br />
 

@@ -8,9 +8,7 @@ const AddPlayer: React.FC = () => {
   const dispatch = useDispatch()
   const [ name, setName ] = useState('')
 
-  const resetName = (): void => {
-    setName('')
-  }
+  const resetName = (): void => setName('')
 
   const submitHandler = () => (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
