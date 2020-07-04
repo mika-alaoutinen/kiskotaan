@@ -1,10 +1,12 @@
 import React from 'react'
+import Players from '../player/Players'
 
 const HomePage: React.FC = () => {
 
   return (
     <div>
-      <p>Home page</p>
+      <h2>Home page</h2>
+      <Players />
     </div>
   )
 }

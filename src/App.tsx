@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
-import AddPlayer from './components/player/AddPlayer'
-import Players from './components/player/Players'
+import Routes from './router/Routes'
 import { getPlayers } from './store/players/playerActions'
 
 const App: React.FC = () => {
@@ -18,12 +17,7 @@ const App: React.FC = () => {
       style={{ fontFamily: 'Roboto' }}
     >
       <h1>Kiskotaan</h1>
-      <br />
-
-      <Players />
-
-      <br />
-      <AddPlayer />
+      <Routes />
     </div>
   )
 }
