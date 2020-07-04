@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
-import Routes from './router/Routes'
+import Navigation from './components/common/Navigation'
 import { getPlayers } from './store/players/playerActions'
 
 const App: React.FC = () => {
@@ -12,12 +12,9 @@ const App: React.FC = () => {
   }, [dispatch])
 
   return (
-    <div
-      className="App"
-      style={{ fontFamily: 'Roboto' }}
-    >
+    <div className="App" style={{ fontFamily: 'Roboto' }}>
       <h1>Kiskotaan</h1>
-      <Routes />
+      <Navigation />
     </div>
   )
 }
