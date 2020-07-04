@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
-import AddPlayer from './components/Player/AddPlayer'
-import Players from './components/Player/Players'
+import AddPlayer from './components/player/AddPlayer'
+import Players from './components/player/Players'
 import { getPlayers } from './store/players/playerActions'
 
 const App: React.FC = () => {

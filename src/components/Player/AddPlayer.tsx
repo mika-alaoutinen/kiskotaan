@@ -19,11 +19,6 @@ const AddPlayer: React.FC = () => {
     const player: Player = {
       id: 'temp',
       name,
-      scoreCard: {
-        holes: [
-          { number: 1, par: 3 }
-        ],
-      },
     }
 
     dispatch(addPlayer(player))
