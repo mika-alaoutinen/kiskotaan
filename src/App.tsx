@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
-import AddPlayer from './components/Player/AddPlayer'
-import Players from './components/Player/Players'
+import Navigation from './components/common/Navigation'
 import { getPlayers } from './store/players/playerActions'
 
 const App: React.FC = () => {
@@ -11,14 +10,11 @@ const App: React.FC = () => {
   useEffect(() => {
     dispatch(getPlayers())
   }, [dispatch])
-  
-  return (
-    <div className="App">
-      <h1>Kiskotaan</h1>
-      <br />
 
-      <Players />
-      <AddPlayer />
+  return (
+    <div className="App" style={{ fontFamily: 'Roboto' }}>
+      <h1>Kiskotaan</h1>
+      <Navigation />
     </div>
   )
 }
