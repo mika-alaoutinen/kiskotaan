@@ -42,15 +42,15 @@ const NewGameStepper: React.FC = () => {
 
   const allStepsDone = (): boolean => activeStep === steps.length
   
-  const handleNext = () => {
+  const handleNext = (): void => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1)
   }
 
-  const handleBack = () => {
+  const handleBack = (): void => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1)
   }
 
-  const handleReset = () => {
+  const handleReset = (): void => {
     setActiveStep(0)
   }
   
@@ -74,14 +74,14 @@ const NewGameStepper: React.FC = () => {
     </Button>
 
   const renderResetButton = () =>
-  <div>
-    <Typography className={classes.instructions}>
-      All steps completed
-    </Typography>
-    <Button onClick={handleReset} className={classes.button}>
-      Reset
-    </Button>
-  </div>
+    <div>
+      <Typography className={classes.instructions}>
+        All steps completed
+      </Typography>
+      <Button onClick={handleReset} className={classes.button}>
+        Reset
+      </Button>
+    </div>
   
   const renderStep = () =>
     <div>
