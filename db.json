@@ -4,27 +4,51 @@
       "id": "1",
       "name": "Mika"
     },
+
     {
       "id": "2",
       "name": "Salla"
     }
   ],
 
-  "course": {
-    "name": "Kuokkalan golf",
-    "holes": [
-      {
-        "number": 1,
-        "par": 3,
-        "length": 80
-      },
-      {
-        "number": 2,
-        "par": 4,
-        "length": 100
-      }
-    ],
-    "par": 7
-  }
+  "courses": [
+    {
+      "name": "Kuokkalan golf",
+      "holes": [
+        {
+          "number": 1,
+          "par": 3,
+          "length": 80
+        },
+        {
+          "number": 2,
+          "par": 4,
+          "length": 100
+        }
+      ],
+      "par": 7
+    },
 
+    {
+      "name": "Keljonkankaan golf",
+      "holes": [
+        {
+          "number": 1,
+          "par": 3,
+          "length": 70
+        },
+        {
+          "number": 2,
+          "par": 3,
+          "length": 80
+        },
+        {
+          "number": 3,
+          "par": 4,
+          "length": 100
+        }
+      ],
+      "par": 10
+    }
+  ]
 }
