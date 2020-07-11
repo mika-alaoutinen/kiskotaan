@@ -1,9 +1,9 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
-import GameHistory from '../components/gameHistory/GameHistory'
-import HomePage from '../components/home/HomePage'
-import NewGame from '../components/newGame/NewGame'
+import GameHistory from '../views/GameHistory'
+import HomePage from '../views/Home'
+import NewGame from '../views/NewGame'
 
 const Routes: React.FC = () => (
   <Switch>

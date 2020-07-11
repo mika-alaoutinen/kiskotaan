@@ -1,5 +1,5 @@
 import React from 'react'
-import Players from '../player/Players'
+import Players from '../components/player/Players'
 
 const HomePage: React.FC = () => {
 
