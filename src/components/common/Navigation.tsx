@@ -13,8 +13,8 @@ const appBarStyle = {
   bottom: 0,
 }
 
-const centeredStyle = {
-  margin: '0 auto',
+const buttonStyle = {
+  color: 'white'
 }
 
 const Navigation: React.FC = () => (
@@ -22,10 +22,20 @@ const Navigation: React.FC = () => (
     <Routes />
 
     <AppBar position='fixed' style={appBarStyle}>
-      <ButtonGroup variant='text' style={centeredStyle}>
-        <Button component={Link} to={homePath}>Home</Button>
-        <Button component={Link} to={newGamePath}>New game</Button>
-        <Button component={Link} to={gameHistoryPath}>Game history</Button>
+      <ButtonGroup variant='text' style={{ margin: '0 auto' }}>
+
+        <Button component={Link} to={homePath} style={buttonStyle}>
+          Home
+        </Button>
+
+        <Button component={Link} to={newGamePath} style={buttonStyle}>
+          New game
+        </Button>
+        
+        <Button component={Link} to={gameHistoryPath} style={buttonStyle}>
+          Game history
+        </Button>
+        
       </ButtonGroup>
     </AppBar>
   </div>
