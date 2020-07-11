@@ -12,9 +12,6 @@ import StartGame from './StartGame'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      width: '100%',
-    },
     button: {
       marginRight: theme.spacing(1),
     },
@@ -43,6 +40,8 @@ const NewGameStepper: React.FC = () => {
     }
   }
 
+  const allStepsDone = (): boolean => activeStep === steps.length
+  
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1)
   }
@@ -54,60 +53,59 @@ const NewGameStepper: React.FC = () => {
   const handleReset = () => {
     setActiveStep(0)
   }
+  
+  const renderBackButton = () =>
+    <Button
+      disabled={activeStep === 0}
+      onClick={handleBack}
+      className={classes.button}
+      >
+      Back
+    </Button>
 
+  const renderNextButton = () =>
+    <Button
+      variant="contained"
+      color="primary"
+      onClick={handleNext}
+      className={classes.button}
+    >
+      {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+    </Button>
+
+  const renderResetButton = () =>
+  <div>
+    <Typography className={classes.instructions}>
+      All steps completed
+    </Typography>
+    <Button onClick={handleReset} className={classes.button}>
+      Reset
+    </Button>
+  </div>
+  
+  const renderStep = () =>
+    <div>
+      <Typography className={classes.instructions} component='span'>
+        {getStepContent(activeStep)}
+      </Typography>
+
+      {renderBackButton()}
+      {renderNextButton()}
+    </div>
+  
   return (
-    <div className={classes.root}>
+    <div className='new-game-stepper'>
+      
       <Stepper activeStep={activeStep}>
-        {steps.map((label) => {
-          const stepProps: { completed?: boolean } = {}
-          const labelProps: { optional?: React.ReactNode } = {}
-          
-          return (
-            <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
-            </Step>
-          )
-        })}
+        {steps.map(label =>
+          <Step key={label}>
+            <StepLabel>{label}</StepLabel>
+          </Step>
+        )}
       </Stepper>
 
       <div>
-        {activeStep === steps.length
-
-        // All steps done
-        ? (
-          <div>
-            <Typography className={classes.instructions}>
-              All steps completed - you are finished
-            </Typography>
-            <Button onClick={handleReset} className={classes.button}>
-              Reset
-            </Button>
-          </div>
-        )
-
-        // Steps still remain
-        : (
-          <div>
-            <Typography className={classes.instructions}>
-              {getStepContent(activeStep)}
-            </Typography>
-
-            <div>
-              <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
-                Back
-              </Button>
-
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleNext}
-                className={classes.button}
-              >
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-              </Button>
-            </div>
-          </div>
-        )}
+        {allStepsDone() ? renderResetButton() : renderStep()}
       </div>
     </div>
   )
