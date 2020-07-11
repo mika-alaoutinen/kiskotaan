@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 
 import Routes from '../../router/Routes'
-import { gameHistoryPath, homePath, newGamePath } from '../../constants'
+import { gameHistoryPath, homePath, newCoursePath, newGamePath } from '../../constants'
 
 const appBarStyle = {
   top: 'auto',
@@ -30,6 +30,10 @@ const Navigation: React.FC = () => (
 
         <Button component={Link} to={newGamePath} style={buttonStyle}>
           New game
+        </Button>
+        
+        <Button component={Link} to={newCoursePath} style={buttonStyle}>
+          New course
         </Button>
         
         <Button component={Link} to={gameHistoryPath} style={buttonStyle}>
