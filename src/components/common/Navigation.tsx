@@ -13,6 +13,7 @@ const Navigation: React.FC = () => (
     <ButtonGroup variant='text'>
       <Button component={Link} to='/'>Home</Button>
       <Button component={Link} to='/new-game'>New game</Button>
+      <Button component={Link} to='/history'>Game history</Button>
     </ButtonGroup>
   </div>
 )
