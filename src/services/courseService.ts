@@ -7,4 +7,9 @@ const getCourses = async (): Promise<Course[]|void> =>
     .then(response => response.data)
     .catch(error => console.log(error))
 
-export default { getCourses }
+const addCourse = async (course: Course): Promise<Course|void> =>
+  axios.post<Course>(coursesUrl, course)
+    .then(response => response.data)
+    .catch(error => console.log(error))
+
+export default { getCourses, addCourse }
