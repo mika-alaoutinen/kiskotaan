@@ -1,21 +1,39 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
+import Grid from '@material-ui/core/Grid'
+
 import Navigation from './components/common/Navigation'
+import { getCourses } from './store/courses/courseActions'
 import { getPlayers } from './store/players/playerActions'
+
+const style = {
+  fontFamily: 'Roboto'
+}
 
 const App: React.FC = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    dispatch(getCourses())
     dispatch(getPlayers())
   }, [dispatch])
 
   return (
-    <div className="App" style={{ fontFamily: 'Roboto' }}>
+    <Grid
+      alignItems='center'
+      className='App'
+      container
+      direction='column'
+      justify='center'
+      style={style}
+      spacing={0}
+    >
+      
       <h1>Kiskotaan</h1>
       <Navigation />
-    </div>
+      
+    </Grid>
   )
 }
 
