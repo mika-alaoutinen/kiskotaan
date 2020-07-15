@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import Grid from '@material-ui/core/Grid'
 
 import Navigation from './components/common/Navigation'
+import { getCourses } from './store/courses/courseActions'
 import { getPlayers } from './store/players/playerActions'
 
 const style = {
@@ -14,6 +15,7 @@ const App: React.FC = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    dispatch(getCourses())
     dispatch(getPlayers())
   }, [dispatch])
 
