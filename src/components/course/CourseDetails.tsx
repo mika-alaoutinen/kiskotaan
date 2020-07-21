@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import Accordion from '@material-ui/core/Accordion'
-import AccordionSummary from '@material-ui/core/AccordionSummary'
+import AccordionActions from '@material-ui/core/AccordionActions'
 import AccordionDetails from '@material-ui/core/AccordionDetails'
-import { unstable_createMuiStrictModeTheme, ThemeProvider  } from '@material-ui/core/styles'
+import AccordionSummary from '@material-ui/core/AccordionSummary'
+import Button from '@material-ui/core/Button'
+import Chip from '@material-ui/core/Chip'
+import { createStyles, makeStyles, ThemeProvider, unstable_createMuiStrictModeTheme } from '@material-ui/core/styles'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
 import { Course } from '../../types'
@@ -14,20 +17,64 @@ import { Course } from '../../types'
 */
 const theme = unstable_createMuiStrictModeTheme()
 
+const useStyles = makeStyles(() =>
+  createStyles({
+    details: {
+      flexDirection: 'column',
+      alignItems: 'center',
+    }
+  }),
+)
+
 const CourseDetails: React.FC<{ course: Course }> = ({ course }) => {
-  const { name, par } = course
+  const classes = useStyles()
+  const { holes, name, par } = course
+  const [ isCourseSelected, setCourseSelected] = useState(false) // TODO
+
+  // Event handlers for buttons:
+  const selectCourse = (event: React.MouseEvent): void => {
+    event.stopPropagation()
+    setCourseSelected(!isCourseSelected)
+  }
+
+  const goToCourseInfo = (): void => {
+    console.log('Route to course info view')
+  }
+
+  // Retrieve player info:
+  const getBestScore = (): string => '+12' // TODO
+
+  const getLastPlayed = (): string => '21.07.2020' // TODO
 
   return (
     <ThemeProvider theme={theme}>
       <Accordion>
+
         <AccordionSummary id={course.id} expandIcon={<ExpandMoreIcon />}>
-          Course name {name}
+          <Button
+            color={isCourseSelected ? 'primary' : 'default'}
+            onClick={event => selectCourse(event)}
+            onFocus={event => event.stopPropagation()}
+          >
+            {name}, {holes.length} väylää
+          </Button>
         </AccordionSummary>
 
-        <AccordionDetails>
-          <p>Holes...</p>
-          <p>Par: {par}</p>
+        <AccordionDetails className={classes.details}>
+          <Chip
+            color='primary'
+            label={`par ${par}`}
+            variant='outlined'
+          />
+            <p>Personal best {getBestScore()}</p>
+            <p>Last played {getLastPlayed()}</p>
         </AccordionDetails>
+
+        <AccordionActions>
+          <Button onClick={() => goToCourseInfo()}>
+            Course info
+          </Button>
+        </AccordionActions>
 
       </Accordion>
     </ThemeProvider>
