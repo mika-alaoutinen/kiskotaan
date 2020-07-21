@@ -13,8 +13,7 @@ export interface Player {
 export interface ScoreCard {
   id: string,
   date?: Date,
-  holes: Hole[],
-  par: number,
+  course: Course,
   players: Player[],
   rows: ScoreCardRow[]
 }
