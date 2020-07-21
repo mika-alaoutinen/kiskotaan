@@ -30,8 +30,8 @@ const useStyles = makeStyles(() =>
 )
 
 const CourseDetails: React.FC<{ course: Course }> = ({ course }) => {
-  const selectedCourse: Course = useSelector(state => state.scoreCard.course)
   const dispatch = useDispatch()
+  const selectedCourse: Course = useSelector(state => state.scoreCard.course)
 
   const classes = useStyles()
   const { holes, name, par } = course
