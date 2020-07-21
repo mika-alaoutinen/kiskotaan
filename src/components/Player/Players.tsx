@@ -1,4 +1,5 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 
 import Divider from '@material-ui/core/Divider'
 import List from '@material-ui/core/List'
@@ -11,24 +12,36 @@ import Remove from '@material-ui/icons/Remove'
 
 // import PlayerDetails from './PlayerDetails'
 import { Player } from '../../types'
+import { selectPlayer } from '../../store/scoreCard/scoreCardActions'
 import { useSelector } from '../../store/reduxTypes'
 
+
 const Players: React.FC = () => {
+  const dispatch = useDispatch()
   const players: Player[] = useSelector(state => state.players)
   const selectedPlayers: Player[] = useSelector(state => state.scoreCard.players)
 
-  const renderAllPlayers = () =>
-    players.map(player => createListItem(player, <Add />))
+  const renderAllPlayers = () => players
+    .filter(player => !selectedPlayers.includes(player))
+    .map(player => createListItem(player, <Add />))
 
   const renderSelectedPlayers = () => selectedPlayers.length > 0
     ? selectedPlayers.map(player => createListItem(player, <Remove />))
     : <p>No selected players</p>
 
   const createListItem = (player: Player, icon: JSX.Element) =>
-    <ListItem key={player.id} button>
+    <ListItem
+      button
+      key={player.id}
+      onClick={() => handleClick(player)}
+    >
       <ListItemIcon>{icon}</ListItemIcon>
       <ListItemText primary={player.name} />
     </ListItem>
+
+  const handleClick = (player: Player) => {
+    dispatch(selectPlayer(player))
+  }
   
   return (
     <div>
