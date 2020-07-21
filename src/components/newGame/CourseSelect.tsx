@@ -21,8 +21,6 @@ const CourseSelect: React.FC = () => {
   
   return (
     <div>
-      <h3>Select a course</h3>
-
       <Courses />
       {renderNewCourseButton()}
     </div>
