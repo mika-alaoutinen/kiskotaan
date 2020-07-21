@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useDispatch } from 'react-redux'
 
 import Accordion from '@material-ui/core/Accordion'
 import AccordionActions from '@material-ui/core/AccordionActions'
@@ -10,6 +11,8 @@ import { createStyles, makeStyles, ThemeProvider, unstable_createMuiStrictModeTh
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
 import { Course } from '../../types'
+import { selectCourse } from '../../store/scoreCard/scoreCardActions'
+import { useSelector } from '../../store/reduxTypes'
 
 /*
   Stupid hack to get rid of warning in Material UI: "findDOMNode is deprecated in StrictMode."
@@ -27,14 +30,16 @@ const useStyles = makeStyles(() =>
 )
 
 const CourseDetails: React.FC<{ course: Course }> = ({ course }) => {
+  const selectedCourse: Course = useSelector(state => state.scoreCard.course)
+  const dispatch = useDispatch()
+
   const classes = useStyles()
   const { holes, name, par } = course
-  const [ isCourseSelected, setCourseSelected] = useState(false) // TODO
 
   // Event handlers for buttons:
-  const selectCourse = (event: React.MouseEvent): void => {
+  const selectCourseHandler = (event: React.MouseEvent): void => {
     event.stopPropagation()
-    setCourseSelected(!isCourseSelected)
+    dispatch(selectCourse(course))
   }
 
   const goToCourseInfo = (): void => {
@@ -52,8 +57,8 @@ const CourseDetails: React.FC<{ course: Course }> = ({ course }) => {
 
         <AccordionSummary id={course.id} expandIcon={<ExpandMoreIcon />}>
           <Button
-            color={isCourseSelected ? 'primary' : 'default'}
-            onClick={event => selectCourse(event)}
+            color={selectedCourse.id === course.id ? 'primary' : 'default'}
+            onClick={event => selectCourseHandler(event)}
             onFocus={event => event.stopPropagation()}
           >
             {name}, {holes.length} väylää
