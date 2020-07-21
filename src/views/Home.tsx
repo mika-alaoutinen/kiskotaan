@@ -4,7 +4,6 @@ import { Link as RouterLink } from 'react-router-dom'
 import Fab from '@material-ui/core/Fab'
 import Link from '@material-ui/core/Link'
 
-import Courses from '../components/course/Courses'
 import Players from '../components/player/Players'
 import { newGamePath } from '../constants'
 
@@ -22,10 +21,6 @@ const HomePage: React.FC = () => {
       <br />
       <p>Temp: players shown on home page</p>
       <Players />
-
-      <br />
-      <p>Temp: Courses shown on home page</p>
-      <Courses />
     </div>
   )
 }

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import Button from '@material-ui/core/Button'
 
+import Courses from '../course/Courses'
 import { newCoursePath } from '../../constants'
 
 const CourseSelect: React.FC = () => {
@@ -21,8 +22,8 @@ const CourseSelect: React.FC = () => {
   return (
     <div>
       <h3>Select a course</h3>
-      <p>Kuokkalan frisbeegolf</p>
 
+      <Courses />
       {renderNewCourseButton()}
     </div>
   )

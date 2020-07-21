@@ -14,7 +14,6 @@ const Courses: React.FC = () => {
   
   return (
     <div>
-      <p>course listing</p>
       {renderCourses()}
     </div>
   )
