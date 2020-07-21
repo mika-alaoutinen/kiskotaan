@@ -10,7 +10,7 @@ import ListSubheader from '@material-ui/core/ListSubheader'
 import Add from '@material-ui/icons/Add'
 import Remove from '@material-ui/icons/Remove'
 
-// import PlayerDetails from './PlayerDetails'
+import PlayerDetails from './PlayerDetails'
 import { Player } from '../../types'
 import { addPlayer, removePlayer } from '../../store/scoreCard/scoreCardActions'
 import { useSelector } from '../../store/reduxTypes'
@@ -20,21 +20,34 @@ const Players: React.FC = () => {
   const players: Player[] = useSelector(state => state.players)
   const selectedPlayers: Player[] = useSelector(state => state.scoreCard.players)
 
-  const renderAllPlayers = () => players
-    .filter(player => !selectedPlayers.includes(player))
-    .map(player => createListItem(player, <Add />, addPlayer))
-
   const renderSelectedPlayers = () => selectedPlayers.length > 0
-    ? selectedPlayers.map(player => createListItem(player, <Remove />, removePlayer))
+    ? selectedPlayers.map(createSelectedPlayersList)
     : <p>No selected players</p>
-
-  const createListItem = (player: Player, icon: JSX.Element, action: (player: Player) => void) =>
+  
+  const createSelectedPlayersList = (player: Player) =>
     <ListItem
       button
       key={player.id}
-      onClick={() => dispatch(action(player))}
+      onClick={() => dispatch(removePlayer(player))}
     >
-      <ListItemIcon>{icon}</ListItemIcon>
+      <ListItemIcon><Remove /></ListItemIcon>
+      <PlayerDetails player={player} />
+    </ListItem>
+
+  const renderAllPlayers = () => {
+    const nonSelectedPlayers: Player[] = players.filter(player => !selectedPlayers.includes(player))
+    return nonSelectedPlayers.length > 0
+      ? nonSelectedPlayers.map(createAllPlayersList)
+      : <p>All players selected</p>
+  }
+
+  const createAllPlayersList = (player: Player) =>
+    <ListItem
+      button
+      key={player.id}
+      onClick={() => dispatch(addPlayer(player))}
+    >
+      <ListItemIcon><Add /></ListItemIcon>
       <ListItemText primary={player.name} />
     </ListItem>
   
@@ -55,17 +68,6 @@ const Players: React.FC = () => {
       </List>
     </div>
   )
-
-  // const renderPlayers = () => players
-  //   ? players.map(player =>
-  //     <PlayerDetails key={player.id} player={player} />)
-  //   : <p>no players</p>
-
-  // return (
-  //   <div>
-  //     {renderPlayers()}
-  //   </div>
-  // )
 }
 
 export default Players
