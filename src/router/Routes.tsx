@@ -5,13 +5,15 @@ import GameHistory from '../views/GameHistory'
 import HomePage from '../views/Home'
 import NewCourse from '../views/NewCourse'
 import NewGame from '../views/NewGame'
-import { gameHistoryPath, homePath, newCoursePath, newGamePath } from '../constants'
+import NewPlayer from '../views/NewPlayer'
+import { gameHistoryPath, homePath, newCoursePath, newGamePath, newPlayerPath } from '../constants'
 
 const Routes: React.FC = () => (
   <Switch>
     <Route exact path={gameHistoryPath} component={GameHistory} />
     <Route exact path={newCoursePath} component={NewCourse} />
     <Route exact path={newGamePath} component={NewGame} />
+    <Route exact path={newPlayerPath} component={NewPlayer} />
     <Route exact path={homePath} component={HomePage} />
   </Switch>
 )
