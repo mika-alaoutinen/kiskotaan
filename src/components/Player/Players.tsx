@@ -12,9 +12,8 @@ import Remove from '@material-ui/icons/Remove'
 
 // import PlayerDetails from './PlayerDetails'
 import { Player } from '../../types'
-import { selectPlayer } from '../../store/scoreCard/scoreCardActions'
+import { addPlayer, removePlayer } from '../../store/scoreCard/scoreCardActions'
 import { useSelector } from '../../store/reduxTypes'
-
 
 const Players: React.FC = () => {
   const dispatch = useDispatch()
@@ -23,25 +22,21 @@ const Players: React.FC = () => {
 
   const renderAllPlayers = () => players
     .filter(player => !selectedPlayers.includes(player))
-    .map(player => createListItem(player, <Add />))
+    .map(player => createListItem(player, <Add />, addPlayer))
 
   const renderSelectedPlayers = () => selectedPlayers.length > 0
-    ? selectedPlayers.map(player => createListItem(player, <Remove />))
+    ? selectedPlayers.map(player => createListItem(player, <Remove />, removePlayer))
     : <p>No selected players</p>
 
-  const createListItem = (player: Player, icon: JSX.Element) =>
+  const createListItem = (player: Player, icon: JSX.Element, action: (player: Player) => void) =>
     <ListItem
       button
       key={player.id}
-      onClick={() => handleClick(player)}
+      onClick={() => dispatch(action(player))}
     >
       <ListItemIcon>{icon}</ListItemIcon>
       <ListItemText primary={player.name} />
     </ListItem>
-
-  const handleClick = (player: Player) => {
-    dispatch(selectPlayer(player))
-  }
   
   return (
     <div>
