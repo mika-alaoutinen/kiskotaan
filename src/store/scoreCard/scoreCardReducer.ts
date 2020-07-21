@@ -1,4 +1,7 @@
-import { SELECT_COURSE, SELECT_PLAYER, ScoreCardAction, ScoreCardState } from './scoreCardTypes'
+import {
+  ADD_PLAYER_TO_CARD, REMOVE_PLAYER_FROM_CARD, SELECT_COURSE, ScoreCardAction, ScoreCardState }
+from './scoreCardTypes'
+
 import { Player } from '../../types'
 
 const initialState: ScoreCardState = {
@@ -22,11 +25,17 @@ const scoreCardReducer = (state: ScoreCardState = initialState, action: ScoreCar
         course: action.course
       }
 
-    case SELECT_PLAYER:
+    case ADD_PLAYER_TO_CARD:
       return state.players.includes(action.player)
         ? state
         : addPlayerToCard(state, action.player)
         
+    case REMOVE_PLAYER_FROM_CARD:
+      return {
+        ...state,
+        players: state.players.filter(player => player.id !== action.player.id)
+      }
+      
     default:
       return state
   }
