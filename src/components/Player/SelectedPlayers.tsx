@@ -9,7 +9,7 @@ import Remove from '@material-ui/icons/Remove'
 
 import PlayerDetails from './PlayerDetails'
 import { Player } from '../../types'
-import { removePlayerFromCard } from '../../store/scoreCard/newScoreCardActions'
+import { removePlayerFromCard } from '../../store/newScoreCard/newScoreCardActions'
 import { useSelector } from '../../store/reduxTypes'
 
 const SelectedPlayers: React.FC = () => {

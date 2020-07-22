@@ -11,7 +11,7 @@ import { createStyles, makeStyles, ThemeProvider, unstable_createMuiStrictModeTh
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
 import { Course } from '../../types'
-import { selectCourse } from '../../store/scoreCard/newScoreCardActions'
+import { selectCourse } from '../../store/newScoreCard/newScoreCardActions'
 import { useSelector } from '../../store/reduxTypes'
 
 /*
