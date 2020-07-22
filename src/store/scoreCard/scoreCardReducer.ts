@@ -6,8 +6,6 @@ from './scoreCardTypes'
 import { Player } from '../../types'
 
 const initialState: ScoreCardState = {
-  id: '',
-  date: new Date(),
   course: {
     id: '',
     name: '',
@@ -15,7 +13,6 @@ const initialState: ScoreCardState = {
     par: 0
   },
   players: [],
-  rows: []
 }
 
 const scoreCardReducer = (state: ScoreCardState = initialState, action: ScoreCardAction): ScoreCardState => {

@@ -25,7 +25,7 @@ export interface ScoreCardRow {
 
 export type NewCourse = Omit<Course, 'id'>
 export type NewPlayer = Omit<Player, 'id'>
-export type NewScoreCard = Pick<ScoreCard, 'date' | 'course' | 'players'>
+export type NewScoreCard = Pick<ScoreCard, 'course' | 'players'>
 
 // Private interfaces
 interface Hole {
