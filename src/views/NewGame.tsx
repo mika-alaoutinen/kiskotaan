@@ -78,6 +78,7 @@ const NewGame: React.FC = () => {
     </Button>
 
   const startGame = () => {
+    // FIXME: dispatch gets called twice.
     dispatch(createNewScoreCard())
     // TODO: redirect to score card view
 

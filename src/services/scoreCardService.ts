@@ -7,41 +7,10 @@ const getScoreCard = async (): Promise<ScoreCard|void> =>
     .then(response => response.data)
     .catch(error => console.log(error))
 
-// const createScoreCard = async (newScoreCard: NewScoreCard): Promise<ScoreCard|void> =>
-//   axios.post<ScoreCard>(scoreCardUrl, newScoreCard)
-//     .then(response => response.data)
-//     .catch(error => console.log(error))
-
-const createScoreCard = async (newScoreCard: NewScoreCard): Promise<ScoreCard|void> => {
-  console.log('service', newScoreCard)
-
-  const scoreCard = {
-    id: 'test',
-    course: {
-      id: 'test',
-      name: 'test course',
-      holes: [
-        {
-          number: 1,
-          par: 3,
-          distance: 100
-        }
-      ],
-      par: 3
-    },
-    players: [
-      {
-        id: 'test',
-        name: 'Pekka'
-      }
-    ],
-    rows: [
-
-    ],
-  }
-
-  return Promise.resolve(scoreCard)
-}
+const createScoreCard = async (newScoreCard: NewScoreCard): Promise<ScoreCard|void> =>
+  axios.post<ScoreCard>(scoreCardsUrl, newScoreCard)
+    .then(response => response.data)
+    .catch(error => console.log(error))
 
 const addScore = async (score: ScoreCardRow): Promise<ScoreCard|void> =>
   axios.post<ScoreCard>(scoreCardsUrl, score)
