@@ -1,4 +1,3 @@
-import store from '../store'
 import scoreCardService from '../../services/scoreCardService'
 import { AppThunk } from '../reduxTypes'
 import { CREATE_SCORECARD } from './scoreCardTypes'
@@ -8,8 +7,8 @@ import { NewScoreCard, ScoreCard } from '../../types'
 /**
  * Persists the new score card to backend once it has been filled in.
  */
-export const createNewScoreCard = (): AppThunk => async dispatch => {
-  const newScoreCard: NewScoreCard = store.getState().newScoreCard
+export const createNewScoreCard = (): AppThunk => async (dispatch, getState) => {
+  const newScoreCard: NewScoreCard = getState().newScoreCard
   const scoreCard: ScoreCard|void = await scoreCardService.createScoreCard(newScoreCard)
 
   dispatch({
