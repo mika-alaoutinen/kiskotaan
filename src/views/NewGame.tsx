@@ -1,4 +1,7 @@
 import React, { useState, ReactElement } from 'react'
+import { useDispatch } from 'react-redux'
+import { createNewScoreCard } from '../store/scoreCard/scoreCardActions'
+
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
@@ -7,8 +10,10 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
 import CourseSelect from '../components/newGame/CourseSelect'
-import PlayerSelect from '../components/newGame/PlayerSelect'
 import NewGameSummary from '../components/newGame/NewGameSummary'
+import PlayerSelect from '../components/newGame/PlayerSelect'
+import { NewScoreCard } from '../types'
+import { useSelector } from '../store/reduxTypes'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -22,7 +27,10 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
-const NewGameStepper: React.FC = () => {
+const NewGame: React.FC = () => {
+  const dispatch = useDispatch()
+  const newScoreCard: NewScoreCard = useSelector(state => state.newScoreCard)
+  
   const classes = useStyles()
   const [activeStep, setActiveStep] = useState(0)
   const steps = [ 'Select course', 'Add players', 'Start game' ]
@@ -70,18 +78,22 @@ const NewGameStepper: React.FC = () => {
       onClick={handleNext}
       className={classes.button}
     >
-      {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+      {activeStep === steps.length - 1 ? 'Start game' : 'Next'}
     </Button>
 
-  const renderResetButton = () => // TODO
-    <div>
+  const startGame = () => {
+    dispatch(createNewScoreCard(newScoreCard))
+    // TODO: redirect to score card view
+
+    return (<div>
       <Typography className={classes.instructions}>
         All steps completed
       </Typography>
       <Button onClick={handleReset} className={classes.button}>
         Reset
       </Button>
-    </div>
+    </div>)
+  }
   
   const renderStep = () =>
     <div>
@@ -105,10 +117,10 @@ const NewGameStepper: React.FC = () => {
       </Stepper>
 
       <div>
-        {allStepsDone() ? renderResetButton() : renderStep()}
+        {allStepsDone() ? startGame() : renderStep()}
       </div>
     </div>
   )
 }
 
-export default NewGameStepper
+export default NewGame
