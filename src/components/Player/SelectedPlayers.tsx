@@ -9,7 +9,7 @@ import Remove from '@material-ui/icons/Remove'
 
 import PlayerDetails from './PlayerDetails'
 import { Player } from '../../types'
-import { removePlayer } from '../../store/scoreCard/scoreCardActions'
+import { removePlayerFromCard } from '../../store/scoreCard/scoreCardActions'
 import { useSelector } from '../../store/reduxTypes'
 
 const SelectedPlayers: React.FC = () => {
@@ -24,7 +24,7 @@ const SelectedPlayers: React.FC = () => {
     <ListItem
       button
       key={player.id}
-      onClick={() => dispatch(removePlayer(player))}
+      onClick={() => dispatch(removePlayerFromCard(player))}
     >
       <ListItemIcon><Remove /></ListItemIcon>
       <PlayerDetails player={player} />
