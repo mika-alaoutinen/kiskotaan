@@ -1,10 +1,19 @@
 import React from 'react'
 
-import Players from '../player/Players'
+import Divider from '@material-ui/core/Divider'
 
-const PlayerSelect: React.FC = () => {
-  
-  return <Players />
-}
+import AddPlayer from '../player/AddPlayer'
+import AllPlayers from '../player/AllPlayers'
+import SelectedPlayers from '../player/SelectedPlayers'
+
+const PlayerSelect: React.FC = () => (
+  <div>
+    <SelectedPlayers />
+    <br /><Divider />
+
+    <AllPlayers />
+    <AddPlayer />
+  </div>
+)
 
 export default PlayerSelect
