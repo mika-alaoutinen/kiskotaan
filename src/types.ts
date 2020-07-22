@@ -12,21 +12,20 @@ export interface Player {
 
 export interface ScoreCard {
   id: string,
-  date?: Date,
   course: Course,
   players: Player[],
-  rows: ScoreCardRow[]
+  rows: ScoreCardRow[],
+  date?: Date
 }
 
 export interface ScoreCardRow {
-  scoreCardId: string,
-  holeNumber: number,
+  hole: Hole,
   scores: PlayerScore[]
 }
 
 export type NewCourse = Omit<Course, 'id'>
 export type NewPlayer = Omit<Player, 'id'>
-export type NewScoreCard = Omit<ScoreCard, 'id'>
+export type NewScoreCard = Pick<ScoreCard, 'date' | 'course' | 'players'>
 
 // Private interfaces
 interface Hole {
@@ -36,6 +35,6 @@ interface Hole {
 }
 
 interface PlayerScore {
-  playerId: string,
+  player: Player,
   score: number
 }
