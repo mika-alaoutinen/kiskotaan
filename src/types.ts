@@ -24,6 +24,10 @@ export interface ScoreCardRow {
   scores: PlayerScore[]
 }
 
+export type NewCourse = Omit<Course, 'id'>
+export type NewPlayer = Omit<Player, 'id'>
+export type NewScoreCard = Omit<ScoreCard, 'id'>
+
 // Private interfaces
 interface Hole {
   number: number,
