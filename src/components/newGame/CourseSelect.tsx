@@ -3,10 +3,18 @@ import { Link } from 'react-router-dom'
 
 import Button from '@material-ui/core/Button'
 
-import Courses from '../course/Courses'
+import CourseDetails from '../course/CourseDetails'
+import { Course } from '../../types'
 import { newCoursePath } from '../../constants'
+import { useSelector } from '../../store/reduxTypes'
 
 const CourseSelect: React.FC = () => {
+  const courses: Course[] = useSelector(state => state.courses)
+  
+  const renderCourses = () => courses
+    ? courses.map(course =>
+      <CourseDetails key={course.id} course={course} />)
+    : <p>no courses</p>
   
   const renderNewCourseButton = () =>
     <Button
@@ -21,7 +29,7 @@ const CourseSelect: React.FC = () => {
   
   return (
     <div>
-      <Courses />
+      {renderCourses()}
       {renderNewCourseButton()}
     </div>
   )

@@ -1,19 +1,19 @@
 import { AppThunk } from '../reduxTypes'
 import { ADD_PLAYER, DELETE_PLAYER, GET_PLAYERS } from './playerTypes'
-import { Player } from '../../types'
+import { NewPlayer, Player } from '../../types'
 import playerService from '../../services/playerService'
 
-export const addPlayer = (player: Player): AppThunk => async dispatch => {
-  const newPlayer: Player|void = await playerService.addPlayer(player)
+export const addPlayer = (newPlayer: NewPlayer): AppThunk => async dispatch => {
+  const player: Player|void = await playerService.createPlayer(newPlayer)
 
   // TODO: how should I handle errors from service?
-  if (!newPlayer) {
+  if (!player) {
     return
   }
 
   dispatch({
     type: ADD_PLAYER,
-    player: newPlayer
+    player
   })
 }
 

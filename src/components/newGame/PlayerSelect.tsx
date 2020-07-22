@@ -1,30 +1,19 @@
 import React from 'react'
 
-import Button from '@material-ui/core/Button'
-import { Link } from 'react-router-dom'
+import Divider from '@material-ui/core/Divider'
 
-import Players from '../player/Players'
-import { newPlayerPath } from '../../constants'
+import AddPlayer from '../player/AddPlayer'
+import AllPlayers from '../player/AllPlayers'
+import SelectedPlayers from '../player/SelectedPlayers'
 
-const PlayerSelect: React.FC = () => {
+const PlayerSelect: React.FC = () => (
+  <div>
+    <SelectedPlayers />
+    <br /><Divider />
 
-  const renderNewPlayerButton = () =>
-    <Button
-      color='secondary'
-      component={Link}
-      style={{ color: 'white' }}
-      to={newPlayerPath}
-      variant='contained'
-    >
-      Add new player
-    </Button>
-  
-  return (
-    <div>
-      <Players />
-      {renderNewPlayerButton()}
-    </div>
-  )
-}
+    <AllPlayers />
+    <AddPlayer />
+  </div>
+)
 
 export default PlayerSelect

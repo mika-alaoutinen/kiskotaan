@@ -1,5 +1,6 @@
 import {
-  ADD_PLAYER_TO_CARD, REMOVE_PLAYER_FROM_CARD, SELECT_COURSE, ScoreCardAction, ScoreCardState }
+  ADD_PLAYER_TO_CARD, CREATE_SCORECARD, REMOVE_PLAYER_FROM_CARD, SELECT_COURSE,
+  ScoreCardAction, ScoreCardState }
 from './scoreCardTypes'
 
 import { Player } from '../../types'
@@ -19,6 +20,7 @@ const initialState: ScoreCardState = {
 
 const scoreCardReducer = (state: ScoreCardState = initialState, action: ScoreCardAction): ScoreCardState => {
   switch (action.type) {
+    
     case SELECT_COURSE:
       return {
         ...state,
@@ -35,6 +37,9 @@ const scoreCardReducer = (state: ScoreCardState = initialState, action: ScoreCar
         ...state,
         players: state.players.filter(player => player.id !== action.player.id)
       }
+    
+    case CREATE_SCORECARD:
+      return action.scorecard
       
     default:
       return state

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { playersUrl } from '../constants'
-import { Player } from '../types'
+import { NewPlayer, Player } from '../types'
 
 const getPlayers = async (): Promise<Player[]|void> =>
   axios.get<Player[]>(playersUrl)
@@ -12,8 +12,8 @@ const getPlayer = async (id: string): Promise<Player|void> =>
     .then(response => response.data)
     .catch(error => console.log(error))
 
-const addPlayer = async (player: Player): Promise<Player|void> =>
-  axios.post<Player>(playersUrl, player)
+const createPlayer = async (newPlayer: NewPlayer): Promise<Player|void> =>
+  axios.post<Player>(playersUrl, newPlayer)
     .then(response => response.data)
     .catch(error => console.log(error))
 
@@ -22,4 +22,4 @@ const deletePlayer = async (id: string): Promise<void> =>
     .then(response => response.data)
     .catch(error => console.log(error))
 
-export default { getPlayers, getPlayer, addPlayer, deletePlayer }
+export default { getPlayers, getPlayer, createPlayer, deletePlayer }
