@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography'
 
 import CourseSelect from '../components/newGame/CourseSelect'
 import PlayerSelect from '../components/newGame/PlayerSelect'
-import StartGame from '../components/newGame/StartGame'
+import NewGameSummary from '../components/newGame/NewGameSummary'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -34,7 +34,7 @@ const NewGameStepper: React.FC = () => {
       case 1:
         return <PlayerSelect />
       case 2:
-        return <StartGame />
+        return <NewGameSummary />
       default:
         return 'Unknown step'
     }
@@ -73,7 +73,7 @@ const NewGameStepper: React.FC = () => {
       {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
     </Button>
 
-  const renderResetButton = () =>
+  const renderResetButton = () => // TODO
     <div>
       <Typography className={classes.instructions}>
         All steps completed
