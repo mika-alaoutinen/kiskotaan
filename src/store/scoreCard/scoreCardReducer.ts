@@ -19,6 +19,7 @@ const initialState: ScoreCardState = {
 
 const scoreCardReducer = (state: ScoreCardState = initialState, action: ScoreCardAction): ScoreCardState => {
   switch (action.type) {
+    
     case SELECT_COURSE:
       return {
         ...state,
