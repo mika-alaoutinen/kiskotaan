@@ -17,7 +17,7 @@ const scoreCardReducer = (state: ScoreCardState = initialState, action: ScoreCar
   switch (action.type) {
 
     case CREATE_SCORECARD:
-      return action.scorecard
+      return action.scoreCard
   
     default:
       return state

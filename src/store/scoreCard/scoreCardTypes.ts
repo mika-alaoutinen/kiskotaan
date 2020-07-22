@@ -8,5 +8,5 @@ export type ScoreCardAction = CreateScoreCardAction
 
 interface CreateScoreCardAction {
   type: typeof CREATE_SCORECARD,
-  scorecard: ScoreCard
+  scoreCard: ScoreCard
 }
