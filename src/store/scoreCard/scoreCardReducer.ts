@@ -1,4 +1,5 @@
 import { CREATE_SCORECARD, ScoreCardAction, ScoreCardState } from './scoreCardTypes'
+import { resetCard } from './newScoreCardActions'
 
 const initialState: ScoreCardState = {
   id: '',
@@ -17,11 +18,16 @@ const scoreCardReducer = (state: ScoreCardState = initialState, action: ScoreCar
   switch (action.type) {
 
     case CREATE_SCORECARD:
-      return action.scorecard
+      return createScoreCard(action.scorecard)
   
     default:
       return state
   }
+}
+
+const createScoreCard = (scoreCard: ScoreCardState): ScoreCardState => {
+  resetCard()
+  return scoreCard
 }
 
 export default scoreCardReducer

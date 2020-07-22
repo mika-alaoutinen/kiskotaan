@@ -1,5 +1,6 @@
 import {
-  ADD_PLAYER_TO_CARD, REMOVE_PLAYER_FROM_CARD, SELECT_COURSE, NewScoreCardAction
+  ADD_PLAYER_TO_CARD, REMOVE_PLAYER_FROM_CARD, RESET_CARD, SELECT_COURSE,
+  NewScoreCardAction
 } from './scoreCardTypes'
 
 import { Course, Player } from '../../types'
@@ -17,4 +18,8 @@ export const addPlayerToCard = (player: Player): NewScoreCardAction => ({
 export const removePlayerFromCard = (player: Player): NewScoreCardAction => ({
   type: REMOVE_PLAYER_FROM_CARD,
   player
+})
+
+export const resetCard = (): NewScoreCardAction => ({
+  type: RESET_CARD
 })
