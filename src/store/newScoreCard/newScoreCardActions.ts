@@ -1,7 +1,7 @@
 import {
   ADD_PLAYER_TO_CARD, REMOVE_PLAYER_FROM_CARD, RESET_CARD, SELECT_COURSE,
   NewScoreCardAction
-} from './scoreCardTypes'
+} from './newScoreCardTypes'
 
 import { Course, Player } from '../../types'
 
