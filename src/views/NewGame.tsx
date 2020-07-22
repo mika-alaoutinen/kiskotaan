@@ -12,8 +12,6 @@ import Typography from '@material-ui/core/Typography'
 import CourseSelect from '../components/newGame/CourseSelect'
 import NewGameSummary from '../components/newGame/NewGameSummary'
 import PlayerSelect from '../components/newGame/PlayerSelect'
-import { NewScoreCard } from '../types'
-import { useSelector } from '../store/reduxTypes'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,8 +27,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const NewGame: React.FC = () => {
   const dispatch = useDispatch()
-  const newScoreCard: NewScoreCard = useSelector(state => state.newScoreCard)
-  
   const classes = useStyles()
   const [activeStep, setActiveStep] = useState(0)
   const steps = [ 'Select course', 'Add players', 'Start game' ]
@@ -82,7 +78,7 @@ const NewGame: React.FC = () => {
     </Button>
 
   const startGame = () => {
-    dispatch(createNewScoreCard(newScoreCard))
+    dispatch(createNewScoreCard())
     // TODO: redirect to score card view
 
     return (<div>
