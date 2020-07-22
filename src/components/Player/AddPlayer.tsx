@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
-import Button from '@material-ui/core/Button'
+import Add from '@material-ui/icons/Add'
+import IconButton from '@material-ui/core/IconButton'
 import TextField from '@material-ui/core/TextField'
 
 import { addPlayer } from '../../store/players/playerActions'
-import { Player } from '../../types'
+import { NewPlayer } from '../../types'
 
 const AddPlayer: React.FC = () => {
   const dispatch = useDispatch()
@@ -13,40 +14,25 @@ const AddPlayer: React.FC = () => {
 
   const resetName = (): void => setName('')
 
-  const submitHandler = () => (event: React.FormEvent<HTMLFormElement>): void => {
-    event.preventDefault()
-
-    const player: Player = {
-      id: 'temp',
-      name,
-    }
-
+  const handleClick = (): void => {
+    const player: NewPlayer = { name }
     dispatch(addPlayer(player))
     resetName()
   }
   
   return (
-    <div className='add-player-form'>
-      <h2>Add player</h2>
+    <div>
+      <TextField
+        label='Add player'
+        onChange={event => setName(event.target.value)}
+        size='small'
+        value={name}
+        variant='outlined'
+      />
 
-      <form onSubmit={submitHandler()}>
-        
-        <TextField
-          label='Add player'
-          value={name}
-          onChange={event => setName(event.target.value)}
-        />
-
-        <p>
-          <Button
-            type='submit'
-            variant='contained'
-          >
-            Submit players
-          </Button>
-        </p>
-
-      </form>
+      <IconButton color='secondary' onClick={() => handleClick()}>
+        <Add />
+      </IconButton>
     </div>
   )
 }

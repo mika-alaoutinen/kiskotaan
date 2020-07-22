@@ -11,11 +11,10 @@ const Players: React.FC = () => {
   return (
     <div>
       <SelectedPlayers />
-      <AddPlayer />
-      
       <br /><Divider />
       
       <AllPlayers />
+      <AddPlayer />
     </div>
   )
 }
