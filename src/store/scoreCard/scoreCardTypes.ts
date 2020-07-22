@@ -7,12 +7,10 @@ export const REMOVE_PLAYER_FROM_CARD = 'REMOVE_PLAYER_FROM_CARD'
 export const CREATE_SCORECARD = 'CREATE_SCORECARD'
 
 // Types for state and actions:
-export type ScoreCardState = NewScoreCard
-export type ScoreCardAction =
-  | SelectCourseAction
-  | AddPlayerAction
-  | RemovePlayerAction
-  | CreateScoreCardAction
+export type NewScoreCardState = NewScoreCard
+export type ScoreCardState = ScoreCard
+export type NewScoreCardAction = SelectCourseAction | AddPlayerAction | RemovePlayerAction
+export type ScoreCardAction = CreateScoreCardAction
 
 interface SelectCourseAction {
   type: typeof SELECT_COURSE,

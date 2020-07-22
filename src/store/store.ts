@@ -4,11 +4,13 @@ import thunk from 'redux-thunk'
 
 import courseReducer from './courses/courseReducer'
 import playerReducer from './players/playerReducer'
+import newScoreCardReducer from './scoreCard/newScoreCardReducer'
 import scoreCardReducer from './scoreCard/scoreCardReducer'
 
 export const reducer = combineReducers({
   courses: courseReducer,
   players: playerReducer,
+  newScoreCard: newScoreCardReducer,
   scoreCard: scoreCardReducer,
 })
 

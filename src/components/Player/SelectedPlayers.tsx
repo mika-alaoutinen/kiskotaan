@@ -9,12 +9,12 @@ import Remove from '@material-ui/icons/Remove'
 
 import PlayerDetails from './PlayerDetails'
 import { Player } from '../../types'
-import { removePlayerFromCard } from '../../store/scoreCard/scoreCardActions'
+import { removePlayerFromCard } from '../../store/scoreCard/newScoreCardActions'
 import { useSelector } from '../../store/reduxTypes'
 
 const SelectedPlayers: React.FC = () => {
   const dispatch = useDispatch()
-  const selectedPlayers: Player[] = useSelector(state => state.scoreCard.players)
+  const selectedPlayers: Player[] = useSelector(state => state.newScoreCard.players)
 
   const renderSelectedPlayers = () => selectedPlayers.length > 0
     ? selectedPlayers.map(createSelectedPlayersList)

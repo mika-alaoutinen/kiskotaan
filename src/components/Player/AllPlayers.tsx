@@ -8,14 +8,14 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListSubheader from '@material-ui/core/ListSubheader'
 
-import { addPlayerToCard } from '../../store/scoreCard/scoreCardActions'
+import { addPlayerToCard } from '../../store/scoreCard/newScoreCardActions'
 import { Player } from '../../types'
 import { useSelector } from '../../store/reduxTypes'
 
 const AllPlayers: React.FC = () => {
   const dispatch = useDispatch()
   const players: Player[] = useSelector(state => state.players)
-  const selectedPlayers: Player[] = useSelector(state => state.scoreCard.players)
+  const selectedPlayers: Player[] = useSelector(state => state.newScoreCard.players)
   
   const renderAllPlayers = () => {
     const nonSelectedPlayers: Player[] = players.filter(player => !selectedPlayers.includes(player))
