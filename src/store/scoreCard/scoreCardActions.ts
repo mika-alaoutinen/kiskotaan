@@ -1,5 +1,6 @@
 import { AppThunk } from '../reduxTypes'
 import { CREATE_SCORECARD } from './scoreCardTypes'
+import { RESET_CARD } from '../newScoreCard/newScoreCardTypes'
 import { NewScoreCard, ScoreCard } from '../../types'
 import scoreCardService from '../../services/scoreCardService'
 
@@ -13,5 +14,9 @@ export const createNewScoreCard = (newScoreCard: NewScoreCard): AppThunk => asyn
   dispatch({
     type: CREATE_SCORECARD,
     scoreCard
+  })
+
+  dispatch({
+    type: RESET_CARD
   })
 }
