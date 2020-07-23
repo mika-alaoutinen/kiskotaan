@@ -19,6 +19,10 @@ export const addCourse = (course: Course): AppThunk => async dispatch => {
 export const getCourses = (): AppThunk => async dispatch => {
   const courses: Course[]|void = await courseService.getCourses()
 
+  if (!courses) {
+    return
+  }
+
   dispatch({
     type: GET_COURSES,
     courses

@@ -1,24 +1,24 @@
 import axios from 'axios'
-import { scoresUrl } from '../constants'
+import { scoreCardsUrl } from '../constants'
 import { NewScoreCard, ScoreCard, ScoreCardRow } from '../types'
 
 const getScoreCard = async (): Promise<ScoreCard|void> =>
-  axios.get<ScoreCard>(scoresUrl)
+  axios.get<ScoreCard>(scoreCardsUrl)
     .then(response => response.data)
     .catch(error => console.log(error))
 
 const createScoreCard = async (newScoreCard: NewScoreCard): Promise<ScoreCard|void> =>
-  axios.post<ScoreCard>(scoresUrl, newScoreCard)
+  axios.post<ScoreCard>(scoreCardsUrl, newScoreCard)
     .then(response => response.data)
     .catch(error => console.log(error))
 
 const addScore = async (score: ScoreCardRow): Promise<ScoreCard|void> =>
-  axios.post<ScoreCard>(scoresUrl, score)
+  axios.post<ScoreCard>(scoreCardsUrl, score)
     .then(response => response.data)
     .catch(error => console.log(error))
 
 const updateScore = async (score: ScoreCardRow): Promise<ScoreCard|void> =>
-  axios.put<ScoreCard>(scoresUrl, score)
+  axios.put<ScoreCard>(scoreCardsUrl, score)
     .then(response => response.data)
     .catch(error => console.log(error))
 
