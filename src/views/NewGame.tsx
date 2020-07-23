@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const NewGame: React.FC = () => {
   const classes = useStyles()
-  const [activeStep, setActiveStep] = useState(0)
+  const [ activeStep, setActiveStep ] = useState(0)
   const steps = [ 'Select course', 'Add players', 'Summary' ]
 
   const getStepContent = (step: number): ReactElement|string => {
@@ -42,8 +42,7 @@ const NewGame: React.FC = () => {
     }
   }
 
-  const allStepsDone = (): boolean =>
-    activeStep === steps.length
+  const allStepsDone = (): boolean => activeStep === steps.length
 
   const handleNext = (): void => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1)
