@@ -29,7 +29,7 @@ const useStyles = makeStyles(() =>
   }),
 )
 
-const CourseDetails: React.FC<{ course: Course }> = ({ course }) => {
+const CourseAccordion: React.FC<{ course: Course }> = ({ course }) => {
   const dispatch = useDispatch()
   const selectedCourse: Course = useSelector(state => state.newScoreCard.course)
 
@@ -86,4 +86,4 @@ const CourseDetails: React.FC<{ course: Course }> = ({ course }) => {
   )
 }
  
-export default CourseDetails
+export default CourseAccordion

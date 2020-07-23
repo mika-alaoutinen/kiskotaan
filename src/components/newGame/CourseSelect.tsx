@@ -1,6 +1,6 @@
 import React from 'react'
 
-import CourseDetails from '../course/CourseDetails'
+import CourseAccordion from '../course/CourseAccordion'
 import RedirectButton from '../common/RedirectButton'
 import { Course } from '../../types'
 import { newCoursePath } from '../../constants'
@@ -11,7 +11,7 @@ const CourseSelect: React.FC = () => {
   
   const renderCourses = () => courses
     ? courses.map(course =>
-      <CourseDetails key={course.id} course={course} />)
+      <CourseAccordion key={course.id} course={course} />)
     : <p>no courses</p>
   
   return (
