@@ -12,6 +12,8 @@ import Typography from '@material-ui/core/Typography'
 import CourseSelect from '../components/newGame/CourseSelect'
 import NewGameSummary from '../components/newGame/NewGameSummary'
 import PlayerSelect from '../components/newGame/PlayerSelect'
+import RedirectButton from '../components/common/RedirectButton'
+import { gamePath } from '../constants'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -44,7 +46,7 @@ const NewGame: React.FC = () => {
     }
   }
 
-  const allStepsDone = (): boolean => activeStep === steps.length
+  const onLastStep = (): boolean => activeStep === steps.length - 1
   
   const handleNext = (): void => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1)
@@ -54,10 +56,6 @@ const NewGame: React.FC = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1)
   }
 
-  const handleReset = (): void => {
-    setActiveStep(0)
-  }
-  
   const renderBackButton = (): JSX.Element =>
     <Button
       disabled={activeStep === 0}
@@ -68,30 +66,21 @@ const NewGame: React.FC = () => {
     </Button>
 
   const renderNextButton = (): JSX.Element =>
-    <Button
-      variant="contained"
-      color="primary"
-      onClick={handleNext}
-      className={classes.button}
-    >
-      {activeStep === steps.length - 1 ? 'Start game' : 'Next'}
-    </Button>
-
-  const startGame = () => {
-    // FIXME: dispatch gets called twice.
-    dispatch(createNewScoreCard())
-    // TODO: redirect to score card view
-
-    return (<div>
-      <Typography className={classes.instructions}>
-        All steps completed
-      </Typography>
-      <Button onClick={handleReset} className={classes.button}>
-        Reset
+    onLastStep()
+      ? <RedirectButton
+        text='Start game'
+        to={gamePath}
+        clickHandler={() => dispatch(createNewScoreCard())}
+      />
+      : <Button
+        variant="contained"
+        color="primary"
+        onClick={handleNext}
+        className={classes.button}
+      >
+        Next
       </Button>
-    </div>)
-  }
-  
+
   const renderStep = (): JSX.Element =>
     <div>
       <Typography className={classes.instructions} component='span'>
@@ -113,9 +102,7 @@ const NewGame: React.FC = () => {
         )}
       </Stepper>
 
-      <div>
-        {allStepsDone() ? startGame() : renderStep()}
-      </div>
+      {renderStep()}
     </div>
   )
 }
