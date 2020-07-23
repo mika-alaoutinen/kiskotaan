@@ -13,7 +13,9 @@ import CourseSelect from '../components/newGame/CourseSelect'
 import NewGameSummary from '../components/newGame/NewGameSummary'
 import PlayerSelect from '../components/newGame/PlayerSelect'
 import RedirectButton from '../components/common/RedirectButton'
-import { gameLoading } from '../constants'
+import StartGame from '../components/newGame/StartGame'
+import { gameLoading, gamePath } from '../constants'
+import { useSelector } from '../store/reduxTypes'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,10 +31,11 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const NewGame: React.FC = () => {
   const dispatch = useDispatch()
+  const scoreCardId: string = useSelector(state => state.scoreCard.id)
   const classes = useStyles()
 
   const [activeStep, setActiveStep] = useState(0)
-  const steps = [ 'Select course', 'Add players', 'Start game' ]
+  const steps = [ 'Select course', 'Add players', 'Summary' ]
 
   const getStepContent = (step: number): ReactElement|string => {
     switch (step) {
@@ -47,8 +50,21 @@ const NewGame: React.FC = () => {
     }
   }
 
-  const onLastStep = (): boolean => activeStep === steps.length - 1
+  // Utility functions:
+  const allStepsDone = (): boolean => activeStep === steps.length
+  const onLastStep = (): boolean => activeStep === steps.length -1
+
+  const createNextButton = (clickHandler: () => void) =>
+    <Button
+      variant="contained"
+      color="primary"
+      onClick={clickHandler}
+      className={classes.button}
+    >
+      Next
+    </Button>
   
+  // Click handlers for buttons:
   const handleNext = (): void => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1)
   }
@@ -57,6 +73,12 @@ const NewGame: React.FC = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1)
   }
 
+  const handleLastStep = (): void => {
+    dispatch(createNewScoreCard())
+    handleNext()
+  }
+
+  // Rendering buttons:
   const renderBackButton = (): JSX.Element =>
     <Button
       disabled={activeStep === 0}
@@ -68,19 +90,11 @@ const NewGame: React.FC = () => {
 
   const renderNextButton = (): JSX.Element =>
     onLastStep()
-      ? <RedirectButton
-        text='Start game'
-        to={gameLoading}
-        clickHandler={() => dispatch(createNewScoreCard())}
-      />
-      : <Button
-        variant="contained"
-        color="primary"
-        onClick={handleNext}
-        className={classes.button}
-      >
-        Next
-      </Button>
+      ? createNextButton(handleLastStep)
+      : createNextButton(handleNext)
+
+  const renderStartButton = (): JSX.Element =>
+    <RedirectButton text='Start game' to={`${gamePath}/${scoreCardId}`} />
 
   const renderStep = (): JSX.Element =>
     <div>
@@ -103,7 +117,7 @@ const NewGame: React.FC = () => {
         )}
       </Stepper>
 
-      {renderStep()}
+      {allStepsDone() ? renderStartButton() : renderStep()}
     </div>
   )
 }
