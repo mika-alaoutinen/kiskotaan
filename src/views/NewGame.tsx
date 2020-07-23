@@ -13,7 +13,7 @@ import CourseSelect from '../components/newGame/CourseSelect'
 import NewGameSummary from '../components/newGame/NewGameSummary'
 import PlayerSelect from '../components/newGame/PlayerSelect'
 import RedirectButton from '../components/common/RedirectButton'
-import { gamePath } from '../constants'
+import { gameLoading } from '../constants'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const NewGame: React.FC = () => {
   const dispatch = useDispatch()
   const classes = useStyles()
+
   const [activeStep, setActiveStep] = useState(0)
   const steps = [ 'Select course', 'Add players', 'Start game' ]
 
@@ -69,7 +70,7 @@ const NewGame: React.FC = () => {
     onLastStep()
       ? <RedirectButton
         text='Start game'
-        to={gamePath}
+        to={gameLoading}
         clickHandler={() => dispatch(createNewScoreCard())}
       />
       : <Button
