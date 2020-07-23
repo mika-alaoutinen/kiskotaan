@@ -13,8 +13,7 @@ import CourseSelect from '../components/newGame/CourseSelect'
 import NewGameSummary from '../components/newGame/NewGameSummary'
 import PlayerSelect from '../components/newGame/PlayerSelect'
 import RedirectButton from '../components/common/RedirectButton'
-import StartGame from '../components/newGame/StartGame'
-import { gameLoading, gamePath } from '../constants'
+import { gamePath } from '../constants'
 import { useSelector } from '../store/reduxTypes'
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -56,10 +55,10 @@ const NewGame: React.FC = () => {
 
   const createNextButton = (clickHandler: () => void) =>
     <Button
-      variant="contained"
+      className={classes.button}
       color="primary"
       onClick={clickHandler}
-      className={classes.button}
+      variant="contained"
     >
       Next
     </Button>
@@ -81,10 +80,10 @@ const NewGame: React.FC = () => {
   // Rendering buttons:
   const renderBackButton = (): JSX.Element =>
     <Button
+      className={classes.button}
       disabled={activeStep === 0}
       onClick={handleBack}
-      className={classes.button}
-      >
+    >
       Back
     </Button>
 
