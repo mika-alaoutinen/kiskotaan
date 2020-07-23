@@ -1,4 +1,4 @@
-import { CREATE_SCORECARD, ScoreCardAction, ScoreCardState } from './scoreCardTypes'
+import { CREATE_SCORECARD, GET_SCORECARD, ScoreCardAction, ScoreCardState } from './scoreCardTypes'
 
 const initialState: ScoreCardState = {
   id: '',
@@ -19,6 +19,9 @@ const scoreCardReducer = (state: ScoreCardState = initialState, action: ScoreCar
     case CREATE_SCORECARD:
       return action.scoreCard
   
+    case GET_SCORECARD:
+      return action.scoreCard
+      
     default:
       return state
   }
