@@ -21,10 +21,6 @@ const Game: React.FC = () => {
     }
   }, [dispatch, scoreCard, id])
 
-  // if (!scoreCard) {
-  //   return null
-  // }
-
   return (
     <div>
       <ScoreCardDetails scoreCard={scoreCard} />
