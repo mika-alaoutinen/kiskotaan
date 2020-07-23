@@ -6,20 +6,17 @@ import Link from '@material-ui/core/Link'
 
 import { newGamePath } from '../constants'
 
-const HomePage: React.FC = () => {
-
-  return (
-    <div>
-      <h2>Home page</h2>
-      
-      <Fab color='primary' size='large' variant='extended'>
-        <Link component={RouterLink} to={newGamePath} style={{ color: 'white' }}>
-          New game
-        </Link>
-      </Fab>
-      
-    </div>
-  )
-}
+const HomePage: React.FC = () => (
+  <div>
+    <h2>Home page</h2>
+    
+    <Fab color='primary' size='large' variant='extended'>
+      <Link component={RouterLink} to={newGamePath} style={{ color: 'white' }}>
+        New game
+      </Link>
+    </Fab>
+    
+  </div>
+)
 
 export default HomePage

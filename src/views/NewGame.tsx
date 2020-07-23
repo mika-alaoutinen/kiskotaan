@@ -58,7 +58,7 @@ const NewGame: React.FC = () => {
     setActiveStep(0)
   }
   
-  const renderBackButton = () =>
+  const renderBackButton = (): JSX.Element =>
     <Button
       disabled={activeStep === 0}
       onClick={handleBack}
@@ -67,7 +67,7 @@ const NewGame: React.FC = () => {
       Back
     </Button>
 
-  const renderNextButton = () =>
+  const renderNextButton = (): JSX.Element =>
     <Button
       variant="contained"
       color="primary"
@@ -92,7 +92,7 @@ const NewGame: React.FC = () => {
     </div>)
   }
   
-  const renderStep = () =>
+  const renderStep = (): JSX.Element =>
     <div>
       <Typography className={classes.instructions} component='span'>
         {getStepContent(activeStep)}
