@@ -1,9 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-
-import Button from '@material-ui/core/Button'
 
 import CourseDetails from '../course/CourseDetails'
+import RedirectButton from '../common/RedirectButton'
 import { Course } from '../../types'
 import { newCoursePath } from '../../constants'
 import { useSelector } from '../../store/reduxTypes'
@@ -16,21 +14,10 @@ const CourseSelect: React.FC = () => {
       <CourseDetails key={course.id} course={course} />)
     : <p>no courses</p>
   
-  const renderNewCourseButton = () =>
-    <Button
-      color='secondary'
-      component={Link}
-      style={{ color: 'white' }}
-      to={newCoursePath}
-      variant='contained'
-    >
-      Add new course
-    </Button>
-  
   return (
     <div>
       {renderCourses()}
-      {renderNewCourseButton()}
+      <RedirectButton text='Add new course' to={newCoursePath} />
     </div>
   )
 }
