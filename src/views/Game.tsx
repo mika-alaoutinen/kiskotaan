@@ -1,13 +1,12 @@
 import React from 'react'
 
-import ScoreCard from '../components/scoreCard/ScoreCard'
+import ScoreCardDetails from '../components/scoreCard/ScoreCardDetails'
 
 const Game: React.FC = () => {
   
   return (
     <div>
-      Display score card
-      <ScoreCard />
+      <ScoreCardDetails />
     </div>
   )
 }
