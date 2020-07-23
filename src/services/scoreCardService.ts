@@ -2,8 +2,8 @@ import axios from 'axios'
 import { scoreCardsUrl } from '../constants'
 import { NewScoreCard, ScoreCard, ScoreCardRow } from '../types'
 
-const getScoreCard = async (): Promise<ScoreCard|void> =>
-  axios.get<ScoreCard>(scoreCardsUrl)
+const getScoreCard = async (id: string): Promise<ScoreCard|void> =>
+  axios.get<ScoreCard>(scoreCardsUrl + '/' + id)
     .then(response => response.data)
     .catch(error => console.log(error))
 
@@ -12,6 +12,7 @@ const createScoreCard = async (newScoreCard: NewScoreCard): Promise<ScoreCard|vo
     .then(response => response.data)
     .catch(error => console.log(error))
 
+// Add scoreService for updating a single score card?
 const addScore = async (score: ScoreCardRow): Promise<ScoreCard|void> =>
   axios.post<ScoreCard>(scoreCardsUrl, score)
     .then(response => response.data)
