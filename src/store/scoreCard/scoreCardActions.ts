@@ -12,6 +12,10 @@ export const createNewScoreCard = (): AppThunk => async (dispatch, getState) => 
   const newScoreCard: NewScoreCard = getState().newScoreCard
   const scoreCard: ScoreCard|void = await scoreCardService.createScoreCard(newScoreCard)
 
+  if (!scoreCard) {
+    return
+  }
+  
   dispatch({
     type: CREATE_SCORECARD,
     scoreCard
@@ -24,6 +28,10 @@ export const createNewScoreCard = (): AppThunk => async (dispatch, getState) => 
 
 export const getScoreCard = (id: string): AppThunk => async dispatch => {
   const scoreCard: ScoreCard|void = await scoreCardService.getScoreCard(id)
+
+  if (!scoreCard) {
+    return
+  }
 
   dispatch({
     type: GET_SCORECARD,
