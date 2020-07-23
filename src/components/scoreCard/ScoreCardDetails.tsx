@@ -1,11 +1,8 @@
 import React from 'react'
 
 import { ScoreCard } from '../../types'
-import { useSelector } from '../../store/reduxTypes'
 
-const ScoreCardDetails: React.FC = () => {
-  const scoreCard: ScoreCard = useSelector(state => state.scoreCard)
-  
+const ScoreCardDetails: React.FC<{ scoreCard: ScoreCard }> = ({ scoreCard }) => {
   const renderPlayers = () =>
     scoreCard.players.map(player =>
       <p key={player.id}>
