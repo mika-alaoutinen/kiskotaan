@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
+import HoleSelector from '../components/scoreCard/HoleSelector'
 import ScoreCardDetails from '../components/scoreCard/ScoreCardDetails'
 import { ScoreCard } from '../types'
 import { getScoreCard } from '../store/scoreCard/scoreCardActions'
@@ -12,7 +13,6 @@ const GameView: React.FC = () => {
   const { id } = useParams()
 
   const dispatch = useDispatch()
-
   const scoreCard: ScoreCard = useSelector(state => state.scoreCard)
   
   // If score card is not in store, get it from backend:
@@ -24,6 +24,7 @@ const GameView: React.FC = () => {
 
   return (
     <div>
+      <HoleSelector />
       <ScoreCardDetails />
     </div>
   )

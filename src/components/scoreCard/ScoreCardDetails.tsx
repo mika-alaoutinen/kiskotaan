@@ -8,7 +8,7 @@ const ScoreCardDetails: React.FC = () => {
   const hole: number = useSelector(state => state.game.hole)
   const scoreCard: ScoreCard = useSelector(state => state.scoreCard)
 
-  const renderPar = (): number => {
+  const getPar = (): number => {
     const holes: Hole[] = scoreCard.course.holes
     return holes.length > 1
       ? holes[hole - 1].par
@@ -19,15 +19,14 @@ const ScoreCardDetails: React.FC = () => {
     scoreCard.players.map(player =>
       <ScoreCardRow
         key={player.id}
-        par={renderPar()}
+        par={getPar()}
         player={player}
       />
     )
   
   return (
     <div>
-      <p>Hole {hole}</p>
-      <p>{renderPar()}</p>
+      <p>PAR {getPar()}</p>
       <div>{renderScoreRows()}</div>
     </div>
   )
