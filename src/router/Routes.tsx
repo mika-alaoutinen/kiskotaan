@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
-import Game from '../views/Game'
+import GameView from '../views/GameView'
 import GameHistory from '../views/GameHistory'
 import HomePage from '../views/Home'
 import NewCourse from '../views/NewCourse'
@@ -19,7 +19,7 @@ import {
 
 const Routes: React.FC = () => (
   <Switch>
-    <Route exact path={`${gamePath}/:id`} component={Game} />
+    <Route exact path={`${gamePath}/:id`} component={GameView} />
     <Route exact path={gameHistoryPath} component={GameHistory} />
     <Route exact path={newCoursePath} component={NewCourse} />
     <Route exact path={newGamePath} component={NewGame} />
