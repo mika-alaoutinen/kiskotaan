@@ -14,7 +14,7 @@ const HoleSelectionButtons: React.FC = () => {
   const holes: Hole[] = useSelector(state => state.scoreCard.course.holes)
   const hole: number = useSelector(state => state.game.hole)
   
-  const changeHoles = (newHole: number) => {
+  const changeHoles = (newHole: number): void => {
     dispatch(switchHole(newHole))
   }
   
