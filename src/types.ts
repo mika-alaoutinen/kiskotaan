@@ -6,10 +6,10 @@ export interface Course {
 }
 
 export interface Game {
-  date?: Date,
+  id: string,
   hole: number, // The hole that is currently being played
-  isOver: boolean
-  // scoreCard: ScoreCard // Put score card inside game?
+  isOver: boolean,
+  date?: Date
 }
 
 export interface Hole {
@@ -32,8 +32,7 @@ export interface ScoreCard {
   id: string,
   course: Course,
   players: Player[],
-  rows: ScoreCardRow[],
-  date?: Date
+  rows: ScoreCardRow[]
 }
 
 export interface ScoreCardRow {
@@ -43,5 +42,6 @@ export interface ScoreCardRow {
 }
 
 export type NewCourse = Omit<Course, 'id'>
+export type NewGame = Omit<Game, 'id'>
 export type NewPlayer = Omit<Player, 'id'>
 export type NewScoreCard = Pick<ScoreCard, 'course' | 'players'>
