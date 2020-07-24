@@ -4,7 +4,7 @@ import { Course, NewScoreCard, Player } from '../../types'
 export const SELECT_COURSE = 'SELECT_COURSE'
 export const ADD_PLAYER_TO_CARD = 'ADD_PLAYER_TO_CARD'
 export const REMOVE_PLAYER_FROM_CARD = 'REMOVE_PLAYER_FROM_CARD'
-export const RESET_CARD = 'RESET_CARD'
+export const RESET_NEW_CARD = 'RESET_CARD'
 
 // Types for state and actions:
 export type NewScoreCardState = NewScoreCard
@@ -30,5 +30,5 @@ interface RemovePlayerAction {
 }
 
 interface ResetCardAction {
-  type: typeof RESET_CARD
+  type: typeof RESET_NEW_CARD
 }

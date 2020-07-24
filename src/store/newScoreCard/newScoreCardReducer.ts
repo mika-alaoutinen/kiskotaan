@@ -1,5 +1,5 @@
 import {
-  ADD_PLAYER_TO_CARD, REMOVE_PLAYER_FROM_CARD, RESET_CARD, SELECT_COURSE,
+  ADD_PLAYER_TO_CARD, REMOVE_PLAYER_FROM_CARD, RESET_NEW_CARD, SELECT_COURSE,
   NewScoreCardAction, NewScoreCardState }
 from './newScoreCardTypes'
 
@@ -35,7 +35,7 @@ const newScoreCardReducer = (state: NewScoreCardState = initialState, action: Ne
         players: state.players.filter(player => player.id !== action.player.id)
       }
     
-    case RESET_CARD:
+    case RESET_NEW_CARD:
       return initialState
       
     default:
