@@ -12,7 +12,7 @@ const createScoreCard = async (newScoreCard: NewScoreCard): Promise<ScoreCard|vo
     .then(response => response.data)
     .catch(error => console.log(error))
 
-const deleteScoreCard = (id: string): Promise<void|AxiosResponse<void>> =>
+const deleteScoreCard = async (id: string): Promise<void|AxiosResponse<void>> =>
   axios.delete<void>(scoreCardsUrl + '/' + id)
     .catch(error => console.log(error))
 
