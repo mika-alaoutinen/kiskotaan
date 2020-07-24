@@ -1,7 +1,8 @@
 import { GameAction, GameState, START_GAME, END_GAME, SWITCH_HOLE } from './gameTypes'
 
 const initialState: GameState = {
-  date: undefined,
+  id: '',
+  date: new Date(),
   hole: 1,
   isOver: false
 }

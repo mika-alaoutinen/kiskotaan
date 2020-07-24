@@ -10,7 +10,8 @@ export type GameState = Game
 export type GameAction = StartGameAction | EndGameAction | SwitchHoleAction
 
 interface StartGameAction {
-  type: typeof START_GAME
+  type: typeof START_GAME,
+  game: Game
 }
 
 interface EndGameAction {
