@@ -1,8 +1,21 @@
 import scoreCardService from '../../services/scoreCardService'
 import { AppThunk } from '../reduxTypes'
-import { CREATE_SCORECARD, GET_SCORECARD } from './scoreCardTypes'
-import { RESET_CARD } from '../newScoreCard/newScoreCardTypes'
+import { CREATE_SCORECARD, DELETE_SCORECARD, GET_SCORECARD } from './scoreCardTypes'
+import { RESET_NEW_CARD } from '../newScoreCard/newScoreCardTypes'
 import { NewScoreCard, ScoreCard } from '../../types'
+
+export const getScoreCard = (id: string): AppThunk => async dispatch => {
+  const scoreCard: ScoreCard|void = await scoreCardService.getScoreCard(id)
+
+  if (!scoreCard) {
+    return
+  }
+
+  dispatch({
+    type: GET_SCORECARD,
+    scoreCard
+  })
+}
 
 /**
  * Persists the new score card to backend once it has been filled in.
@@ -22,19 +35,14 @@ export const createNewScoreCard = (): AppThunk => async (dispatch, getState) => 
   })
 
   dispatch({
-    type: RESET_CARD
+    type: RESET_NEW_CARD
   })
 }
 
-export const getScoreCard = (id: string): AppThunk => async dispatch => {
-  const scoreCard: ScoreCard|void = await scoreCardService.getScoreCard(id)
-
-  if (!scoreCard) {
-    return
-  }
+export const deleteScoreCard = (id: string): AppThunk => dispatch => {
+  void scoreCardService.deleteScoreCard(id)
 
   dispatch({
-    type: GET_SCORECARD,
-    scoreCard
+    type: DELETE_SCORECARD,
   })
 }
