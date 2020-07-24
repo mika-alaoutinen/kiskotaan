@@ -6,11 +6,12 @@ import Button from '@material-ui/core/Button'
 const RedirectButton: React.FC<{
   text: string,
   to: string,
+  color?: 'primary' | 'secondary',
   clickHandler?: () => void
-}> = ({ text, to, clickHandler }) => (
+}> = ({ text, to, color, clickHandler }) => (
 
   <Button
-    color='secondary'
+    color={color ? color : 'primary'}
     component={Link}
     onClick={clickHandler}
     style={{ color: 'white' }}
