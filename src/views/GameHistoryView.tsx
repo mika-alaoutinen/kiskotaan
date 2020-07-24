@@ -1,6 +1,6 @@
 import React from 'react'
 
-const GameHistory: React.FC = () => {
+const GameHistoryView: React.FC = () => {
 
   return (
     <div>
@@ -11,4 +11,4 @@ const GameHistory: React.FC = () => {
   )
 }
 
-export default GameHistory
+export default GameHistoryView

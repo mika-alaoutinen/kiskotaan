@@ -1,6 +1,7 @@
 // Backend endpoints:
 export const baseUrl = 'http://localhost:3001'
 export const coursesUrl = `${baseUrl}/courses`
+export const gamesUrl = `${baseUrl}/games`
 export const playersUrl = `${baseUrl}/players`
 export const scoreCardsUrl = `${baseUrl}/scoreCards`
 

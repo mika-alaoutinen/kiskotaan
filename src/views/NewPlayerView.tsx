@@ -1,6 +1,6 @@
 import React from 'react'
 
-const NewPlayer: React.FC = () => {
+const NewPlayerView: React.FC = () => {
 
   return (
     <div>
@@ -9,4 +9,4 @@ const NewPlayer: React.FC = () => {
   )
 }
 
-export default NewPlayer
+export default NewPlayerView

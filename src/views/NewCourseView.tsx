@@ -1,6 +1,6 @@
 import React from 'react'
 
-const NewCourse: React.FC = () => {
+const NewCourseView: React.FC = () => {
   return (
     <div>
       Add new course
@@ -8,4 +8,4 @@ const NewCourse: React.FC = () => {
   )
 }
 
-export default NewCourse
+export default NewCourseView

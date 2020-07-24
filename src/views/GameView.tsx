@@ -2,18 +2,20 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
+import HoleSelectionButtons from '../components/game/HoleSelectionButtons'
+import HoleSelector from '../components/game/HoleSelector'
 import ScoreCardDetails from '../components/scoreCard/ScoreCardDetails'
 import { ScoreCard } from '../types'
 import { getScoreCard } from '../store/scoreCard/scoreCardActions'
 import { useSelector } from '../store/reduxTypes'
 
-const Game: React.FC = () => {
+const GameView: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { id } = useParams()
 
   const dispatch = useDispatch()
   const scoreCard: ScoreCard = useSelector(state => state.scoreCard)
-
+  
   // If score card is not in store, get it from backend:
   useEffect(() => {
     if (!scoreCard.id) {
@@ -23,9 +25,11 @@ const Game: React.FC = () => {
 
   return (
     <div>
-      <ScoreCardDetails scoreCard={scoreCard} />
+      <HoleSelector />
+      <ScoreCardDetails />
+      <HoleSelectionButtons />
     </div>
   )
 }
 
-export default Game
+export default GameView

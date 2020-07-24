@@ -1,8 +1,9 @@
 import {
-  CREATE_SCORECARD, DELETE_SCORECARD, GET_SCORECARD, ScoreCardAction, ScoreCardState
+  CREATE_SCORECARD, DELETE_SCORECARD, GET_SCORECARD,
+  ScoreCardAction, ScoreCardState
 } from './scoreCardTypes'
 
-const initialState: ScoreCardState = {
+export const initialState: ScoreCardState = {
   id: '',
   course: {
     id: '',
@@ -11,8 +12,7 @@ const initialState: ScoreCardState = {
     par: 0
   },
   players: [],
-  rows: [],
-  date: new Date()
+  rows: []
 }
 
 const scoreCardReducer = (state: ScoreCardState = initialState, action: ScoreCardAction): ScoreCardState => {

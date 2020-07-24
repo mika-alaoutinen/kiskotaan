@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
-const NewGame: React.FC = () => {
+const NewGameView: React.FC = () => {
   const classes = useStyles()
   const [ activeStep, setActiveStep ] = useState(0)
   const steps = [ 'Select course', 'Add players', 'Summary' ]
@@ -97,4 +97,4 @@ const NewGame: React.FC = () => {
   )
 }
 
-export default NewGame
+export default NewGameView
