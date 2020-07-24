@@ -1,0 +1,76 @@
+{
+  "course": {
+    "id": "4",
+    "name": "Keljonkankaan golf",
+    "holes": [
+      {
+        "number": 1,
+        "par": 3,
+        "length": 70
+      },
+      {
+        "number": 2,
+        "par": 3,
+        "length": 80
+      },
+      {
+        "number": 3,
+        "par": 4,
+        "length": 100
+      }
+    ],
+    "par": 10
+  },
+  "players": [
+    {
+      "id": "2",
+      "name": "Salla"
+    },
+    {
+      "id": "1",
+      "name": "Mika"
+    }
+  ],
+  "rows": [
+    {
+      "hole": 1,
+      "scores": [
+        {
+          "playerId": "1",
+          "score": 3
+        },
+        {
+          "playerId": "2",
+          "score": 4
+        }
+      ]
+    },
+    {
+      "hole": 2,
+      "scores": [
+        {
+          "playerId": "1",
+          "score": 3
+        },
+        {
+          "playerId": "2",
+          "score": 4
+        }
+      ]
+    },
+    {
+      "hole": 3,
+      "scores": [
+        {
+          "playerId": "1",
+          "score": 4
+        },
+        {
+          "playerId": "2",
+          "score": 5
+        }
+      ]
+    }
+  ],
+  "id": "s1"
+}
