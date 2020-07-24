@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
+import HoleSelectionButtons from '../components/game/HoleSelectionButtons'
 import HoleSelector from '../components/game/HoleSelector'
 import ScoreCardDetails from '../components/scoreCard/ScoreCardDetails'
 import { ScoreCard } from '../types'
@@ -26,6 +27,7 @@ const GameView: React.FC = () => {
     <div>
       <HoleSelector />
       <ScoreCardDetails />
+      <HoleSelectionButtons />
     </div>
   )
 }
