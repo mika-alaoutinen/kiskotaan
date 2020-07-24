@@ -6,7 +6,7 @@ import Link from '@material-ui/core/Link'
 
 import { newGamePath } from '../constants'
 
-const HomePage: React.FC = () => (
+const HomeView: React.FC = () => (
   <div>
     <h2>Home page</h2>
     
@@ -19,4 +19,4 @@ const HomePage: React.FC = () => (
   </div>
 )
 
-export default HomePage
+export default HomeView
