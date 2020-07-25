@@ -3,7 +3,7 @@ import {
   ScoreCardAction, ScoreCardState
 } from './scoreCardTypes'
 
-export const initialState: ScoreCardState = {
+const initialState: ScoreCardState = {
   id: '',
   course: {
     id: '',
