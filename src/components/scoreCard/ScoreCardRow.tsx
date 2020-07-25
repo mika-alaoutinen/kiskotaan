@@ -5,10 +5,23 @@ import Chip from '@material-ui/core/Chip'
 import IconButton from '@material-ui/core/IconButton'
 import Remove from '@material-ui/icons/Remove'
 
-import { Player } from '../../types'
+import { Player, ScoreCard } from '../../types'
+import { useSelector } from '../../store/reduxTypes'
 
 const ScoreCardRow: React.FC<{ par: number, player: Player}> = ({ par, player }) => {
+  const hole: number = useSelector(state => state.game.hole)
+  const scoreCard: ScoreCard = useSelector(state => state.scoreCard)
+
   const [ score, setScore ] = useState(par)
+
+  const getScore = (): number => {
+    const playerScore: number|undefined = scoreCard.rows
+      .find(row => row.hole === hole)
+      ?.scores.find(score => score.playerId === player.id)
+      ?.score
+
+    return playerScore ? playerScore : par
+  }
 
   const chipColor = (): string => {
     const result = score - par
@@ -47,6 +60,7 @@ const ScoreCardRow: React.FC<{ par: number, player: Player}> = ({ par, player })
       >
         <Add />
       </IconButton>
+      <button onClick={() => console.log(scoreCard)}>log</button>
     </div>
   )
 }
