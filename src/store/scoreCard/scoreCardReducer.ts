@@ -3,6 +3,9 @@ import {
   ScoreCardAction, ScoreCardState
 } from './scoreCardTypes'
 
+import scoreReducer from '../scores/scoreReducer'
+import { UPDATE_SCORES } from '../scores/scoreTypes'
+
 const initialState: ScoreCardState = {
   id: '',
   course: {
@@ -12,10 +15,15 @@ const initialState: ScoreCardState = {
     par: 0
   },
   players: [],
-  rows: []
+  rows: [{
+    hole: 1,
+    scores: []
+  }]
 }
 
-const scoreCardReducer = (state: ScoreCardState = initialState, action: ScoreCardAction): ScoreCardState => {
+const scoreCardReducer = (
+  state: ScoreCardState = initialState, action: ScoreCardAction): ScoreCardState => {
+
   switch (action.type) {
 
     case GET_SCORECARD:
@@ -27,6 +35,12 @@ const scoreCardReducer = (state: ScoreCardState = initialState, action: ScoreCar
     case DELETE_SCORECARD:
       return initialState
       
+    case UPDATE_SCORES:
+      return {
+        ...state,
+        rows: scoreReducer(state.rows, action)
+      }
+
     default:
       return state
   }
