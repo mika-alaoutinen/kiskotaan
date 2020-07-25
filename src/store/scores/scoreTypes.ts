@@ -1,21 +1,13 @@
 import { ScoreRow } from '../../types'
 
 // Action names:
-export const MINUS_SCORE = 'MINUS_SCORE'
-export const PLUS_SCORE = 'PLUS_SCORE'
+export const UPDATE_SCORES = 'UPDATE_SCORES'
 
 // Types for state and actions:
-export type ScoreState = ScoreRow
-export type ScoreAction = MinusAction | PlusAction
+export type ScoreState = ScoreRow[]
+export type ScoreAction = UpdateScores
 
-interface MinusAction {
-  type: typeof MINUS_SCORE,
-  playerId: string,
-  hole: number
-}
-
-interface PlusAction {
-  type: typeof PLUS_SCORE,
-  playerId: string,
-  hole: number
+interface UpdateScores {
+  type: typeof UPDATE_SCORES,
+  row: ScoreRow
 }

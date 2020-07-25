@@ -1,21 +1,14 @@
-import {
-  MINUS_SCORE, PLUS_SCORE,
-  ScoreAction, ScoreState
-} from './scoreTypes'
+import { UPDATE_SCORES, ScoreAction, ScoreState } from './scoreTypes'
 
-const initialState: ScoreState = {
-  hole: 1,
-  scores: []
-}
-
-const scoreReducer = (state: ScoreState = initialState, action: ScoreAction): ScoreState => {
+const scoreReducer = (state: ScoreState = [], action: ScoreAction): ScoreState => {
   switch (action.type) {
 
-    case MINUS_SCORE:
-      return state
-  
-    case PLUS_SCORE:
-      return state
+    case UPDATE_SCORES:
+      const { hole, scores } = action.row
+      return [
+        ...state,
+        { hole, scores }
+      ]
 
     default:
       return state
