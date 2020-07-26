@@ -30,18 +30,12 @@ const scoreReducer = (state: ScoreState = [], action: ScoreAction): ScoreState =
   }
 }
 
-const addScore = (
-  state: ScoreState, playerId: string, hole: number
-): ScoreState => {
-
+const addScore = (state: ScoreState, playerId: string, hole: number): ScoreState => {
   // TODO
   return state
 }
 
-const substractScore = (
-  state: ScoreState, playerId: string, hole: number
-): ScoreState => {
-
+const substractScore = (state: ScoreState, playerId: string, hole: number): ScoreState => {
   const row: ScoreRow|undefined = state.find(row => row.hole === hole)
   if (!row) {
     return state

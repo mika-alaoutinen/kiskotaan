@@ -6,7 +6,7 @@ import Chip from '@material-ui/core/Chip'
 import IconButton from '@material-ui/core/IconButton'
 import Remove from '@material-ui/icons/Remove'
 
-import { addScore, substractScore, updateScores } from '../../store/scores/scoreActions'
+import { addScore, substractScore } from '../../store/scores/scoreActions'
 import { Player, ScoreRow } from '../../types'
 import { useSelector } from '../../store/reduxTypes'
 
