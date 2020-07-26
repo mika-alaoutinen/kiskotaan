@@ -4,7 +4,7 @@ import {
 } from './scoreCardTypes'
 
 import scoreReducer from '../scores/scoreReducer'
-import { UPDATE_SCORES } from '../scores/scoreTypes'
+import { SUBSTRACT_SCORE, UPDATE_SCORES, ScoreAction } from '../scores/scoreTypes'
 
 const initialState: ScoreCardState = {
   id: '',
@@ -35,6 +35,9 @@ const scoreCardReducer = (
     case DELETE_SCORECARD:
       return initialState
       
+    case SUBSTRACT_SCORE:
+      return redirectToScoreReducer(state, action)
+      
     case UPDATE_SCORES:
       return {
         ...state,
@@ -45,5 +48,10 @@ const scoreCardReducer = (
       return state
   }
 }
+
+const redirectToScoreReducer = (state: ScoreCardState, action: ScoreAction): ScoreCardState => ({
+  ...state,
+  rows: scoreReducer(state.rows, action)
+})
 
 export default scoreCardReducer

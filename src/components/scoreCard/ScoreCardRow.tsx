@@ -2,13 +2,12 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import Add from '@material-ui/icons/Add'
-import Button from '@material-ui/core/Button'
 import Chip from '@material-ui/core/Chip'
 import IconButton from '@material-ui/core/IconButton'
 import Remove from '@material-ui/icons/Remove'
 
 import { substractScore, updateScores } from '../../store/scores/scoreActions'
-import { Player, ScoreCard, ScoreRow } from '../../types'
+import { Player, ScoreRow } from '../../types'
 import { useSelector } from '../../store/reduxTypes'
 
 const ScoreCardRow: React.FC<{ par: number, player: Player}> = ({ par, player }) => {
@@ -28,7 +27,8 @@ const ScoreCardRow: React.FC<{ par: number, player: Player}> = ({ par, player })
   }
 
   const minusHandler = (): void => {
-    dispatch(substractScore(player.id, hole, getScore() - 1))
+    dispatch(substractScore(player.id, hole))
+    dispatch(updateScores(hole))
   }
 
   const chipColor = (): string => {
@@ -68,10 +68,6 @@ const ScoreCardRow: React.FC<{ par: number, player: Player}> = ({ par, player })
       >
         <Add />
       </IconButton>
-
-      {/* <Button onClick={() => dispatch(updateScores(hole))}>
-        Save
-      </Button> */}
     </div>
   )
 }
