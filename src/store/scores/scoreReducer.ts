@@ -15,6 +15,7 @@ const scoreReducer = (state: ScoreState = [], action: ScoreAction): ScoreState =
       const newState = substractScore(state, action.playerId, action.hole)
       return newState
       
+    // TODO: can this be deleted?
     case UPDATE_SCORES:
       return [
         ...state,
@@ -57,34 +58,13 @@ const substractScore = (
   }
 
   const updatedScores:Score[] = row.scores.map(score => score.playerId === playerId ? updatedScore : score)
-  console.log('updated scores, score reducer')
-  console.log(updatedScores)
 
   const updatedRow: ScoreRow = {
     hole,
     scores: updatedScores
   }
 
-  const newState = state.map(row => row.hole === hole ? updatedRow : row)
-  console.log('score reducer, new state')
-  console.log(newState)
-  
-  return newState
-
-  // return [
-  //   {
-  //     hole,
-  //     scores: updatedScores
-  //   }
-  // ]
-    
-  // return [
-  //   ...state,
-  //   {
-  //     hole,
-  //     scores: updatedScores
-  //   }
-  // ]
+  return state.map(row => row.hole === hole ? updatedRow : row)
 }
 
 const getCurrentScore = (

@@ -27,12 +27,12 @@ const ScoreCardRow: React.FC<{ par: number, player: Player}> = ({ par, player })
 
   const minusHandler = (): void => {
     dispatch(substractScore(player.id, hole))
-    dispatch(updateScores(hole))
+    // dispatch(updateScores(hole))
   }
   
   const plusHandler = (): void => {
     dispatch(addScore(player.id, hole))
-    dispatch(updateScores(hole))
+    // dispatch(updateScores(hole))
   }
 
   const chipColor = (): string => {
