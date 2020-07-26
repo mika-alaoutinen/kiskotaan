@@ -3,8 +3,11 @@ import {
   ScoreCardAction, ScoreCardState
 } from './scoreCardTypes'
 
+import {
+  ADD_SCORE, SUBSTRACT_SCORE, UPDATE_SCORES, ScoreAction
+} from '../scores/scoreTypes'
+
 import scoreReducer from '../scores/scoreReducer'
-import { SUBSTRACT_SCORE, UPDATE_SCORES, ScoreAction } from '../scores/scoreTypes'
 
 const initialState: ScoreCardState = {
   id: '',
@@ -35,8 +38,14 @@ const scoreCardReducer = (
     case DELETE_SCORECARD:
       return initialState
       
-    case SUBSTRACT_SCORE:
+    case ADD_SCORE:
       return redirectToScoreReducer(state, action)
+      
+    case SUBSTRACT_SCORE:
+      const newState = redirectToScoreReducer(state, action)
+      console.log('score card reducer')
+      console.log(newState)
+      return newState
       
     case UPDATE_SCORES:
       return {
