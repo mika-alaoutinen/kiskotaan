@@ -1,19 +1,19 @@
 import scoreService from '../../services/scoreService'
 import { AppThunk } from '../reduxTypes'
-import { SUBSTRACT_SCORE, UPDATE_SCORES, ScoreAction } from './scoreTypes'
+import { ADD_SCORE, SUBSTRACT_SCORE, UPDATE_SCORES, ScoreAction } from './scoreTypes'
 import { ScoreRow } from '../../types'
 
-export const substractScore = (
-  playerId: string, hole: number, currentScore: number
-): ScoreAction => {
+export const addScore = (playerId: string, hole: number): ScoreAction => ({
+  type: ADD_SCORE,
+  playerId,
+  hole
+})
 
-  return {
-    type: SUBSTRACT_SCORE,
-    playerId,
-    hole,
-    currentScore
-  }
-}
+export const substractScore = (playerId: string, hole: number): ScoreAction => ({
+  type: SUBSTRACT_SCORE,
+  playerId,
+  hole
+})
 
 export const updateScores = (hole: number): AppThunk =>
   async (dispatch, getState) => {

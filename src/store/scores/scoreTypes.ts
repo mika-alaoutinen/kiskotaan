@@ -1,18 +1,24 @@
 import { ScoreRow } from '../../types'
 
 // Action names:
+export const ADD_SCORE = 'ADD_SCORE'
 export const SUBSTRACT_SCORE = 'SUBSTRACT_SCORE'
 export const UPDATE_SCORES = 'UPDATE_SCORES'
 
 // Types for state and actions:
 export type ScoreState = ScoreRow[]
-export type ScoreAction = SubstractScore | UpdateScores
+export type ScoreAction = AddScore | SubstractScore | UpdateScores
+
+interface AddScore {
+  type: typeof ADD_SCORE,
+  playerId: string,
+  hole: number
+}
 
 interface SubstractScore {
   type: typeof SUBSTRACT_SCORE,
   playerId: string,
-  hole: number,
-  currentScore: number // not needed necessarily!
+  hole: number
 }
 
 interface UpdateScores {
