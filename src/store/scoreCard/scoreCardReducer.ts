@@ -42,16 +42,10 @@ const scoreCardReducer = (
       return redirectToScoreReducer(state, action)
       
     case SUBSTRACT_SCORE:
-      const newState = redirectToScoreReducer(state, action)
-      console.log('score card reducer')
-      console.log(newState)
-      return newState
+      return redirectToScoreReducer(state, action)
       
     case UPDATE_SCORES:
-      return {
-        ...state,
-        rows: scoreReducer(state.rows, action)
-      }
+      return redirectToScoreReducer(state, action)
 
     default:
       return state
