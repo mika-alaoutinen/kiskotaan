@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 
 import Add from '@material-ui/icons/Add'
@@ -6,13 +6,12 @@ import Chip from '@material-ui/core/Chip'
 import IconButton from '@material-ui/core/IconButton'
 import Remove from '@material-ui/icons/Remove'
 
-import { substractScore, updateScores } from '../../store/scores/scoreActions'
+import { addScore, substractScore, updateScores } from '../../store/scores/scoreActions'
 import { Player, ScoreRow } from '../../types'
 import { useSelector } from '../../store/reduxTypes'
 
 const ScoreCardRow: React.FC<{ par: number, player: Player}> = ({ par, player }) => {
   const dispatch = useDispatch()
-  const [ score, setScore ] = useState(par)
   
   const hole: number = useSelector(state => state.game.hole)
   const scoreRows: ScoreRow[] = useSelector(state => state.scoreCard.rows)
@@ -30,9 +29,14 @@ const ScoreCardRow: React.FC<{ par: number, player: Player}> = ({ par, player })
     dispatch(substractScore(player.id, hole))
     dispatch(updateScores(hole))
   }
+  
+  const plusHandler = (): void => {
+    dispatch(addScore(player.id, hole))
+    dispatch(updateScores(hole))
+  }
 
   const chipColor = (): string => {
-    const result = score - par
+    const result = getScore() - par
     if (result < 0) {
       return 'green'
     } else if (result === 0) {
@@ -50,7 +54,7 @@ const ScoreCardRow: React.FC<{ par: number, player: Player}> = ({ par, player })
 
       <IconButton
         color='primary'
-        disabled={score === 1}
+        disabled={getScore() === 1}
         onClick={minusHandler}
       >
         <Remove />
@@ -64,7 +68,7 @@ const ScoreCardRow: React.FC<{ par: number, player: Player}> = ({ par, player })
 
       <IconButton
         color='primary'
-        onClick={() => setScore(score + 1)}
+        onClick={plusHandler}
       >
         <Add />
       </IconButton>
