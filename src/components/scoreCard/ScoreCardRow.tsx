@@ -25,16 +25,6 @@ const ScoreCardRow: React.FC<{ par: number, player: Player}> = ({ par, player })
     return playerScore ? playerScore : par
   }
 
-  const minusHandler = (): void => {
-    dispatch(substractScore(player.id, hole))
-    // dispatch(updateScores(hole))
-  }
-  
-  const plusHandler = (): void => {
-    dispatch(addScore(player.id, hole))
-    // dispatch(updateScores(hole))
-  }
-
   const chipColor = (): string => {
     const result = getScore() - par
     if (result < 0) {
@@ -55,7 +45,7 @@ const ScoreCardRow: React.FC<{ par: number, player: Player}> = ({ par, player })
       <IconButton
         color='primary'
         disabled={getScore() === 1}
-        onClick={minusHandler}
+        onClick={() => dispatch(substractScore(player.id, hole))}
       >
         <Remove />
       </IconButton>
@@ -68,7 +58,7 @@ const ScoreCardRow: React.FC<{ par: number, player: Player}> = ({ par, player })
 
       <IconButton
         color='primary'
-        onClick={plusHandler}
+        onClick={() => dispatch(addScore(player.id, hole))}
       >
         <Add />
       </IconButton>
