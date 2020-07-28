@@ -15,7 +15,10 @@ const scoreReducer = (state: ScoreState = [], action: ScoreAction): ScoreState =
   }
 }
 
-const changeScore = (state: ScoreState, updatedRow: ScoreRow, hole: number) =>
+const changeScore = (
+  state: ScoreState, updatedRow: ScoreRow, hole: number
+): ScoreState =>
+
   state.map(row => row.hole === hole ? updatedRow : row)
 
 export default scoreReducer
