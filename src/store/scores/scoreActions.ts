@@ -3,6 +3,19 @@ import { AppThunk } from '../reduxTypes'
 import { ADD_SCORE, SUBSTRACT_SCORE, UPDATE_SCORES } from './scoreTypes'
 import { Score, ScoreRow } from '../../types'
 
+const updateScoreRow = (
+  playerId: string, hole: number, scores: Score[], updatedScore: Score
+): ScoreRow => {
+  
+  const updatedScores: Score[] = scores.map(score =>
+    score.playerId === playerId ? updatedScore : score)
+  
+  return {
+    hole,
+    scores: updatedScores
+  }
+}
+
 export const addScore = (playerId: string, hole: number): AppThunk =>
   (dispatch, getState) => {
     
@@ -23,15 +36,10 @@ export const addScore = (playerId: string, hole: number): AppThunk =>
       score: currentScore + 1
     }
 
-    const updatedRow: ScoreRow = {
-      hole,
-      scores: row.scores.map(score => score.playerId === playerId ? updatedScore : score)
-    }
-  
     dispatch({
       type: ADD_SCORE,
       hole,
-      scoreRow: updatedRow
+      scoreRow: updateScoreRow(playerId, hole, row.scores, updatedScore)
     })
   }
 
@@ -54,16 +62,11 @@ export const substractScore = (playerId: string, hole: number): AppThunk =>
     playerId,
     score: currentScore - 1
   }
-  
-  const updatedRow: ScoreRow = {
-    hole,
-    scores: row.scores.map(score => score.playerId === playerId ? updatedScore : score)
-  }
 
   dispatch({
     type: SUBSTRACT_SCORE,
     hole,
-    scoreRow: updatedRow
+    scoreRow: updateScoreRow(playerId, hole, row.scores, updatedScore)
   })
 }
 
