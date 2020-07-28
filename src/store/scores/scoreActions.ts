@@ -3,11 +3,12 @@ import { AppThunk } from '../reduxTypes'
 import { ADD_SCORE, SUBSTRACT_SCORE, UPDATE_SCORES, ScoreAction } from './scoreTypes'
 import { Score, ScoreRow } from '../../types'
 
-export const addScore = (playerId: string, hole: number): ScoreAction => ({
-  type: ADD_SCORE,
-  playerId,
-  hole
-})
+export const addScore = (playerId: string, hole: number): AppThunk =>
+  (dispatch, getState) => {
+    
+    const rows: ScoreRow[] = getState().scoreCard.rows
+
+  }
 
 // export const substractScore = (playerId: string, hole: number): ScoreAction => ({
 //   type: SUBSTRACT_SCORE,
@@ -30,9 +31,14 @@ export const substractScore = (playerId: string, hole: number): AppThunk =>
     return
   }
 
+  const updatedScore: Score = {
+    playerId,
+    score: currentScore - 1
+  }
+  
   const updatedRow: ScoreRow = {
     hole,
-    scores: updateScoreRow(row, playerId, currentScore)
+    scores: updateScoreRow(row, playerId, updatedScore)
   }
 
   dispatch({
@@ -73,15 +79,5 @@ const findCurrentScore = (
     ?.scores.find(score => score.playerId === playerId)
     ?.score
 
-const updateScoreRow = (
-  row: ScoreRow, playerId: string, currentScore: number
-): Score[] => {
-
-  const newScore: Score = {
-    playerId,
-    score: currentScore - 1
-  }
-
-  return row.scores.map(score =>
-    score.playerId === playerId ? newScore : score)
-}
+const updateScoreRow = (row: ScoreRow, playerId: string, updatedScore: Score): Score[] =>
+  row.scores.map(score => score.playerId === playerId ? updatedScore : score)

@@ -11,8 +11,8 @@ export type ScoreAction = AddScore | SubstractScore | UpdateScores
 
 interface AddScore {
   type: typeof ADD_SCORE,
-  playerId: string,
-  hole: number
+  hole: number,
+  scoreRow: ScoreRow
 }
 
 interface SubstractScore {
