@@ -1,12 +1,8 @@
 import {
-  CREATE_SCORECARD, DELETE_SCORECARD, GET_SCORECARD,
-  ScoreCardAction, ScoreCardState
+  CREATE_SCORECARD, DELETE_SCORECARD, GET_SCORECARD, ScoreCardAction, ScoreCardState
 } from './scoreCardTypes'
 
-import {
-  ADD_SCORE, SUBSTRACT_SCORE, UPDATE_SCORES, ScoreAction
-} from '../scores/scoreTypes'
-
+import { CHANGE_SCORE, UPDATE_SCORES, ScoreAction } from '../scores/scoreTypes'
 import scoreReducer from '../scores/scoreReducer'
 
 const initialState: ScoreCardState = {
@@ -38,10 +34,7 @@ const scoreCardReducer = (
     case DELETE_SCORECARD:
       return initialState
       
-    case ADD_SCORE:
-      return redirectToScoreReducer(state, action)
-      
-    case SUBSTRACT_SCORE:
+    case CHANGE_SCORE:
       return redirectToScoreReducer(state, action)
       
     case UPDATE_SCORES:
