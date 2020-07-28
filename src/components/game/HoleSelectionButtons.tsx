@@ -7,6 +7,7 @@ import NavigateNext from '@material-ui/icons/NavigateNext'
 
 import { Hole } from '../../types'
 import { switchHole } from '../../store/game/gameActions'
+import { updateScores } from '../../store/scores/scoreActions'
 import { useSelector } from '../../store/reduxTypes'
 
 const HoleSelectionButtons: React.FC = () => {
@@ -15,6 +16,7 @@ const HoleSelectionButtons: React.FC = () => {
   const hole: number = useSelector(state => state.game.hole)
   
   const changeHoles = (newHole: number): void => {
+    dispatch(updateScores(hole))
     dispatch(switchHole(newHole))
   }
   

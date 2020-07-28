@@ -35,7 +35,7 @@ export interface ScoreRow {
   scores: Score[]
 }
 
-interface Score {
+export interface Score {
   playerId: string,
   score: number
 }
