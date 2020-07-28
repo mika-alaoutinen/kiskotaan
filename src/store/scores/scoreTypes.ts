@@ -12,13 +12,13 @@ export type ScoreAction = AddScore | SubstractScore | UpdateScores
 interface AddScore {
   type: typeof ADD_SCORE,
   hole: number,
-  scoreRow: ScoreRow
+  row: ScoreRow
 }
 
 interface SubstractScore {
   type: typeof SUBSTRACT_SCORE,
   hole: number,
-  scoreRow: ScoreRow
+  row: ScoreRow
 }
 
 interface UpdateScores {

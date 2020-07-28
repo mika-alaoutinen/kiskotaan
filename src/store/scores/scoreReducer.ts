@@ -9,10 +9,10 @@ const scoreReducer = (state: ScoreState = [], action: ScoreAction): ScoreState =
   switch (action.type) {
     
     case ADD_SCORE:
-      return changeScore(state, action.scoreRow, action.hole)
+      return changeScore(state, action.row, action.hole)
     
     case SUBSTRACT_SCORE:
-      return changeScore(state, action.scoreRow, action.hole)
+      return changeScore(state, action.row, action.hole)
       
     // TODO: can this be deleted?
     case UPDATE_SCORES:

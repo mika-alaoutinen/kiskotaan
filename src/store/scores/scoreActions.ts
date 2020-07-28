@@ -18,7 +18,7 @@ export const addScore = (playerId: string, hole: number): AppThunk =>
     dispatch({
       type: ADD_SCORE,
       hole,
-      scoreRow: updateScoreRow(playerId, hole, scores, updatedScore)
+      row: updateScoreRow(playerId, hole, scores, updatedScore)
     })
   }
 
@@ -37,7 +37,7 @@ export const substractScore = (playerId: string, hole: number): AppThunk =>
   dispatch({
     type: SUBSTRACT_SCORE,
     hole,
-    scoreRow: updateScoreRow(playerId, hole, scores, updatedScore)
+    row: updateScoreRow(playerId, hole, scores, updatedScore)
   })
 }
 
