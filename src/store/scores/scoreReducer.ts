@@ -14,16 +14,9 @@ const scoreReducer = (state: ScoreState = [], action: ScoreAction): ScoreState =
     case SUBSTRACT_SCORE:
       return changeScore(state, action.row, action.hole)
       
-    // TODO: can this be deleted?
     case UPDATE_SCORES:
-      return [
-        ...state,
-        {
-          hole: action.row.hole,
-          scores: action.row.scores
-        }
-      ]
-      
+      return changeScore(state, action.row, action.hole)
+            
     default:
       return state
   }

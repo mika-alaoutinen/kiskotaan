@@ -57,6 +57,7 @@ export const updateScores = (hole: number): AppThunk =>
 
   dispatch({
     type: UPDATE_SCORES,
+    hole,
     row
   })
 }

@@ -23,5 +23,6 @@ interface SubstractScore {
 
 interface UpdateScores {
   type: typeof UPDATE_SCORES,
+  hole: number,
   row: ScoreRow
 }
