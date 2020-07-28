@@ -21,11 +21,7 @@ export const addScore = (playerId: string, hole: number): AppThunk =>
     
     const rows: ScoreRow[] = getState().scoreCard.rows
     const scores: Score[] = findScoresForHole(rows, hole)
-
-    const currentScore: number|undefined = findCurrentScore(rows, playerId, hole)
-    if (!currentScore) {
-      return
-    }
+    const currentScore: number = findCurrentScore(rows, playerId, hole)
 
     const updatedScore: Score = {
       playerId,
@@ -44,11 +40,7 @@ export const substractScore = (playerId: string, hole: number): AppThunk =>
 
   const rows: ScoreRow[] = getState().scoreCard.rows
   const scores: Score[] = findScoresForHole(rows, hole)
-
-  const currentScore: number|undefined = findCurrentScore(rows, playerId, hole)
-  if (!currentScore) {
-    return
-  }
+  const currentScore: number = findCurrentScore(rows, playerId, hole)
 
   const updatedScore: Score = {
     playerId,
@@ -67,13 +59,14 @@ const findScoresForHole = (rows: ScoreRow[], hole: number): Score[] => {
   return row ? row.scores : []
 }
 
-const findCurrentScore = (
-  rows: ScoreRow[], playerId: string, hole: number
-): number|undefined =>
-
-  rows.find(row => row.hole === hole)
+const findCurrentScore = (rows: ScoreRow[], playerId: string, hole: number): number => {
+  const score: number|undefined =  rows.find(row => row.hole === hole)
     ?.scores.find(score => score.playerId === playerId)
     ?.score
+  
+  return score ? score : 0
+}
+  
 
 
 // ***************************************************************************
