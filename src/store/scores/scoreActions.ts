@@ -1,7 +1,7 @@
 import scoreService from '../../services/scoreService'
 import { AppThunk } from '../reduxTypes'
 import { ADD_SCORE, SUBSTRACT_SCORE, UPDATE_SCORES } from './scoreTypes'
-import { Score, ScoreRow } from '../../types'
+import { Score, ScoreCard, ScoreRow } from '../../types'
 
 export const addScore = (playerId: string, hole: number): AppThunk =>
   (dispatch, getState) => {
@@ -44,11 +44,10 @@ export const substractScore = (playerId: string, hole: number): AppThunk =>
 export const updateScores = (hole: number): AppThunk =>
   async (dispatch, getState) => {
 
-  const rows: ScoreRow[] = getState().scoreCard.rows
-  const scoreRow: ScoreRow|undefined = rows.find(row => row.hole === hole)
-
+  const scoreCard: ScoreCard = getState().scoreCard
+  const scoreRow: ScoreRow|undefined = scoreCard.rows.find(row => row.hole === hole)
   const row = scoreRow
-    ? await scoreService.addScore(scoreRow)
+    ? await scoreService.updateScore(scoreCard.id, scoreRow)
     : undefined
 
   if (!row) {
@@ -67,7 +66,10 @@ const findScoresForHole = (rows: ScoreRow[], hole: number): Score[] => {
   return row ? row.scores : []
 }
 
-const findCurrentScore = (rows: ScoreRow[], playerId: string, hole: number): number => {
+const findCurrentScore = (
+  rows: ScoreRow[], playerId: string, hole: number
+): number => {
+
   const score: number|undefined =  rows.find(row => row.hole === hole)
     ?.scores.find(score => score.playerId === playerId)
     ?.score

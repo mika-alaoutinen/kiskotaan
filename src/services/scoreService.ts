@@ -7,8 +7,8 @@ const addScore = async (score: ScoreRow): Promise<ScoreRow|void> =>
     .then(response => response.data)
     .catch(error => console.log(error))
 
-const updateScore = async (score: ScoreRow): Promise<ScoreRow|void> =>
-  axios.put<ScoreRow>(scoreCardsUrl, score)
+const updateScore = async (id: string, score: ScoreRow): Promise<ScoreRow|void> =>
+  axios.put<ScoreRow>(scoreCardsUrl + '/' + id, score)
     .then(response => response.data)
     .catch(error => console.log(error))
 
