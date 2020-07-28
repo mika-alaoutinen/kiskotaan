@@ -20,11 +20,7 @@ export const addScore = (playerId: string, hole: number): AppThunk =>
   (dispatch, getState) => {
     
     const rows: ScoreRow[] = getState().scoreCard.rows
-
-    const row: ScoreRow|undefined = findRow(rows, hole)
-    if (!row) {
-      return
-    }
+    const scores: Score[] = findScoresForHole(rows, hole)
 
     const currentScore: number|undefined = findCurrentScore(rows, playerId, hole)
     if (!currentScore) {
@@ -39,7 +35,7 @@ export const addScore = (playerId: string, hole: number): AppThunk =>
     dispatch({
       type: ADD_SCORE,
       hole,
-      scoreRow: updateScoreRow(playerId, hole, row.scores, updatedScore)
+      scoreRow: updateScoreRow(playerId, hole, scores, updatedScore)
     })
   }
 
@@ -47,11 +43,7 @@ export const substractScore = (playerId: string, hole: number): AppThunk =>
   (dispatch, getState) => {
 
   const rows: ScoreRow[] = getState().scoreCard.rows
-
-  const row: ScoreRow|undefined = findRow(rows, hole)
-  if (!row) {
-    return
-  }
+  const scores: Score[] = findScoresForHole(rows, hole)
 
   const currentScore: number|undefined = findCurrentScore(rows, playerId, hole)
   if (!currentScore) {
@@ -66,12 +58,14 @@ export const substractScore = (playerId: string, hole: number): AppThunk =>
   dispatch({
     type: SUBSTRACT_SCORE,
     hole,
-    scoreRow: updateScoreRow(playerId, hole, row.scores, updatedScore)
+    scoreRow: updateScoreRow(playerId, hole, scores, updatedScore)
   })
 }
 
-const findRow = (rows: ScoreRow[], hole: number): ScoreRow|undefined => 
-  rows.find(row => row.hole === hole)
+const findScoresForHole = (rows: ScoreRow[], hole: number): Score[] => {
+  const row: ScoreRow|undefined = rows.find(row => row.hole === hole)
+  return row ? row.scores : []
+}
 
 const findCurrentScore = (
   rows: ScoreRow[], playerId: string, hole: number
@@ -88,7 +82,7 @@ export const updateScores = (hole: number): AppThunk =>
   async (dispatch, getState) => {
 
   const rows: ScoreRow[] = getState().scoreCard.rows
-  const scoreRow: ScoreRow|undefined = findRow(rows, hole)
+  const scoreRow: ScoreRow|undefined = rows.find(row => row.hole === hole)
 
   const row = scoreRow
     ? await scoreService.addScore(scoreRow)
