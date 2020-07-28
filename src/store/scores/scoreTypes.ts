@@ -17,8 +17,8 @@ interface AddScore {
 
 interface SubstractScore {
   type: typeof SUBSTRACT_SCORE,
-  playerId: string,
-  hole: number
+  hole: number,
+  scoreRow: ScoreRow
 }
 
 interface UpdateScores {

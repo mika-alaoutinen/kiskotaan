@@ -12,8 +12,7 @@ const scoreReducer = (state: ScoreState = [], action: ScoreAction): ScoreState =
       return addScore(state, action.playerId, action.hole)
     
     case SUBSTRACT_SCORE:
-      const newState = substractScore(state, action.playerId, action.hole)
-      return newState
+      return changeScore(state, action.scoreRow, action.hole)
       
     // TODO: can this be deleted?
     case UPDATE_SCORES:
@@ -29,6 +28,9 @@ const scoreReducer = (state: ScoreState = [], action: ScoreAction): ScoreState =
       return state
   }
 }
+
+const changeScore = (state: ScoreState, updatedRow: ScoreRow, hole: number) =>
+  state.map(row => row.hole === hole ? updatedRow : row)
 
 const addScore = (state: ScoreState, playerId: string, hole: number): ScoreState => {
   // TODO
@@ -51,7 +53,7 @@ const substractScore = (state: ScoreState, playerId: string, hole: number): Scor
     score: currentScore - 1
   }
 
-  const updatedScores:Score[] = row.scores.map(score => score.playerId === playerId ? updatedScore : score)
+  const updatedScores: Score[] = row.scores.map(score => score.playerId === playerId ? updatedScore : score)
 
   const updatedRow: ScoreRow = {
     hole,
