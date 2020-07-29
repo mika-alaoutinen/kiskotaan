@@ -8,7 +8,7 @@ export const UPDATE_SCORES = 'UPDATE_SCORES'
 export type ScoreState = ScoreRow[]
 export type ScoreAction = ChangeScore | UpdateScores
 
-interface ChangeScore {
+export interface ChangeScore {
   type: typeof CHANGE_SCORE,
   hole: number,
   row: ScoreRow
