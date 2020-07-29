@@ -2,6 +2,7 @@ import scoreService from '../../services/scoreService'
 import { AppThunk } from '../reduxTypes'
 import { CHANGE_SCORE, UPDATE_SCORES } from './scoreTypes'
 import { Score, ScoreCard, ScoreRow } from '../../types'
+import { setScoreChanged } from '../game/gameActions'
 
 export const addScore = (playerId: string, hole: number): AppThunk =>
   (dispatch, getState) => {
@@ -14,6 +15,8 @@ export const addScore = (playerId: string, hole: number): AppThunk =>
       playerId,
       score: currentScore + 1
     }
+
+    dispatch(setScoreChanged())
 
     dispatch({
       type: CHANGE_SCORE,
@@ -33,6 +36,8 @@ export const substractScore = (playerId: string, hole: number): AppThunk =>
     playerId,
     score: currentScore - 1
   }
+
+  dispatch(setScoreChanged())
 
   dispatch({
     type: CHANGE_SCORE,

@@ -1,8 +1,11 @@
-import { GameAction, GameState, START_GAME, END_GAME, SWITCH_HOLE } from './gameTypes'
+import {
+  START_GAME, END_GAME, SWITCH_HOLE, SCORE_HAS_CHANGED, GameAction, GameState
+} from './gameTypes'
 
 const initialState: GameState = {
   id: '',
   date: new Date(),
+  hasScoreChanged: false,
   hole: 1,
   isOver: false
 }
@@ -22,9 +25,16 @@ const gameReducer = (state: GameState = initialState, action: GameAction): GameS
         isOver: true
       }
 
+    case SCORE_HAS_CHANGED:
+      return {
+        ...state,
+        hasScoreChanged: true
+      }
+
     case SWITCH_HOLE:
       return {
         ...state,
+        hasScoreChanged: false,
         hole: action.hole
       }
 
