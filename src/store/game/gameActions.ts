@@ -3,8 +3,7 @@ import { AppThunk } from '../reduxTypes'
 import { Game, ScoreCard } from '../../types'
 
 import {
-  END_GAME, START_GAME, SWITCH_HOLE,
-  GameAction
+  SCORE_HAS_CHANGED, END_GAME, START_GAME, SWITCH_HOLE, GameAction,
 } from './gameTypes'
 
 
@@ -24,6 +23,10 @@ export const startGame = (): AppThunk => async (dispatch, getState) => {
 
 export const endGame = (): GameAction => ({
   type: END_GAME
+})
+
+export const setScoreChanged = (): GameAction => ({
+  type: SCORE_HAS_CHANGED
 })
 
 export const switchHole = (hole: number): GameAction => ({

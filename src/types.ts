@@ -7,7 +7,8 @@ export interface Course {
 
 export interface Game {
   id: string,
-  hole: number, // The hole that is currently being played
+  hasScoreChanged: boolean,
+  hole: number,
   isOver: boolean,
   date?: Date
 }
