@@ -1,44 +1,23 @@
 import scoreService from '../../services/scoreService'
 import { AppThunk } from '../reduxTypes'
-import { CHANGE_SCORE, UPDATE_SCORES } from './scoreTypes'
+import { CHANGE_SCORE, UPDATE_SCORES, ChangeScore } from './scoreTypes'
 import { Score, ScoreCard, ScoreRow } from '../../types'
+import { setScoreChanged } from '../game/gameActions'
 
 export const addScore = (playerId: string, hole: number): AppThunk =>
   (dispatch, getState) => {
     
     const rows: ScoreRow[] = getState().scoreCard.rows
-    const scores: Score[] = findScoresForHole(rows, hole)
-    const currentScore: number = findCurrentScore(rows, playerId, hole)
-
-    const updatedScore: Score = {
-      playerId,
-      score: currentScore + 1
-    }
-
-    dispatch({
-      type: CHANGE_SCORE,
-      hole,
-      row: updateScoreRow(playerId, hole, scores, updatedScore)
-    })
+    dispatch(setScoreChanged())
+    dispatch(addOrSubstractScore(rows, playerId, hole, 1))
   }
 
 export const substractScore = (playerId: string, hole: number): AppThunk =>
   (dispatch, getState) => {
 
   const rows: ScoreRow[] = getState().scoreCard.rows
-  const scores: Score[] = findScoresForHole(rows, hole)
-  const currentScore: number = findCurrentScore(rows, playerId, hole)
-
-  const updatedScore: Score = {
-    playerId,
-    score: currentScore - 1
-  }
-
-  dispatch({
-    type: CHANGE_SCORE,
-    hole,
-    row: updateScoreRow(playerId, hole, scores, updatedScore)
-  })
+  dispatch(setScoreChanged())
+  dispatch(addOrSubstractScore(rows, playerId, hole, -1))
 }
 
 export const updateScores = (hole: number): AppThunk =>
@@ -59,6 +38,24 @@ export const updateScores = (hole: number): AppThunk =>
     hole,
     row
   })
+}
+
+const addOrSubstractScore = (
+  rows: ScoreRow[], playerId: string, hole: number, scoreModifier: 1|-1
+): ChangeScore => {
+
+  const scores: Score[] = findScoresForHole(rows, hole)
+  const currentScore: number = findCurrentScore(rows, playerId, hole)
+  const updatedScore: Score = {
+    playerId,
+    score: currentScore + scoreModifier
+  }
+
+  return {
+    type: CHANGE_SCORE,
+    hole,
+    row: updateScoreRow(playerId, hole, scores, updatedScore)
+  }
 }
 
 const findScoresForHole = (rows: ScoreRow[], hole: number): Score[] => {

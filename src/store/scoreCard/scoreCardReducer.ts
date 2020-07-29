@@ -21,7 +21,8 @@ const initialState: ScoreCardState = {
 }
 
 const scoreCardReducer = (
-  state: ScoreCardState = initialState, action: ScoreCardAction): ScoreCardState => {
+  state: ScoreCardState = initialState, action: ScoreCardAction
+): ScoreCardState => {
 
   switch (action.type) {
 
@@ -45,7 +46,10 @@ const scoreCardReducer = (
   }
 }
 
-const redirectToScoreReducer = (state: ScoreCardState, action: ScoreAction): ScoreCardState => ({
+const redirectToScoreReducer = (
+  state: ScoreCardState, action: ScoreAction
+): ScoreCardState => ({
+
   ...state,
   rows: scoreReducer(state.rows, action)
 })

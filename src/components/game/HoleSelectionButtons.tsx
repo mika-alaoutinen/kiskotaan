@@ -12,11 +12,15 @@ import { useSelector } from '../../store/reduxTypes'
 
 const HoleSelectionButtons: React.FC = () => {
   const dispatch = useDispatch()
+  
+  const hasScoreChanged: boolean = useSelector(state => state.game.hasScoreChanged)
   const holes: Hole[] = useSelector(state => state.scoreCard.course.holes)
   const hole: number = useSelector(state => state.game.hole)
   
   const changeHoles = (newHole: number): void => {
-    dispatch(updateScores(hole))
+    if (hasScoreChanged) {
+      dispatch(updateScores(hole))
+    }
     dispatch(switchHole(newHole))
   }
   

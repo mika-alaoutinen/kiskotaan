@@ -3,11 +3,16 @@ import { Game } from '../../types'
 // Action names:
 export const START_GAME = 'START_GAME'
 export const END_GAME = 'END_GAME'
+export const SCORE_HAS_CHANGED = 'SCORE_HAS_CHANGED'
 export const SWITCH_HOLE = 'SWITCH_HOLE'
 
 // Types for state and actions:
 export type GameState = Game
-export type GameAction = StartGameAction | EndGameAction | SwitchHoleAction
+export type GameAction =
+  | StartGameAction
+  | EndGameAction
+  | ScoreChangedAction
+  | SwitchHoleAction
 
 interface StartGameAction {
   type: typeof START_GAME,
@@ -16,6 +21,10 @@ interface StartGameAction {
 
 interface EndGameAction {
   type: typeof END_GAME
+}
+
+interface ScoreChangedAction {
+  type: typeof SCORE_HAS_CHANGED
 }
 
 interface SwitchHoleAction {
