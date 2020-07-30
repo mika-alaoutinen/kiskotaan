@@ -20,7 +20,8 @@ interface StartGameAction {
 }
 
 interface EndGameAction {
-  type: typeof END_GAME
+  type: typeof END_GAME,
+  game: Game
 }
 
 interface ScoreChangedAction {
