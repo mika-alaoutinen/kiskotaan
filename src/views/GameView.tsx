@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
+import EndGameButton from '../components/game/EndGameButton'
 import HoleSelectionButtons from '../components/game/HoleSelectionButtons'
 import HoleSelector from '../components/game/HoleSelector'
 import ScoreCardDetails from '../components/scoreCard/ScoreCardDetails'
@@ -10,8 +11,7 @@ import { getScoreCard } from '../store/scoreCard/scoreCardActions'
 import { useSelector } from '../store/reduxTypes'
 
 const GameView: React.FC = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const { id } = useParams()
+  const { id } = useParams<{ id: string }>()
 
   const dispatch = useDispatch()
   const scoreCard: ScoreCard = useSelector(state => state.scoreCard)
@@ -28,6 +28,7 @@ const GameView: React.FC = () => {
       <HoleSelector />
       <ScoreCardDetails />
       <HoleSelectionButtons />
+      <EndGameButton />
     </div>
   )
 }
