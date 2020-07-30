@@ -13,7 +13,6 @@ export const startGame = (): AppThunk => async (dispatch, getState) => {
   
   const scoreCard: ScoreCard = getState().scoreCard
   const game: Game|void = await gameService.startGame(scoreCard)
-  console.log('game', game)
 
   if (!game) {
     return

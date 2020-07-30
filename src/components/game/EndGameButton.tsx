@@ -1,20 +1,24 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 import CheckCircle from '@material-ui/icons/CheckCircle'
 import Button from '@material-ui/core/Button'
 
-const EndGameButton: React.FC = () => {
+import { endGame } from '../../store/game/gameActions'
+import { homePath } from '../../constants'
 
-  const endGame = (): void => {
-    console.log('end game')
-  }
+const EndGameButton: React.FC = () => {
+  const dispatch = useDispatch()
 
   return (
     <div>
       <Button
         color='secondary'
+        component={Link}
         endIcon={<CheckCircle />}
-        onClick={endGame}
+        onClick={() => dispatch(endGame())}
+        to={homePath}
         variant='contained'
       >
         End game
