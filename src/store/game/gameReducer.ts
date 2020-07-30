@@ -14,16 +14,10 @@ const gameReducer = (state: GameState = initialState, action: GameAction): GameS
   switch (action.type) {
 
     case START_GAME:
-      return {
-        ...state,
-        date: new Date()
-      }
+      return action.game
 
     case END_GAME:
-      return {
-        ...state,
-        isOver: true
-      }
+      return action.game
 
     case SCORE_HAS_CHANGED:
       return {
