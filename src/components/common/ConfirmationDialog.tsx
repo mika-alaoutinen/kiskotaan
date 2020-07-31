@@ -6,7 +6,9 @@ import Dialog from '@material-ui/core/Dialog'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import { ThemeProvider, unstable_createMuiStrictModeTheme } from '@material-ui/core/styles'
 
+import RedirectButton from './RedirectButton'
 import { endGame } from '../../store/game/gameActions'
+import { homePath } from '../../constants'
 
 /*
   Stupid hack to get rid of warning in Material UI: "findDOMNode is deprecated in StrictMode."
@@ -53,14 +55,11 @@ const ConfirmationDialog: React.FC<{
             Cancel
           </Button>
 
-          <Button
-            color='primary'
-            id='confirm'
-            onClick={handleConfirm}
-            variant='contained'
-          >
-            OK
-          </Button>
+          <RedirectButton
+            text='OK'
+            to={homePath}
+            clickHandler={handleConfirm}
+          />
         </div>
 
       </Dialog>
