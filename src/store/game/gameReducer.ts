@@ -35,21 +35,13 @@ const gameReducer = (state: GameState = initialState, action: GameAction): GameS
         hole: action.hole
       }
 
-    case GET_SCORECARD:
-      return redirectToScoreCardReducer(state, action)
-      
-    case CREATE_SCORECARD:
-      return redirectToScoreCardReducer(state, action)
-    
-    case DELETE_SCORECARD:
-      return redirectToScoreCardReducer(state, action)
-
-    case CHANGE_SCORE:
-      return redirectToScoreCardReducer(state, action)
-
+    case GET_SCORECARD:     // fallsthrough
+    case CREATE_SCORECARD:  // fallsthrough
+    case DELETE_SCORECARD:  // fallsthrough
+    case CHANGE_SCORE:      // fallsthrough
     case UPDATE_SCORES:
       return redirectToScoreCardReducer(state, action)
-      
+
     default:
       return state
   }

@@ -32,9 +32,7 @@ const scoreCardReducer = (
     case DELETE_SCORECARD:
       return initialState
       
-    case CHANGE_SCORE:
-      return redirectToScoreReducer(state, action)
-      
+    case CHANGE_SCORE: // fallsthrough
     case UPDATE_SCORES:
       return redirectToScoreReducer(state, action)
 
