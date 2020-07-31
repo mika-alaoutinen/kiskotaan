@@ -10,6 +10,7 @@ export interface Game {
   hasScoreChanged: boolean,
   hole: number,
   isOver: boolean,
+  scoreCard: ScoreCard,
   date?: Date
 }
 

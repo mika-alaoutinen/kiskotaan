@@ -6,14 +6,12 @@ import courseReducer from './courses/courseReducer'
 import gameReducer from './game/gameReducer'
 import newScoreCardReducer from './newScoreCard/newScoreCardReducer'
 import playerReducer from './players/playerReducer'
-import scoreCardReducer from './scoreCard/scoreCardReducer'
 
 export const reducer = combineReducers({
   courses: courseReducer,
   players: playerReducer,
   game: gameReducer,
   newScoreCard: newScoreCardReducer,
-  scoreCard: scoreCardReducer,
 })
 
 export const store = createStore(
