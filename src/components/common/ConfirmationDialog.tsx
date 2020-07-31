@@ -14,6 +14,12 @@ import { endGame } from '../../store/game/gameActions'
 */
 const theme = unstable_createMuiStrictModeTheme()
 
+const style = {
+  marginRight: '1em' as const,
+  marginBottom: '1em' as const,
+  textAlign: 'end' as const
+}
+
 const ConfirmationDialog: React.FC<{
   isOpen: boolean, closeDialog: () => void
 }> = ({ isOpen, closeDialog }) => {
@@ -36,11 +42,13 @@ const ConfirmationDialog: React.FC<{
           Are you sure you want to end the game?
         </DialogTitle>
 
-        <div className='dialogButtons' style={{ textAlign: 'right' }}>
+        <div className='dialogButtons' style={style}>
           <Button
             color='secondary'
             id='cancel'
             onClick={handleCancel}
+            style={{ marginRight: '5px' }}
+            variant='contained'
           >
             Cancel
           </Button>
@@ -49,6 +57,7 @@ const ConfirmationDialog: React.FC<{
             color='primary'
             id='confirm'
             onClick={handleConfirm}
+            variant='contained'
           >
             OK
           </Button>
