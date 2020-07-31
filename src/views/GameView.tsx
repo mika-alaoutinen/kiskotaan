@@ -3,10 +3,11 @@ import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
 import EndGameButton from '../components/game/EndGameButton'
+import GameOverSummary from '../components/game/GameOverSummary'
 import HoleSelectionButtons from '../components/game/HoleSelectionButtons'
 import HoleSelector from '../components/game/HoleSelector'
 import ScoreCardDetails from '../components/scoreCard/ScoreCardDetails'
-import { ScoreCard } from '../types'
+import { Game, ScoreCard } from '../types'
 import { getScoreCard } from '../store/scoreCard/scoreCardActions'
 import { useSelector } from '../store/reduxTypes'
 
@@ -14,7 +15,8 @@ const GameView: React.FC = () => {
   const { id } = useParams<{ id: string }>()
 
   const dispatch = useDispatch()
-  const scoreCard: ScoreCard = useSelector(state => state.game.scoreCard)
+  const game: Game = useSelector(state => state.game)
+  const scoreCard: ScoreCard = game.scoreCard
   
   // If score card is not in store, get it from backend:
   useEffect(() => {
@@ -23,14 +25,18 @@ const GameView: React.FC = () => {
     }
   }, [dispatch, scoreCard, id])
 
-  return (
-    <div>
+  const renderGameView = (): JSX.Element =>
+    <>
       <HoleSelector />
       <ScoreCardDetails />
       <HoleSelectionButtons />
       <EndGameButton />
-    </div>
-  )
+    </>
+
+  const renderGameOverView = (): JSX.Element =>
+    <GameOverSummary />
+  
+  return game.isOver ? renderGameOverView() : renderGameView()
 }
 
 export default GameView
