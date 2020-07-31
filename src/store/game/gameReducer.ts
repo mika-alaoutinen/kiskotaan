@@ -2,12 +2,15 @@ import {
   START_GAME, END_GAME, SWITCH_HOLE, SCORE_HAS_CHANGED, GameAction, GameState
 } from './gameTypes'
 
+import { initialState as scoreCardState } from '../scoreCard/scoreCardReducer'
+
 const initialState: GameState = {
   id: '',
-  date: new Date(),
   hasScoreChanged: false,
   hole: 1,
-  isOver: false
+  isOver: false,
+  scoreCard: scoreCardState,
+  date: new Date(),
 }
 
 const gameReducer = (state: GameState = initialState, action: GameAction): GameState => {

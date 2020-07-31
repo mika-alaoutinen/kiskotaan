@@ -5,7 +5,7 @@ import {
 import { CHANGE_SCORE, UPDATE_SCORES, ScoreAction } from '../scores/scoreTypes'
 import scoreReducer from '../scores/scoreReducer'
 
-const initialState: ScoreCardState = {
+export const initialState: ScoreCardState = {
   id: '',
   course: {
     id: '',
