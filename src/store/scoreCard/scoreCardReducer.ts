@@ -14,10 +14,7 @@ export const initialState: ScoreCardState = {
     par: 0
   },
   players: [],
-  rows: [{
-    hole: 1,
-    scores: []
-  }]
+  rows: []
 }
 
 const scoreCardReducer = (
@@ -46,10 +43,7 @@ const scoreCardReducer = (
   }
 }
 
-const redirectToScoreReducer = (
-  state: ScoreCardState, action: ScoreAction
-): ScoreCardState => ({
-
+const redirectToScoreReducer = (state: ScoreCardState, action: ScoreAction): ScoreCardState => ({
   ...state,
   rows: scoreReducer(state.rows, action)
 })

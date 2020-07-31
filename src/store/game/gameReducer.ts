@@ -1,8 +1,8 @@
-import {
-  START_GAME, END_GAME, SWITCH_HOLE, SCORE_HAS_CHANGED, GameAction, GameState
-} from './gameTypes'
+import scoreCardReducer, { initialState as scoreCardState } from '../scoreCard/scoreCardReducer'
+import { CREATE_SCORECARD, ScoreCardAction, DELETE_SCORECARD, GET_SCORECARD } from '../scoreCard/scoreCardTypes'
 
-import { initialState as scoreCardState } from '../scoreCard/scoreCardReducer'
+import { CHANGE_SCORE, UPDATE_SCORES } from '../scores/scoreTypes'
+import { START_GAME, END_GAME, SWITCH_HOLE, SCORE_HAS_CHANGED, GameAction, GameState } from './gameTypes'
 
 const initialState: GameState = {
   id: '',
@@ -35,9 +35,29 @@ const gameReducer = (state: GameState = initialState, action: GameAction): GameS
         hole: action.hole
       }
 
+    case GET_SCORECARD:
+      return redirectToScoreCardReducer(state, action)
+      
+    case CREATE_SCORECARD:
+      return redirectToScoreCardReducer(state, action)
+    
+    case DELETE_SCORECARD:
+      return redirectToScoreCardReducer(state, action)
+
+    case CHANGE_SCORE:
+      return redirectToScoreCardReducer(state, action)
+
+    case UPDATE_SCORES:
+      return redirectToScoreCardReducer(state, action)
+      
     default:
       return state
   }
 }
+
+const redirectToScoreCardReducer = (state: GameState, action: ScoreCardAction): GameState => ({
+  ...state,
+  scoreCard: scoreCardReducer(state.scoreCard, action)
+})
 
 export default gameReducer
