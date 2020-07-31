@@ -1,13 +1,12 @@
 import React from 'react'
 
 import ScoreCardRow from './ScoreCardRow'
-import { Hole, ScoreCard } from '../../types'
+import { Hole } from '../../types'
 import { useSelector } from '../../store/reduxTypes'
 
 const ScoreCardDetails: React.FC = () => {
-  const hole: number = useSelector(state => state.game.hole)
-  const scoreCard: ScoreCard = useSelector(state => state.scoreCard)
-
+  const { hole, scoreCard } = useSelector(state => state.game)
+  
   const getPar = (): number => {
     const holes: Hole[] = scoreCard.course.holes
     return holes.length > 1

@@ -5,7 +5,7 @@ import {
 import { CHANGE_SCORE, UPDATE_SCORES, ScoreAction } from '../scores/scoreTypes'
 import scoreReducer from '../scores/scoreReducer'
 
-const initialState: ScoreCardState = {
+export const initialState: ScoreCardState = {
   id: '',
   course: {
     id: '',
@@ -14,10 +14,7 @@ const initialState: ScoreCardState = {
     par: 0
   },
   players: [],
-  rows: [{
-    hole: 1,
-    scores: []
-  }]
+  rows: []
 }
 
 const scoreCardReducer = (
@@ -35,9 +32,7 @@ const scoreCardReducer = (
     case DELETE_SCORECARD:
       return initialState
       
-    case CHANGE_SCORE:
-      return redirectToScoreReducer(state, action)
-      
+    case CHANGE_SCORE: // fallsthrough
     case UPDATE_SCORES:
       return redirectToScoreReducer(state, action)
 
@@ -46,10 +41,7 @@ const scoreCardReducer = (
   }
 }
 
-const redirectToScoreReducer = (
-  state: ScoreCardState, action: ScoreAction
-): ScoreCardState => ({
-
+const redirectToScoreReducer = (state: ScoreCardState, action: ScoreAction): ScoreCardState => ({
   ...state,
   rows: scoreReducer(state.rows, action)
 })

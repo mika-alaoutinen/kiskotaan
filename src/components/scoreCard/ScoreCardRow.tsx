@@ -13,8 +13,8 @@ import { useSelector } from '../../store/reduxTypes'
 const ScoreCardRow: React.FC<{ par: number, player: Player}> = ({ par, player }) => {
   const dispatch = useDispatch()
   
-  const hole: number = useSelector(state => state.game.hole)
-  const scoreRows: ScoreRow[] = useSelector(state => state.scoreCard.rows)
+  const { hole, scoreCard } = useSelector(state => state.game)
+  const scoreRows: ScoreRow[] = scoreCard.rows
 
   const getScore = (): number => {
     const playerScore: number|undefined = scoreRows

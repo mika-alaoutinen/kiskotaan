@@ -1,4 +1,5 @@
 import { Game } from '../../types'
+import { ScoreCardAction } from '../scoreCard/scoreCardTypes'
 
 // Action names:
 export const START_GAME = 'START_GAME'
@@ -13,6 +14,7 @@ export type GameAction =
   | EndGameAction
   | ScoreChangedAction
   | SwitchHoleAction
+  | ScoreCardAction
 
 interface StartGameAction {
   type: typeof START_GAME,
