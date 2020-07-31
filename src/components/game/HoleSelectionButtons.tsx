@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button'
 import NavigateBefore from '@material-ui/icons/NavigateBefore'
 import NavigateNext from '@material-ui/icons/NavigateNext'
 
-import { Hole } from '../../types'
+import { Game, Hole } from '../../types'
 import { switchHole } from '../../store/game/gameActions'
 import { updateScores } from '../../store/scores/scoreActions'
 import { useSelector } from '../../store/reduxTypes'
@@ -13,9 +13,9 @@ import { useSelector } from '../../store/reduxTypes'
 const HoleSelectionButtons: React.FC = () => {
   const dispatch = useDispatch()
   
-  const hasScoreChanged: boolean = useSelector(state => state.game.hasScoreChanged)
-  const holes: Hole[] = useSelector(state => state.scoreCard.course.holes)
-  const hole: number = useSelector(state => state.game.hole)
+  const game: Game = useSelector(state => state.game)
+  const { hasScoreChanged, hole, scoreCard } = game
+  const holes: Hole[] = scoreCard.course.holes
   
   const changeHoles = (newHole: number): void => {
     if (hasScoreChanged) {

@@ -7,7 +7,7 @@ import { setScoreChanged } from '../game/gameActions'
 export const addScore = (playerId: string, hole: number): AppThunk =>
   (dispatch, getState) => {
     
-    const rows: ScoreRow[] = getState().scoreCard.rows
+    const rows: ScoreRow[] = getState().game.scoreCard.rows
     dispatch(setScoreChanged())
     dispatch(addOrSubstractScore(rows, playerId, hole, 1))
   }
@@ -15,7 +15,7 @@ export const addScore = (playerId: string, hole: number): AppThunk =>
 export const substractScore = (playerId: string, hole: number): AppThunk =>
   (dispatch, getState) => {
 
-  const rows: ScoreRow[] = getState().scoreCard.rows
+  const rows: ScoreRow[] = getState().game.scoreCard.rows
   dispatch(setScoreChanged())
   dispatch(addOrSubstractScore(rows, playerId, hole, -1))
 }
@@ -23,7 +23,7 @@ export const substractScore = (playerId: string, hole: number): AppThunk =>
 export const updateScores = (hole: number): AppThunk =>
   async (dispatch, getState) => {
 
-  const scoreCard: ScoreCard = getState().scoreCard
+  const scoreCard: ScoreCard = getState().game.scoreCard
   const scoreRow: ScoreRow|undefined = scoreCard.rows.find(row => row.hole === hole)
   const row = scoreRow
     ? await scoreService.updateScore(scoreCard.id, scoreRow)

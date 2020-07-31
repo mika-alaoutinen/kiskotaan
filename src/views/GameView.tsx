@@ -14,7 +14,7 @@ const GameView: React.FC = () => {
   const { id } = useParams<{ id: string }>()
 
   const dispatch = useDispatch()
-  const scoreCard: ScoreCard = useSelector(state => state.scoreCard)
+  const scoreCard: ScoreCard = useSelector(state => state.game.scoreCard)
   
   // If score card is not in store, get it from backend:
   useEffect(() => {
