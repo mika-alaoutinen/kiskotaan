@@ -16,11 +16,7 @@ const ScoreCardDetails: React.FC = () => {
   
   const renderScoreRows = (): JSX.Element[] =>
     scoreCard.players.map(player =>
-      <ScoreCardRow
-        key={player.id}
-        par={getPar()}
-        player={player}
-      />
+      <ScoreCardRow key={player.id} player={player} />
     )
   
   return (
