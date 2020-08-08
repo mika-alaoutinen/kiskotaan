@@ -2,9 +2,8 @@ import React from 'react'
 
 import ScoreCardRow from './ScoreCardRow'
 import { ScoreCard } from '../../types'
-import { useParNumber } from '../../hooks/hooks'
+import { useParNumber } from '../../hooks/scoreCardHooks'
 import { useSelector } from '../../store/reduxTypes'
-
 
 const ScoreCardDetails: React.FC = () => {
   const scoreCard: ScoreCard = useSelector(state => state.game.scoreCard)
