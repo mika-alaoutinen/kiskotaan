@@ -1,33 +1,26 @@
 import React from 'react'
 
-import List from '@material-ui/core/List';
-import ListItem, { ListItemProps } from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
 
 import { Player, ScoreCard } from '../../types'
+import { usePlayerScores } from '../../hooks/hooks'
 import { useSelector } from '../../store/reduxTypes'
 
 const ScoreTable: React.FC = () => {
   // Score table summary
   // Score table body
-  // useScoreTally
 
+  const playerScores: Map<string, number> = usePlayerScores()
   const scoreCard: ScoreCard = useSelector(state => state.game.scoreCard)
   const players: Player[] = scoreCard.players
-  const { name, holes } = scoreCard.course
-
-  const calculateTotalScore = (): number => {
-
-    
-    return 10
-  }
 
   const renderPlayerScores = (): JSX.Element[] =>
     players.map(player =>
       <ListItem key={player.id}>
         <ListItemText primary={player.name} />
-        <ListItemText primary={calculateTotalScore()} />
+        <ListItemText primary={playerScores.get(player.id)} />
       </ListItem>
     )
   
