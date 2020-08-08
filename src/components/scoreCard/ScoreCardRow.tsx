@@ -7,28 +7,18 @@ import IconButton from '@material-ui/core/IconButton'
 import Remove from '@material-ui/icons/Remove'
 
 import { addScore, substractScore } from '../../store/scores/scoreActions'
-import { Player, ScoreRow } from '../../types'
-import { useParNumber } from '../../hooks/hooks'
+import { Player } from '../../types'
+import { useParNumber, usePlayerScore } from '../../hooks/hooks'
 import { useSelector } from '../../store/reduxTypes'
 
 const ScoreCardRow: React.FC<{ player: Player}> = ({ player }) => {
   const dispatch = useDispatch()
-  
-  const { hole, scoreCard } = useSelector(state => state.game)
-  const scoreRows: ScoreRow[] = scoreCard.rows
+  const hole: number = useSelector(state => state.game.hole)
   const par: number = useParNumber()
-
-  const getScore = (): number => {
-    const playerScore: number|undefined = scoreRows
-      .find(row => row.hole === hole)
-      ?.scores.find(score => score.playerId === player.id)
-      ?.score
-
-    return playerScore ? playerScore : par
-  }
+  const score: number = usePlayerScore(hole, player.id)
 
   const chipColor = (): string => {
-    const result = getScore() - par
+    const result = score - par
     if (result < 0) {
       return 'green'
     } else if (result === 0) {
@@ -46,7 +36,7 @@ const ScoreCardRow: React.FC<{ player: Player}> = ({ player }) => {
 
       <IconButton
         color='primary'
-        disabled={getScore() === 1}
+        disabled={score === 1}
         onClick={() => dispatch(substractScore(player.id, hole))}
       >
         <Remove />
@@ -54,7 +44,7 @@ const ScoreCardRow: React.FC<{ player: Player}> = ({ player }) => {
 
       <Chip
         color='secondary'
-        label={getScore()}
+        label={score}
         style={{ backgroundColor: chipColor() }}
       />
 
