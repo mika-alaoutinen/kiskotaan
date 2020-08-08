@@ -10,7 +10,7 @@ const initialState: GameState = {
   hole: 1,
   isOver: false,
   scoreCard: scoreCardState,
-  date: new Date(),
+  date: '',
 }
 
 const gameReducer = (state: GameState = initialState, action: GameAction): GameState => {
