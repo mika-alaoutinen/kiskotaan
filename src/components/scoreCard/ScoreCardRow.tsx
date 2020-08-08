@@ -8,7 +8,8 @@ import Remove from '@material-ui/icons/Remove'
 
 import { addScore, substractScore } from '../../store/scores/scoreActions'
 import { Player } from '../../types'
-import { useParNumber, usePlayerScore } from '../../hooks/hooks'
+import { usePlayerScore } from '../../hooks/playerHooks'
+import { useParNumber } from '../../hooks/scoreCardHooks'
 import { useSelector } from '../../store/reduxTypes'
 
 const ScoreCardRow: React.FC<{ player: Player}> = ({ player }) => {

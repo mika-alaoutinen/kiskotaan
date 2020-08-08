@@ -5,7 +5,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 
 import { Player, ScoreCard } from '../../types'
-import { usePlayerScores, usePlayerShotCount } from '../../hooks/hooks'
+import { usePlayerScores, usePlayerShotCount } from '../../hooks/playerHooks'
 import { useSelector } from '../../store/reduxTypes'
 
 const ScoreTable: React.FC = () => {

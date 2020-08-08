@@ -1,15 +1,6 @@
 import { ScoreCard, ScoreRow } from '../types'
+import { useParNumber } from './scoreCardHooks'
 import { useSelector } from '../store/reduxTypes'
-import { Hole } from '../types'
-
-export const useParNumber = (): number => {
-  const { hole, scoreCard } = useSelector(state => state.game)
-  const holes: Hole[] = scoreCard.course.holes
-  
-  return holes.length > 1 
-    ? holes[hole - 1].par
-    : 0
-}
 
 export const usePlayerScore = (hole: number, playerId: string): number => {
   const scoreRows: ScoreRow[] = useSelector(state => state.game.scoreCard.rows)
