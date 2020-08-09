@@ -1,4 +1,6 @@
 {
+  "id": "scoreCard1",
+  
   "course": {
     "id": "4",
     "name": "Keljonkankaan golf",
@@ -21,56 +23,43 @@
     ],
     "par": 10
   },
+  
   "players": [
     {
       "id": "2",
-      "name": "Salla"
+      "name": "Salla",
+      "scores": [
+        {
+          "hole": 1,
+          "score": 3
+        },
+        {
+          "hole": 2,
+          "score": 3
+        },
+        {
+          "hole": 3,
+          "score": 4
+        }
+      ]
     },
     {
       "id": "1",
-      "name": "Mika"
-    }
-  ],
-  "rows": [
-    {
-      "hole": 1,
+      "name": "Mika",
       "scores": [
         {
-          "playerId": "1",
-          "score": 2
-        },
-        {
-          "playerId": "2",
-          "score": 3
-        }
-      ]
-    },
-    {
-      "hole": 2,
-      "scores": [
-        {
-          "playerId": "1",
+          "hole": 1,
           "score": 3
         },
         {
-          "playerId": "2",
-          "score": 4
-        }
-      ]
-    },
-    {
-      "hole": 3,
-      "scores": [
-        {
-          "playerId": "1",
-          "score": 4
+          "hole": 2,
+          "score": 3
         },
         {
-          "playerId": "2",
-          "score": 5
+          "hole": 3,
+          "score": 4
         }
       ]
     }
-  ],
-  "id": "s1"
+  ]
 }

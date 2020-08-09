@@ -5,7 +5,7 @@
   "isOver": false,
   
   "scoreCard": {
-    "id": "s1",
+    "id": "scoreCard1",
     
     "course": {
       "id": "4",
