@@ -28,7 +28,7 @@ const GameView: React.FC = () => {
   const renderGameOverView = (): JSX.Element =>
     <>
       <ScoreTableHeader scoreCardId={id} />
-      <ScoreTableBody />
+      <ScoreTableBody scoreCardId={id} />
       <RedirectButton text='To home page' to={homePath} />
     </>
   

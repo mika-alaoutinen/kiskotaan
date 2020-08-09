@@ -1,26 +1,51 @@
 import React from 'react'
 
-import { Player, ScoreCard } from '../../types'
-import { usePlayerScores, usePlayerShotCount } from '../../hooks/playerHooks'
-import { useSelector } from '../../store/reduxTypes'
+import {
+  Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
+} from '@material-ui/core'
 
-const ScoreTableBody: React.FC = () => {
-  const playerScores: Map<string, number> = usePlayerScores()
-  const shotCounts: Map<string, number> = usePlayerShotCount()
+import { ScoreCard } from '../../types'
+import { useScoreCard } from '../../hooks/scoreCardHooks'
 
-  const scoreCard: ScoreCard = useSelector(state => state.game.scoreCard)
-  const players: Player[] = scoreCard.players
+const ScoreTableBody: React.FC<{ scoreCardId: string }> = ({ scoreCardId }) => {
+  const scoreCard: ScoreCard = useScoreCard(scoreCardId)
 
-  const renderScoreTables = (): JSX.Element => {
-    return <div>
-      1 2 3 4 5 6 7 8 9
-    </div>
-  }
-  
+  const renderRows = (): JSX.Element[] =>
+    scoreCard.course.holes.map(hole =>
+      <TableRow key={hole.number}>
+        <TableCell>{hole.number}</TableCell>
+        <TableCell>{hole.par}</TableCell>
+        {renderScores()}
+      </TableRow>
+    )
+
+  const renderScores = (): JSX.Element[] =>
+    scoreCard.rows.flatMap(row =>
+      row.scores.map(score =>
+        <TableCell key={score.playerId}>{score.score}</TableCell>
+      )
+    )
+
   return (
-    <div>
-      {renderScoreTables()}
-    </div>
+    <TableContainer component={Paper}>
+      <Table>
+
+        <TableHead>
+          <TableRow>
+            <TableCell>#</TableCell>
+            <TableCell>PAR</TableCell>
+
+            <TableCell>Mika</TableCell>
+            <TableCell>Salla</TableCell>
+          </TableRow>
+        </TableHead>
+
+        <TableBody>
+          {renderRows()}
+        </TableBody>
+
+      </Table>
+    </TableContainer>
   )
 }
 
