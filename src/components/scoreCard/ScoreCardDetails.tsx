@@ -1,12 +1,14 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 
 import ScoreCardRow from './ScoreCardRow'
 import { ScoreCard } from '../../types'
 import { useParNumber } from '../../hooks/scoreCardHooks'
-import { useSelector } from '../../store/reduxTypes'
+import { useScoreCard } from '../../hooks/scoreCardHooks'
 
 const ScoreCardDetails: React.FC = () => {
-  const scoreCard: ScoreCard = useSelector(state => state.game.scoreCard)
+  const { id } = useParams<{ id: string }>()
+  const scoreCard: ScoreCard = useScoreCard(id)
   const par: number = useParNumber()
   
   const renderScoreRows = (): JSX.Element[] =>

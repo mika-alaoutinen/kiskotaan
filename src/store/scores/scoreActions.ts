@@ -39,7 +39,6 @@ export const updateScores = (hole: number): AppThunk => async (dispatch, getStat
   })
 
   const updated: PlayerScore[]|void = await scoreService.updateScores(id, playerScores)
-
   if (!updated) {
     return
   }

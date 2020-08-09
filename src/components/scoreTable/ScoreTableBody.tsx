@@ -1,4 +1,5 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 
 import {
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
@@ -7,8 +8,9 @@ import {
 import { ScoreCard } from '../../types'
 import { useScoreCard } from '../../hooks/scoreCardHooks'
 
-const ScoreTableBody: React.FC<{ scoreCardId: string }> = ({ scoreCardId }) => {
-  const scoreCard: ScoreCard = useScoreCard(scoreCardId)
+const ScoreTableBody: React.FC = () => {
+  const { id } = useParams<{ id: string }>()
+  const scoreCard: ScoreCard = useScoreCard(id)
 
   const renderRows = (): JSX.Element[] =>
     scoreCard.course.holes.map(hole =>

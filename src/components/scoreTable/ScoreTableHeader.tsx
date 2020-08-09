@@ -1,4 +1,5 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 import { List, ListItem, ListItemText } from '@material-ui/core'
 
 import { usePlayerScores, usePlayerShotCount } from '../../hooks/playerHooks'
@@ -6,12 +7,14 @@ import { useScoreCard } from '../../hooks/scoreCardHooks'
 import { useSelector } from '../../store/reduxTypes'
 import { Game, ScoreCard, Player } from '../../types'
 
-const ScoreTableHeader: React.FC<{ scoreCardId: string }> = ({ scoreCardId }) => {
+const ScoreTableHeader: React.FC = () => {
+  const { id } = useParams<{ id: string }>()
+
   const playerScores: Map<string, number> = usePlayerScores()
   const shotCounts: Map<string, number> = usePlayerShotCount()
 
   const game: Game = useSelector(state => state.game)
-  const scoreCard: ScoreCard = useScoreCard(scoreCardId)
+  const scoreCard: ScoreCard = useScoreCard(id)
   const players: Player[] = scoreCard.players
   const { name, holes } = scoreCard.course
 

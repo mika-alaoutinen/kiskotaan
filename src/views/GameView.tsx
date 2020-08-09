@@ -1,5 +1,4 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
 
 import EndGameButton from '../components/game/EndGameButton'
 import HoleSelectionButtons from '../components/game/HoleSelectionButtons'
@@ -14,7 +13,6 @@ import { Game } from '../types'
 import { useSelector } from '../store/reduxTypes'
 
 const GameView: React.FC = () => {
-  const { id } = useParams<{ id: string }>()
   const game: Game = useSelector(state => state.game)
 
   const renderGameView = (): JSX.Element =>
@@ -27,8 +25,8 @@ const GameView: React.FC = () => {
 
   const renderGameOverView = (): JSX.Element =>
     <>
-      <ScoreTableHeader scoreCardId={id} />
-      <ScoreTableBody scoreCardId={id} />
+      <ScoreTableHeader />
+      <ScoreTableBody />
       <RedirectButton text='To home page' to={homePath} />
     </>
   
