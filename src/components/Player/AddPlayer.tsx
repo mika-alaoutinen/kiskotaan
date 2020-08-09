@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import Add from '@material-ui/icons/Add'
-import IconButton from '@material-ui/core/IconButton'
-import TextField from '@material-ui/core/TextField'
+import { IconButton, TextField } from '@material-ui/core'
 
 import { addPlayer } from '../../store/players/playerActions'
 import { NewPlayer } from '../../types'

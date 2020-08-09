@@ -1,11 +1,8 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListSubheader from '@material-ui/core/ListSubheader'
 import Remove from '@material-ui/icons/Remove'
+import { List, ListItem, ListItemIcon, ListSubheader } from '@material-ui/core'
 
 import PlayerDetails from './PlayerDetails'
 import { Player } from '../../types'

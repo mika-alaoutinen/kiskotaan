@@ -1,8 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
-import MenuItem from '@material-ui/core/MenuItem'
-import Select from '@material-ui/core/Select'
+import { MenuItem, Select } from '@material-ui/core'
 import { ThemeProvider, unstable_createMuiStrictModeTheme } from '@material-ui/core/styles'
 
 import { Hole } from '../../types'

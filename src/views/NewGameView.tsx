@@ -1,11 +1,6 @@
 import React, { useState, ReactElement } from 'react'
-
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
-import Stepper from '@material-ui/core/Stepper'
-import Step from '@material-ui/core/Step'
-import StepLabel from '@material-ui/core/StepLabel'
-import Typography from '@material-ui/core/Typography'
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import { Button, Stepper, Step, StepLabel, Typography } from '@material-ui/core'
 
 import CourseSelect from '../components/newGame/CourseSelect'
 import NewGameSummary from '../components/newGame/NewGameSummary'

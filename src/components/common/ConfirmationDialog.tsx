@@ -1,9 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-
-import Button from '@material-ui/core/Button'
-import Dialog from '@material-ui/core/Dialog'
-import DialogTitle from '@material-ui/core/DialogTitle'
+import { Button, Dialog, DialogTitle } from '@material-ui/core'
 import { ThemeProvider, unstable_createMuiStrictModeTheme } from '@material-ui/core/styles'
 
 import { endGame } from '../../store/game/gameActions'

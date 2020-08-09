@@ -1,10 +1,8 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
-import Add from '@material-ui/icons/Add'
-import Chip from '@material-ui/core/Chip'
-import IconButton from '@material-ui/core/IconButton'
-import Remove from '@material-ui/icons/Remove'
+import { Chip, IconButton } from '@material-ui/core'
+import { Add, Remove } from '@material-ui/icons'
 
 import { addScore, substractScore } from '../../store/scores/scoreActions'
 import { Player } from '../../types'
