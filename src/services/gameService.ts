@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { gamesUrl } from '../constants'
-import { Game, ScoreCard } from '../types'
+import { Game } from '../types'
 
 // import game from '../newGame.json'
 
@@ -16,13 +16,13 @@ import { Game, ScoreCard } from '../types'
 //   return Promise.resolve(endedGame)
 // }
 
-const startGame = async (scoreCard: ScoreCard): Promise<Game|void> =>
-  axios.post<Game>(gamesUrl, scoreCard)
+const startGame = async (scoreCardId: string): Promise<Game|void> =>
+  axios.post<Game>(gamesUrl, scoreCardId)
     .then(response => response.data)
     .catch(error => console.log(error))
 
-const endGame = async (id: string): Promise<Game|void> =>
-  axios.post<Game>(gamesUrl, id)
+const endGame = async (gameId: string): Promise<Game|void> =>
+  axios.post<Game>(gamesUrl, gameId)
   .then(response => response.data)
   .catch(error => console.log(error))
 
