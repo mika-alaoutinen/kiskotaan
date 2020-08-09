@@ -1,17 +1,19 @@
-import { ScoreCard, ScoreRow } from '../types'
-import { useParNumber } from './scoreCardHooks'
+import { Player } from '../types'
 import { useSelector } from '../store/reduxTypes'
 
 export const usePlayerScore = (hole: number, playerId: string): number => {
-  const scoreRows: ScoreRow[] = useSelector(state => state.game.scoreCard.rows)
-  const par = useParNumber()
+  const players: Player[] = useSelector(state => state.game.scoreCard.players)
+  const player: Player|undefined = players.find(p => p.id === playerId)
 
-  const playerScore: number|undefined = scoreRows
-    .find(row => row.hole === hole)
-    ?.scores.find(score => score.playerId === playerId)
+  if (!player) {
+    return 0
+  }
+  
+  const score: number|undefined = player.scores
+    .find(score => score.hole === hole)
     ?.score
 
-  return playerScore ? playerScore : par
+  return score ? score : 0
 }
 
 export const usePlayerScores = (): Map<string, number> => {
@@ -30,18 +32,16 @@ export const usePlayerScores = (): Map<string, number> => {
 }
 
 export const usePlayerShotCount = (): Map<string, number> => {
-  const scoreCard: ScoreCard = useSelector(state => state.game.scoreCard)
+  const players: Player[] = useSelector(state => state.game.scoreCard.players)
   const shotCounts = new Map<string, number>()
-
-  scoreCard.rows
-    .flatMap(row => row.scores)    
-    .forEach(score => {
-      const currentScore: number|void = shotCounts.get(score.playerId)
-      const newScore: number = currentScore
-        ? currentScore + score.score
-        : score.score
-      shotCounts.set(score.playerId, newScore)
-    })
+  
+  for (const player of players) {
+    const shotCount: number = player.scores
+      .map(score => score.score)
+      .reduce((sum, score) => sum + score, 0)
+    
+    shotCounts.set(player.id, shotCount)
+  }
   
   return shotCounts
 }

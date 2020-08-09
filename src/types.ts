@@ -22,27 +22,22 @@ export interface Hole {
 
 export interface Player {
   id: string,
-  name: string
+  name: string,
+  scores: Score[]
 }
 
 export interface ScoreCard {
   id: string,
   course: Course,
-  players: Player[],
-  rows: ScoreRow[]
-}
-
-export interface ScoreRow {
-  hole: number,
-  scores: Score[]
+  players: Player[]
 }
 
 export interface Score {
-  playerId: string,
+  hole: number,
   score: number
 }
 
 export type NewCourse = Omit<Course, 'id'>
 export type NewGame = Omit<Game, 'id'>
-export type NewPlayer = Omit<Player, 'id'>
+export type NewPlayer = Pick<Player, 'name'>
 export type NewScoreCard = Pick<ScoreCard, 'course' | 'players'>

@@ -19,12 +19,8 @@ const ScoreTableBody: React.FC<{ scoreCardId: string }> = ({ scoreCardId }) => {
       </TableRow>
     )
 
-  const renderScores = (): JSX.Element[] =>
-    scoreCard.rows.flatMap(row =>
-      row.scores.map(score =>
-        <TableCell key={score.playerId}>{score.score}</TableCell>
-      )
-    )
+  const renderScores = (): JSX.Element =>
+    <TableCell>cell 1</TableCell>
 
   return (
     <TableContainer component={Paper}>
