@@ -26,6 +26,11 @@ export interface Player {
   scores: Score[]
 }
 
+export interface PlayerScore {
+  playerId: string,
+  score: Score
+}
+
 export interface ScoreCard {
   id: string,
   course: Course,

@@ -1,10 +1,10 @@
 import axios from 'axios'
 import { scoreCardsUrl } from '../constants'
-import { Score } from '../types'
+import { PlayerScore } from '../types'
 
-const updateScore = async (id: string, score: Score): Promise<Score|void> =>
-  axios.put<Score>(scoreCardsUrl + '/' + id, score)
+const updateScores = async (id: string, scores: PlayerScore[]): Promise<PlayerScore[]|void> =>
+  axios.put<PlayerScore[]>(scoreCardsUrl + '/' + id, scores)
     .then(response => response.data)
     .catch(error => console.log(error))
 
-export default { updateScore }
+export default { updateScores }
