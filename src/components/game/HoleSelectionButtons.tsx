@@ -1,9 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-
 import Button from '@material-ui/core/Button'
-import NavigateBefore from '@material-ui/icons/NavigateBefore'
-import NavigateNext from '@material-ui/icons/NavigateNext'
+import { NavigateBefore, NavigateNext } from '@material-ui/icons'
 
 import { Game, Hole } from '../../types'
 import { switchHole } from '../../store/game/gameActions'

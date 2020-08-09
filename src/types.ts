@@ -11,7 +11,7 @@ export interface Game {
   hole: number,
   isOver: boolean,
   scoreCard: ScoreCard,
-  date?: Date
+  date?: string
 }
 
 export interface Hole {

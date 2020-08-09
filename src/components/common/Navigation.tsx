@@ -1,9 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
-import AppBar from '@material-ui/core/AppBar'
-import Button from '@material-ui/core/Button'
-import ButtonGroup from '@material-ui/core/ButtonGroup'
+import { AppBar, Button, ButtonGroup } from '@material-ui/core'
 
 import Routes from '../../router/Routes'
 import { gameHistoryPath, homePath, newCoursePath, newGamePath, newPlayerPath } from '../../constants'

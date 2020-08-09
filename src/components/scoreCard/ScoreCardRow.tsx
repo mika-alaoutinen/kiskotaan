@@ -1,32 +1,23 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
-import Add from '@material-ui/icons/Add'
-import Chip from '@material-ui/core/Chip'
-import IconButton from '@material-ui/core/IconButton'
-import Remove from '@material-ui/icons/Remove'
+import { Chip, IconButton } from '@material-ui/core'
+import { Add, Remove } from '@material-ui/icons'
 
 import { addScore, substractScore } from '../../store/scores/scoreActions'
-import { Player, ScoreRow } from '../../types'
+import { Player } from '../../types'
+import { usePlayerScore } from '../../hooks/playerHooks'
+import { useParNumber } from '../../hooks/scoreCardHooks'
 import { useSelector } from '../../store/reduxTypes'
 
-const ScoreCardRow: React.FC<{ par: number, player: Player}> = ({ par, player }) => {
+const ScoreCardRow: React.FC<{ player: Player}> = ({ player }) => {
   const dispatch = useDispatch()
-  
-  const { hole, scoreCard } = useSelector(state => state.game)
-  const scoreRows: ScoreRow[] = scoreCard.rows
-
-  const getScore = (): number => {
-    const playerScore: number|undefined = scoreRows
-      .find(row => row.hole === hole)
-      ?.scores.find(score => score.playerId === player.id)
-      ?.score
-
-    return playerScore ? playerScore : par
-  }
+  const hole: number = useSelector(state => state.game.hole)
+  const par: number = useParNumber()
+  const score: number = usePlayerScore(hole, player.id)
 
   const chipColor = (): string => {
-    const result = getScore() - par
+    const result = score - par
     if (result < 0) {
       return 'green'
     } else if (result === 0) {
@@ -44,7 +35,7 @@ const ScoreCardRow: React.FC<{ par: number, player: Player}> = ({ par, player })
 
       <IconButton
         color='primary'
-        disabled={getScore() === 1}
+        disabled={score === 1}
         onClick={() => dispatch(substractScore(player.id, hole))}
       >
         <Remove />
@@ -52,7 +43,7 @@ const ScoreCardRow: React.FC<{ par: number, player: Player}> = ({ par, player })
 
       <Chip
         color='secondary'
-        label={getScore()}
+        label={score}
         style={{ backgroundColor: chipColor() }}
       />
 
