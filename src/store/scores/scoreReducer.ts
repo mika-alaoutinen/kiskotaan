@@ -1,5 +1,5 @@
 import { ADD_SCORE, SUBSTRACT_SCORE, UPDATE_SCORES, ScoreAction, ScoreState } from './scoreTypes'
-import { Player } from '../../types'
+import { Player, Score } from '../../types'
 
 const scoreReducer = (state: ScoreState = [], action: ScoreAction): ScoreState => {
   switch (action.type) {
@@ -27,13 +27,15 @@ const addOrSubstract = (
     return state
   }
 
-  editedPlayer.scores.map(score => score.hole === hole
+  const editedScores: Score[] = editedPlayer.scores.map(score => score.hole === hole
     ? {
       ...score,
       score: score.score + scoreModifier
     }
     : score
   )
+
+  editedPlayer.scores = editedScores
 
   return state.map(player => player.id === editedPlayer.id ? editedPlayer : player)
 }

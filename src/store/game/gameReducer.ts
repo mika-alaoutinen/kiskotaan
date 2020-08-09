@@ -1,7 +1,7 @@
 import scoreCardReducer, { initialState as scoreCardState } from '../scoreCard/scoreCardReducer'
 import { CREATE_SCORECARD, ScoreCardAction, DELETE_SCORECARD, GET_SCORECARD } from '../scoreCard/scoreCardTypes'
 
-import { UPDATE_SCORES } from '../scores/scoreTypes'
+import { ADD_SCORE, SUBSTRACT_SCORE, UPDATE_SCORES } from '../scores/scoreTypes'
 import { START_GAME, END_GAME, SWITCH_HOLE, SCORE_HAS_CHANGED, GameAction, GameState } from './gameTypes'
 
 const initialState: GameState = {
@@ -38,6 +38,8 @@ const gameReducer = (state: GameState = initialState, action: GameAction): GameS
     case GET_SCORECARD:     // fallsthrough
     case CREATE_SCORECARD:  // fallsthrough
     case DELETE_SCORECARD:  // fallsthrough
+    case ADD_SCORE:         // fallsthrough
+    case SUBSTRACT_SCORE:   // fallsthrough
     case UPDATE_SCORES:
       return redirectToScoreCardReducer(state, action)
 
