@@ -4,31 +4,10 @@ import {
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 } from '@material-ui/core'
 
-import { ScoreCard, ScoreRow } from '../../types'
-import { useScoreCard } from '../../hooks/scoreCardHooks'
-
-interface ResultRow {
-  hole: number,
-  par: number,
-  scores: number[]
-}
+import { ResultRow, useResultRows } from '../../hooks/scoreTableHooks'
 
 const ScoreTableBody: React.FC<{ scoreCardId: string }> = ({ scoreCardId }) => {
-  const scoreCard: ScoreCard = useScoreCard(scoreCardId)
-
-  const resultRows: ResultRow[] = []
-
-  for (const hole of scoreCard.course.holes) {
-    const scoreRow: ScoreRow|undefined = scoreCard.rows.find(row => row.hole === hole.number)
-
-    const resultRow: ResultRow = {
-      hole: hole.number,
-      par: hole.par,
-      scores: scoreRow ? scoreRow.scores.map(score => score.score) : []
-    }
-
-    resultRows.push(resultRow)
-  }
+  const resultRows: ResultRow[] = useResultRows(scoreCardId)
 
   const renderRows = (): JSX.Element[] =>
     resultRows.map(row =>
