@@ -17,20 +17,6 @@ const ScoreTableHeader: React.FC<{ scoreCardId: string }> = ({ scoreCardId }) =>
   const scoreCard: ScoreCard = useScoreCard(scoreCardId)
   const { name, holes } = scoreCard.course
 
-  const getScoreAndShots = (playerId: string) => {
-    const score: string = playerScore(playerId)
-    const shots: string = numberOfShots(playerId)
-    return score + ' ' + shots
-  }
-  
-  const playerScore = (playerId: string): string => {
-    const score: number|undefined = playerScores.find(score => score.id === playerId)?.score
-    if (!score) {
-      return '0'
-    }
-    return score > 0 ? `+${score}` : score.toString()
-  }
-  
   const numberOfShots = (playerId: string): string => {
     const score: number|undefined = shotCounts.find(shots => shots.id === playerId)?.shots
     return score ? `( ${score} )` : '( N/A )'
@@ -40,7 +26,7 @@ const ScoreTableHeader: React.FC<{ scoreCardId: string }> = ({ scoreCardId }) =>
     return playerScores.map(score =>
       <ListItem key={score.id}>
         <ListItemText primary={score.name} />
-        <ListItemText primary={getScoreAndShots(score.id)} />
+        <ListItemText primary={`${score.score} ${numberOfShots(score.id)}`} />
       </ListItem>
     )
   }
