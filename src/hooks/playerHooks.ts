@@ -3,7 +3,7 @@ import { useParNumber } from './scoreCardHooks'
 import { useSelector } from '../store/reduxTypes'
 
 export const usePlayerScore = (hole: number, playerId: string): number => {
-  const scoreRows: ScoreRow[] = useSelector(state => state.game.scoreCard.rows)
+  const scoreRows: ScoreRow[] = useSelector(state => state.scoreCard.rows)
   const par = useParNumber()
 
   const playerScore: number|undefined = scoreRows
@@ -15,7 +15,7 @@ export const usePlayerScore = (hole: number, playerId: string): number => {
 }
 
 export const usePlayerScores = (): Map<string, number> => {
-  const coursePar: number = useSelector(state => state.game.scoreCard.course.par)
+  const coursePar: number = useSelector(state => state.scoreCard.course.par)
   const shotCounts: Map<string, number> = usePlayerShotCount()
   
   const playerScores = new Map<string, number>()
@@ -30,7 +30,7 @@ export const usePlayerScores = (): Map<string, number> => {
 }
 
 export const usePlayerShotCount = (): Map<string, number> => {
-  const scoreCard: ScoreCard = useSelector(state => state.game.scoreCard)
+  const scoreCard: ScoreCard = useSelector(state => state.scoreCard)
   const shotCounts = new Map<string, number>()
 
   scoreCard.rows

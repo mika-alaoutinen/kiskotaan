@@ -9,7 +9,7 @@ import { useSelector } from '../../store/reduxTypes'
 
 const StartGame: React.FC = () => {
   const dispatch = useDispatch()
-  const id: string = useSelector(state => state.game.scoreCard.id)
+  const id: string = useSelector(state => state.scoreCard.id)
 
   useEffect(() => {
     dispatch(startGame())

@@ -1,6 +1,6 @@
 import gameService from '../../services/gameService'
 import { AppThunk } from '../reduxTypes'
-import { Game, ScoreCard } from '../../types'
+import { Game } from '../../types'
 import { createNewScoreCard } from '../scoreCard/scoreCardActions'
 
 import {
@@ -11,8 +11,8 @@ import {
 export const startGame = (): AppThunk => async (dispatch, getState) => {
   dispatch(createNewScoreCard())
   
-  const scoreCard: ScoreCard = getState().game.scoreCard
-  const game: Game|void = await gameService.startGame(scoreCard.id)
+  const id: string = getState().scoreCard.id
+  const game: Game|void = await gameService.startGame(id)
 
   if (!game) {
     return

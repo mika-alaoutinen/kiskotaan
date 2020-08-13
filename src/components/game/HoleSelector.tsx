@@ -16,9 +16,8 @@ const theme = unstable_createMuiStrictModeTheme()
 
 const HoleSelector: React.FC = () => {
   const dispatch = useDispatch()
-
-  const { hole, scoreCard } = useSelector(state => state.game)
-  const holes: Hole[] = scoreCard.course.holes
+  const hole: number = useSelector(state => state.game.hole)
+  const holes: Hole[] = useSelector(state => state.scoreCard.course.holes)
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>): void => {
     const newHole: number = event.target.value as number

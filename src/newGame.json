@@ -3,6 +3,7 @@
   "hasScoreChanged": false,
   "hole": 1,
   "isOver": false,
+  "scoreCardId": "s1",
   
   "scoreCard": {
     "id": "s1",

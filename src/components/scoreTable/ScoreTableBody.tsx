@@ -5,13 +5,15 @@ import {
 } from '@material-ui/core'
 
 import { ResultRow, useResultRows } from '../../hooks/scoreTableHooks'
+import { useScoreCard } from '../../hooks/scoreCardHooks'
 import { useSelector } from '../../store/reduxTypes'
-import { Player, Score } from '../../types'
+import { Score, ScoreCard } from '../../types'
 
 const ScoreTableBody: React.FC<{ scoreCardId: string }> = ({ scoreCardId }) => {
+  const id: string = useSelector(state => state.game.scoreCardId)
   const resultRows: ResultRow[] = useResultRows(scoreCardId)
-  const players: Player[] = useSelector(state => state.game.scoreCard.players)
-  const playerNames: string[] = players.map(player => player.name)
+  const scoreCard: ScoreCard = useScoreCard(id)
+  const playerNames: string[] = scoreCard.players.map(player => player.name)
 
   const renderRows = (): JSX.Element[] =>
     resultRows.map(row =>

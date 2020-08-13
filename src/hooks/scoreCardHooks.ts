@@ -6,8 +6,8 @@ import { getScoreCard } from '../store/scoreCard/scoreCardActions'
 import { useSelector } from '../store/reduxTypes'
 
 export const useParNumber = (): number => {
-  const { hole, scoreCard } = useSelector(state => state.game)
-  const holes: Hole[] = scoreCard.course.holes
+  const hole = useSelector(state => state.game.hole)
+  const holes: Hole[] = useSelector(state => state.scoreCard.course.holes)  
   
   return holes.length > 1 
     ? holes[hole - 1].par
@@ -16,7 +16,7 @@ export const useParNumber = (): number => {
 
 export const useScoreCard = (scoreCardId: string): ScoreCard => {
   const dispatch = useDispatch()
-  const scoreCard: ScoreCard = useSelector(state => state.game.scoreCard)
+  const scoreCard: ScoreCard = useSelector(state => state.scoreCard)
 
   useEffect(() => {
     if (!scoreCard.id) {
