@@ -31,12 +31,15 @@ export const usePlayerScores = (): PlayerScore[] => {
   const coursePar: number = useSelector(state => state.scoreCard.course.par)
   const shotCounts: PlayerShotCount[] = usePlayerShotCount()
 
-  return shotCounts.map(shotCount => ({
-    id: shotCount.id,
-    name: shotCount.name,
-    score: shotCount.shots - coursePar,
-    shots: shotCount.shots
-  }))
+  return shotCounts.map(shotCount => {
+    const { id, name, shots } = shotCount
+    return {
+      id,
+      name,
+      score: shots - coursePar,
+      shots,
+    }
+  })
 }
 
 const usePlayerShotCount = (): PlayerShotCount[] => {

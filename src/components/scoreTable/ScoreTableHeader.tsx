@@ -13,14 +13,8 @@ const ScoreTableHeader: React.FC<{ scoreCardId: string }> = ({ scoreCardId }) =>
   const scoreCard: ScoreCard = useScoreCard(scoreCardId)
   const { name, holes } = scoreCard.course
 
-  const renderListItems = (): JSX.Element[] => {
-    return playerScores.map(score =>
-      <ListItem key={score.id}>
-        <ListItemText primary={score.name} />
-        <ListItemText primary={`${score.score} (${score.shots})`} />
-      </ListItem>
-    )
-  }
+  const formatScoreText = (score: PlayerScore) =>
+    `${score.score} (${score.shots})`
 
   return (
     <div>
@@ -28,7 +22,12 @@ const ScoreTableHeader: React.FC<{ scoreCardId: string }> = ({ scoreCardId }) =>
       <p>{name} {holes.length}, {game.date}</p>
       
       <List>
-        {renderListItems()}
+        {playerScores.map(score =>
+          <ListItem key={score.id}>
+            <ListItemText primary={score.name} />
+            <ListItemText primary={formatScoreText(score)} />
+          </ListItem>
+        )}
       </List>
     </div>
   )
