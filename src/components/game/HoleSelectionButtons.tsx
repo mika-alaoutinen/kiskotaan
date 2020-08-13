@@ -3,16 +3,19 @@ import { useDispatch } from 'react-redux'
 import Button from '@material-ui/core/Button'
 import { NavigateBefore, NavigateNext } from '@material-ui/icons'
 
-import { Game, Hole } from '../../types'
+import { Game, Hole, ScoreCard } from '../../types'
 import { switchHole } from '../../store/game/gameActions'
 import { updateScores } from '../../store/scores/scoreActions'
+import { useScoreCard } from '../../hooks/scoreCardHooks'
 import { useSelector } from '../../store/reduxTypes'
 
 const HoleSelectionButtons: React.FC = () => {
   const dispatch = useDispatch()
   
   const game: Game = useSelector(state => state.game)
-  const { hasScoreChanged, hole, scoreCard } = game
+  const { hasScoreChanged, hole , scoreCardId } = game
+
+  const scoreCard: ScoreCard = useScoreCard(scoreCardId)
   const holes: Hole[] = scoreCard.course.holes
   
   const changeHoles = (newHole: number): void => {
