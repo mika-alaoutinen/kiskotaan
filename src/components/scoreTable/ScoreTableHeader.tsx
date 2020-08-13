@@ -1,14 +1,17 @@
 import React from 'react'
 import { List, ListItem, ListItemText } from '@material-ui/core'
 
-import { usePlayerScores, usePlayerShotCount } from '../../hooks/playerHooks'
 import { useScoreCard } from '../../hooks/scoreCardHooks'
 import { useSelector } from '../../store/reduxTypes'
 import { Game, ScoreCard, Player } from '../../types'
 
+import {
+  PlayerScore, PlayerShotCount, usePlayerScores, usePlayerShotCount
+} from '../../hooks/playerHooks'
+
 const ScoreTableHeader: React.FC<{ scoreCardId: string }> = ({ scoreCardId }) => {
-  const playerScores: Map<string, number> = usePlayerScores()
-  const shotCounts: Map<string, number> = usePlayerShotCount()
+  const playerScores: PlayerScore[] = usePlayerScores()
+  const shotCounts: PlayerShotCount[] = usePlayerShotCount()
 
   const game: Game = useSelector(state => state.game)
   const scoreCard: ScoreCard = useScoreCard(scoreCardId)
@@ -22,7 +25,7 @@ const ScoreTableHeader: React.FC<{ scoreCardId: string }> = ({ scoreCardId }) =>
   }
   
   const playerScore = (playerId: string): string => {
-    const score: number|undefined = playerScores.get(playerId)
+    const score: number|undefined = playerScores.find(score => score.id === playerId)?.score
     if (!score) {
       return '0'
     }
@@ -30,12 +33,12 @@ const ScoreTableHeader: React.FC<{ scoreCardId: string }> = ({ scoreCardId }) =>
   }
   
   const numberOfShots = (playerId: string): string => {
-    const score: number|undefined = shotCounts.get(playerId)
+    const score: number|undefined = shotCounts.find(shots => shots.id === playerId)?.shots
     return score ? `( ${score} )` : '( N/A )'
   }
 
   const renderListItems = (): JSX.Element[] => {
-    const playerIds: string[] = [ ...playerScores.keys() ]
+    const playerIds: string[] = playerScores.map(score => score.id)
 
     return playerIds.map(id => {
       const name: string|undefined = players.find(player => player.id === id)?.name
