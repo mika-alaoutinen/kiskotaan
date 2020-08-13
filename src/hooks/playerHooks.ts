@@ -5,10 +5,11 @@ import { useSelector } from '../store/reduxTypes'
 export interface PlayerScore {
   id: string,
   name: string,
-  score: number
+  score: number,
+  shots: number
 }
 
-export interface PlayerShotCount {
+interface PlayerShotCount {
   id: string,
   name: string,
   shots: number
@@ -33,11 +34,12 @@ export const usePlayerScores = (): PlayerScore[] => {
   return shotCounts.map(shotCount => ({
     id: shotCount.id,
     name: shotCount.name,
-    score: shotCount.shots - coursePar
+    score: shotCount.shots - coursePar,
+    shots: shotCount.shots
   }))
 }
 
-export const usePlayerShotCount = (): PlayerShotCount[] => {
+const usePlayerShotCount = (): PlayerShotCount[] => {
   const scoreCard: ScoreCard = useSelector(state => state.scoreCard)
   const scores: Score[] = scoreCard.rows.flatMap(row => row.scores)
   const shotCounts = countShotsToMap(scores)
