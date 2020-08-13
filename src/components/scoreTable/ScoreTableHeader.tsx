@@ -3,7 +3,7 @@ import { List, ListItem, ListItemText } from '@material-ui/core'
 
 import { useScoreCard } from '../../hooks/scoreCardHooks'
 import { useSelector } from '../../store/reduxTypes'
-import { Game, ScoreCard, Player } from '../../types'
+import { Game, ScoreCard } from '../../types'
 
 import {
   PlayerScore, PlayerShotCount, usePlayerScores, usePlayerShotCount
@@ -15,7 +15,6 @@ const ScoreTableHeader: React.FC<{ scoreCardId: string }> = ({ scoreCardId }) =>
 
   const game: Game = useSelector(state => state.game)
   const scoreCard: ScoreCard = useScoreCard(scoreCardId)
-  const players: Player[] = scoreCard.players
   const { name, holes } = scoreCard.course
 
   const getScoreAndShots = (playerId: string) => {
@@ -38,18 +37,12 @@ const ScoreTableHeader: React.FC<{ scoreCardId: string }> = ({ scoreCardId }) =>
   }
 
   const renderListItems = (): JSX.Element[] => {
-    const playerIds: string[] = playerScores.map(score => score.id)
-
-    return playerIds.map(id => {
-      const name: string|undefined = players.find(player => player.id === id)?.name
-
-      return (
-        <ListItem key={id}>
-          <ListItemText primary={name ? name : id} />
-          <ListItemText primary={getScoreAndShots(id)} />
-        </ListItem>
-      )
-    })
+    return playerScores.map(score =>
+      <ListItem key={score.id}>
+        <ListItemText primary={score.name} />
+        <ListItemText primary={getScoreAndShots(score.id)} />
+      </ListItem>
+    )
   }
 
   return (
