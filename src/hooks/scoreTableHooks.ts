@@ -1,10 +1,10 @@
-import { ScoreCard, ScoreRow } from '../types'
+import { Score, ScoreCard, ScoreRow } from '../types'
 import { useScoreCard } from './scoreCardHooks'
 
 export interface ResultRow {
   hole: number,
   par: number,
-  scores: number[]
+  scores: Score[]
 }
 
 export const useResultRows = (scoreCardId: string): ResultRow[] => {
@@ -16,7 +16,7 @@ export const useResultRows = (scoreCardId: string): ResultRow[] => {
     return {
       hole: hole.number,
       par: hole.par,
-      scores: scoreRow ? scoreRow.scores.map(score => score.score) : []
+      scores: scoreRow ? scoreRow.scores : []
     }
   })
 }

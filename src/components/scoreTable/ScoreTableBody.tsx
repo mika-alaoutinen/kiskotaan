@@ -5,23 +5,27 @@ import {
 } from '@material-ui/core'
 
 import { ResultRow, useResultRows } from '../../hooks/scoreTableHooks'
+import { useSelector } from '../../store/reduxTypes'
+import { Player, Score } from '../../types'
 
 const ScoreTableBody: React.FC<{ scoreCardId: string }> = ({ scoreCardId }) => {
   const resultRows: ResultRow[] = useResultRows(scoreCardId)
+  const players: Player[] = useSelector(state => state.game.scoreCard.players)
+  const playerNames: string[] = players.map(player => player.name)
 
   const renderRows = (): JSX.Element[] =>
     resultRows.map(row =>
       <TableRow key={row.hole}>
         <TableCell>{row.hole}</TableCell>
         <TableCell>{row.par}</TableCell>
-        {renderScores(row)}
+        {renderScores(row.scores)}
       </TableRow>
     )
-  
-  const renderScores = (row: ResultRow): JSX.Element[] =>
-    row.scores.map(score =>
-      <TableCell key={score}>
-        {score}
+    
+  const renderScores = (scores: Score[]): JSX.Element[] =>
+    scores.map(score =>
+      <TableCell key={score.playerId}>
+        {score.score}
       </TableCell>
     )
   
@@ -33,9 +37,9 @@ const ScoreTableBody: React.FC<{ scoreCardId: string }> = ({ scoreCardId }) => {
           <TableRow>
             <TableCell>#</TableCell>
             <TableCell>PAR</TableCell>
-
-            <TableCell>Mika</TableCell>
-            <TableCell>Salla</TableCell>
+            {playerNames.map(name =>
+              <TableCell key={name}>{name}</TableCell>
+            )}
           </TableRow>
         </TableHead>
 
