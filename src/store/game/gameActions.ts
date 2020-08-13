@@ -12,7 +12,7 @@ export const startGame = (): AppThunk => async (dispatch, getState) => {
   dispatch(createNewScoreCard())
   
   const scoreCard: ScoreCard = getState().game.scoreCard
-  const game: Game|void = await gameService.startGame(scoreCard)
+  const game: Game|void = await gameService.startGame(scoreCard.id)
 
   if (!game) {
     return

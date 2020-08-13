@@ -34,14 +34,20 @@ export const usePlayerShotCount = (): Map<string, number> => {
   const shotCounts = new Map<string, number>()
 
   scoreCard.rows
-    .flatMap(row => row.scores)    
+    .flatMap(row => row.scores)
     .forEach(score => {
       const currentScore: number|void = shotCounts.get(score.playerId)
       const newScore: number = currentScore
         ? currentScore + score.score
         : score.score
+
       shotCounts.set(score.playerId, newScore)
     })
   
-  return shotCounts
+  return sortByShotCountAscending(shotCounts)
 }
+
+const sortByShotCountAscending = (shotCounts: Map<string, number>): Map<string, number> =>
+  new Map([ ...shotCounts.entries() ]
+    .sort((a, b) => a[1] - b[1])
+  )

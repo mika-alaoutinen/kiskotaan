@@ -33,19 +33,29 @@ const ScoreTableHeader: React.FC<{ scoreCardId: string }> = ({ scoreCardId }) =>
     const score: number|undefined = shotCounts.get(playerId)
     return score ? `( ${score} )` : '( N/A )'
   }
-  
+
+  const renderListItems = (): JSX.Element[] => {
+    const playerIds: string[] = [ ...playerScores.keys() ]
+
+    return playerIds.map(id => {
+      const name: string|undefined = players.find(player => player.id === id)?.name
+
+      return (
+        <ListItem key={id}>
+          <ListItemText primary={name ? name : id} />
+          <ListItemText primary={getScoreAndShots(id)} />
+        </ListItem>
+      )
+    })
+  }
+
   return (
     <div>
       <h2>Game summary</h2>
       <p>{name} {holes.length}, {game.date}</p>
       
       <List>
-        {players.map(player => 
-          <ListItem key={player.id}>
-            <ListItemText primary={player.name} />
-            <ListItemText primary={getScoreAndShots(player.id)} />
-          </ListItem>
-        )}
+        {renderListItems()}
       </List>
     </div>
   )

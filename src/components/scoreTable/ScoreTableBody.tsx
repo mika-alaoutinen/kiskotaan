@@ -4,28 +4,31 @@ import {
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 } from '@material-ui/core'
 
-import { ScoreCard } from '../../types'
-import { useScoreCard } from '../../hooks/scoreCardHooks'
+import { ResultRow, useResultRows } from '../../hooks/scoreTableHooks'
+import { useSelector } from '../../store/reduxTypes'
+import { Player, Score } from '../../types'
 
 const ScoreTableBody: React.FC<{ scoreCardId: string }> = ({ scoreCardId }) => {
-  const scoreCard: ScoreCard = useScoreCard(scoreCardId)
+  const resultRows: ResultRow[] = useResultRows(scoreCardId)
+  const players: Player[] = useSelector(state => state.game.scoreCard.players)
+  const playerNames: string[] = players.map(player => player.name)
 
   const renderRows = (): JSX.Element[] =>
-    scoreCard.course.holes.map(hole =>
-      <TableRow key={hole.number}>
-        <TableCell>{hole.number}</TableCell>
-        <TableCell>{hole.par}</TableCell>
-        {renderScores()}
+    resultRows.map(row =>
+      <TableRow key={row.hole}>
+        <TableCell>{row.hole}</TableCell>
+        <TableCell>{row.par}</TableCell>
+        {renderScores(row.scores)}
       </TableRow>
     )
-
-  const renderScores = (): JSX.Element[] =>
-    scoreCard.rows.flatMap(row =>
-      row.scores.map(score =>
-        <TableCell key={score.playerId}>{score.score}</TableCell>
-      )
+    
+  const renderScores = (scores: Score[]): JSX.Element[] =>
+    scores.map(score =>
+      <TableCell key={score.playerId}>
+        {score.score}
+      </TableCell>
     )
-
+  
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -34,9 +37,9 @@ const ScoreTableBody: React.FC<{ scoreCardId: string }> = ({ scoreCardId }) => {
           <TableRow>
             <TableCell>#</TableCell>
             <TableCell>PAR</TableCell>
-
-            <TableCell>Mika</TableCell>
-            <TableCell>Salla</TableCell>
+            {playerNames.map(name =>
+              <TableCell key={name}>{name}</TableCell>
+            )}
           </TableRow>
         </TableHead>
 
