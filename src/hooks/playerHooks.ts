@@ -1,6 +1,19 @@
-import { ScoreCard, ScoreRow } from '../types'
+import { Score, ScoreCard, ScoreRow } from '../types'
 import { useParNumber } from './scoreCardHooks'
 import { useSelector } from '../store/reduxTypes'
+
+export interface PlayerScore {
+  id: string,
+  name: string,
+  score: number,
+  shots: number
+}
+
+interface PlayerShotCount {
+  id: string,
+  name: string,
+  shots: number
+}
 
 export const usePlayerScore = (hole: number, playerId: string): number => {
   const scoreRows: ScoreRow[] = useSelector(state => state.scoreCard.rows)
@@ -14,36 +27,51 @@ export const usePlayerScore = (hole: number, playerId: string): number => {
   return playerScore ? playerScore : par
 }
 
-export const usePlayerScores = (): Map<string, number> => {
+export const usePlayerScores = (): PlayerScore[] => {
   const coursePar: number = useSelector(state => state.scoreCard.course.par)
-  const shotCounts: Map<string, number> = usePlayerShotCount()
-  
-  const playerScores = new Map<string, number>()
-  
-  for (const playerId of shotCounts.keys()) {
-      const shots: number|undefined = shotCounts.get(playerId)
-      const differenceToPar: number = shots ? shots - coursePar : 0
-      playerScores.set(playerId, differenceToPar)
-  }
+  const shotCounts: PlayerShotCount[] = usePlayerShotCount()
 
-  return playerScores
+  return shotCounts.map(shotCount => {
+    const { id, name, shots } = shotCount
+    return {
+      id,
+      name,
+      score: shots - coursePar,
+      shots,
+    }
+  })
 }
 
-export const usePlayerShotCount = (): Map<string, number> => {
+const usePlayerShotCount = (): PlayerShotCount[] => {
   const scoreCard: ScoreCard = useSelector(state => state.scoreCard)
+  const scores: Score[] = scoreCard.rows.flatMap(row => row.scores)
+  const shotCounts = countShotsToMap(scores)
+  
+  const playerShotCounts: PlayerShotCount[] = []
+  shotCounts.forEach((score, id) => {
+    const name: string|undefined = scoreCard.players.find(player => player.id === id)?.name
+    playerShotCounts.push({
+      id,
+      name: name ? name : id,
+      shots: score
+    })
+  })
+
+  return playerShotCounts
+}
+
+const countShotsToMap = (scores: Score[]): Map<string, number> => {
   const shotCounts = new Map<string, number>()
 
-  scoreCard.rows
-    .flatMap(row => row.scores)
-    .forEach(score => {
-      const currentScore: number|void = shotCounts.get(score.playerId)
-      const newScore: number = currentScore
-        ? currentScore + score.score
-        : score.score
+  scores.forEach(score => {
+    const currentScore: number|void = shotCounts.get(score.playerId)
+    const newScore: number = currentScore
+      ? currentScore + score.score
+      : score.score
 
-      shotCounts.set(score.playerId, newScore)
-    })
-  
+    shotCounts.set(score.playerId, newScore)
+  })
+
   return sortByShotCountAscending(shotCounts)
 }
 
