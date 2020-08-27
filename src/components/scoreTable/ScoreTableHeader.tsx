@@ -7,11 +7,10 @@ import { Game, ScoreCard } from '../../types'
 import { PlayerScore, usePlayerScores } from '../../hooks/playerHooks'
 
 const ScoreTableHeader: React.FC<{ scoreCardId: string }> = ({ scoreCardId }) => {
-  const playerScores: PlayerScore[] = usePlayerScores()
-
   const game: Game = useSelector(state => state.game)
   const scoreCard: ScoreCard = useScoreCard(scoreCardId)
   const { name, holes } = scoreCard.course
+  const playerScores: PlayerScore[] = usePlayerScores()
 
   const formatScoreText = (score: PlayerScore) =>
     `${score.score} (${score.shots})`
