@@ -1,4 +1,5 @@
-import { Score, ScoreCard, ScoreRow } from '../types'
+import { Course, Score, ScoreCard, ScoreRow } from '../types'
+import { calculatePar } from '../components/course/courseUtils'
 import { useParNumber } from './scoreCardHooks'
 import { useSelector } from '../store/reduxTypes'
 
@@ -28,7 +29,8 @@ export const usePlayerScore = (hole: number, playerId: string): number => {
 }
 
 export const usePlayerScores = (): PlayerScore[] => {
-  const coursePar: number = useSelector(state => state.scoreCard.course.par)
+  const course: Course = useSelector(state => state.scoreCard.course)
+  const par: number = calculatePar(course)
   const shotCounts: PlayerShotCount[] = usePlayerShotCount()
 
   return shotCounts.map(shotCount => {
@@ -36,7 +38,7 @@ export const usePlayerScores = (): PlayerScore[] => {
     return {
       id,
       name,
-      score: shots - coursePar,
+      score: shots - par,
       shots,
     }
   })

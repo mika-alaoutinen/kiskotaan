@@ -11,7 +11,6 @@ export const initialState: ScoreCardState = {
     id: '',
     name: '',
     holes: [],
-    par: 0
   },
   players: [],
   rows: []
