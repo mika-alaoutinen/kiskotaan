@@ -5,6 +5,7 @@ import { createStyles, makeStyles, ThemeProvider, unstable_createMuiStrictModeTh
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
 import { Course } from '../../types'
+import { calculatePar } from './courseUtils'
 import { selectCourse } from '../../store/newScoreCard/newScoreCardActions'
 import { useSelector } from '../../store/reduxTypes'
 
@@ -28,7 +29,7 @@ const CourseAccordion: React.FC<{ course: Course }> = ({ course }) => {
   const selectedCourse: Course = useSelector(state => state.newScoreCard.course)
 
   const classes = useStyles()
-  const { holes, name, par } = course
+  const { holes, name } = course
 
   // Event handlers for buttons:
   const selectCourseHandler = (event: React.MouseEvent): void => {
@@ -62,7 +63,7 @@ const CourseAccordion: React.FC<{ course: Course }> = ({ course }) => {
         <AccordionDetails className={classes.details}>
           <Chip
             color='primary'
-            label={`par ${par}`}
+            label={`par ${calculatePar(course)}`}
             variant='outlined'
           />
             <p>Personal best {getBestScore()}</p>

@@ -9,8 +9,7 @@ const initialState: NewScoreCardState = {
   course: {
     id: '',
     name: '',
-    holes: [],
-    par: 0
+    holes: []
   },
   players: [],
 }
