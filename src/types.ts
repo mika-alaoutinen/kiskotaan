@@ -1,8 +1,7 @@
 export interface Course {
   id: string,
   name: string,
-  holes: Hole[],
-  par: number
+  holes: Hole[]
 }
 
 export interface Game {
