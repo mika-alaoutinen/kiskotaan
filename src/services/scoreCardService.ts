@@ -5,11 +5,15 @@ import { NewScoreCard, ScoreCard } from '../types'
 // Return mock response with ScoreRows:
 import response from '../response.json'
 
-const getScoreCard = async (id: string): Promise<ScoreCard|void> =>
-  Promise.resolve(response)
+const getScoreCard = async (id: string): Promise<ScoreCard | void> => {
+  console.log(id)
+  return Promise.resolve(response)
+}
 
-const createScoreCard = async (newScoreCard: NewScoreCard): Promise<ScoreCard|void> =>
-  Promise.resolve(response)
+const createScoreCard = async (newScoreCard: NewScoreCard): Promise<ScoreCard | void> => {
+  console.log(newScoreCard)
+  return Promise.resolve(response)
+}
 
 // const getScoreCard = async (id: string): Promise<ScoreCard|void> =>
 //   axios.get<ScoreCard>(scoreCardsUrl + '/' + id)
@@ -21,7 +25,7 @@ const createScoreCard = async (newScoreCard: NewScoreCard): Promise<ScoreCard|vo
 //     .then(response => response.data)
 //     .catch(error => console.log(error))
 
-const deleteScoreCard = async (id: string): Promise<void|AxiosResponse<void>> =>
+const deleteScoreCard = async (id: string): Promise<void | AxiosResponse<void>> =>
   axios.delete<void>(scoreCardsUrl + '/' + id)
     .catch(error => console.log(error))
 

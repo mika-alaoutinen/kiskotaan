@@ -1,13 +1,14 @@
-import axios from 'axios'
-import { gamesUrl } from '../constants'
 import { Game } from '../types'
-
 import game from '../newGame.json'
 
-const startGame = async (scoreCardId: string): Promise<Game|void> =>
-  Promise.resolve(game)
+const startGame = async (scoreCardId: string): Promise<Game | void> => {
+  console.log(scoreCardId)
+  return Promise.resolve(game)
+}
 
-const endGame = async (id: string): Promise<Game|void> => {
+const endGame = async (id: string): Promise<Game | void> => {
+  console.log(id)
+
   const endedGame: Game = {
     ...game,
     isOver: true
